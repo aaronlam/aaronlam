@@ -1,0 +1,21 @@
+sudo: false
+language: node_js
+node_js:
+  - 12 # use nodejs 12 LTS
+cache: npm
+install:
+  - npm install hexo-cli -g
+  - npm install
+branches:
+  only:
+    - main # build main branch only
+script:
+  - hexo generate # generate static files
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GH_TOKEN
+  keep-history: true
+  on:
+    branch: main
+  local-dir: public

@@ -272,7 +272,7 @@ custom_logo:
 # Available value:
 #    normal | night | night eighties | night blue | night bright
 # https://github.com/chriskempson/tomorrow-theme
-highlight_theme: night 
+highlight_theme: night
 
 # ---------------------------------------------------------------
 # Font Settings
@@ -376,7 +376,7 @@ valine:
   notify: false # mail notifier , https://github.com/xCss/Valine/wiki
   verify: false # Verification code
   placeholder: Just go go # comment box placeholder
-  avatar: https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201012000906.jpg # gravatar style
+  avatar: //cdn.jsdelivr.net/gh/aaronlam/imghosting/20201012000906.jpg # gravatar style
   guest_info: nick,mail,link # custom comment header
   pageSize: 10 # pagination size
 
@@ -761,7 +761,7 @@ vendors:
 
   # Internal version: 1.0.0
   # https://github.com/hustcc/canvas-nest.js
-  canvas_nest: //cdn.jsdelivr.net/gh/hustcc/canvas-nest.js@1.0.0/canvas-nest.js
+  canvas_nest: //cdn.jsdelivr.net/gh/hustcc/canvas-nest.js@1.0.0/canvas-nest.min.js
 
   # three
   three:
@@ -791,9 +791,9 @@ vendors:
   needMoreShare2:
 
 # Assets
-css: css
-js: js
-images: images
+css: /cdn.jsdelivr.net/gh/aaronlam/aaronlam@gh-pages/css
+js: /cdn.jsdelivr.net/gh/aaronlam/aaronlam@gh-pages/js
+images: /cdn.jsdelivr.net/gh/aaronlam/aaronlam@gh-pages/images
 
 # Theme version
 version: 5.1.4

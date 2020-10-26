@@ -27,10 +27,10 @@ override: false
 # For example, you put your favicons into `hexo-site/source/images` directory.
 # Then need to rename & redefine they on any other names, otherwise icons from Next will rewrite your custom icons in Hexo.
 favicon:
-  small: //cdn.jsdelivr.net/gh/aaronlam/aaronlam@gh-pages/images/favicon-16x16-next.am.png
-  medium: //cdn.jsdelivr.net/gh/aaronlam/aaronlam@gh-pages/images/favicon-32x32-next.am.png
-  apple_touch_icon: //cdn.jsdelivr.net/gh/aaronlam/aaronlam@gh-pages/images/apple-touch-icon-next.am.png
-  safari_pinned_tab: //cdn.jsdelivr.net/gh/aaronlam/aaronlam@gh-pages/images/logo.am.svg
+  small: //cdn.jsdelivr.net/gh/aaronlam/aaronlam@gh-pages/images/favicon-16x16-next.png
+  medium: //cdn.jsdelivr.net/gh/aaronlam/aaronlam@gh-pages/images/favicon-32x32-next.png
+  apple_touch_icon: //cdn.jsdelivr.net/gh/aaronlam/aaronlam@gh-pages/images/apple-touch-icon-next.png
+  safari_pinned_tab: //cdn.jsdelivr.net/gh/aaronlam/aaronlam@gh-pages/images/logo.svg
   #android_manifest: /images/manifest.json
   #ms_browserconfig: /images/browserconfig.xml
 
@@ -351,11 +351,22 @@ baidu_analytics: 12d5f43ccc3315ebcf28a28012e25650
 # Duoshuo ShortName
 #duoshuo_shortname:
 
+# DisqusJS
+disqusjs:
+  enable: true
+  version: 1.3
+  api: //corsapi.aaronlam.xyz/disqus.com/api/
+  shortname: aaronlam
+  siteName: Aaronlam
+  admin: aaronlam
+  adminLabel: Mod
+  count: true
+
 # Disqus
 disqus:
-  enable: true
-  shortname: Aaronlam
-  count: true
+  enable: false
+  shortname: aaronlam
+  count: false
 
 # Hypercomments
 #hypercomments_id:
@@ -682,7 +693,7 @@ pace: false
 pace_theme: pace-theme-minimal
 
 # Canvas-nest
-canvas_nest: false
+canvas_nest: true
 
 # three_waves
 three_waves: false

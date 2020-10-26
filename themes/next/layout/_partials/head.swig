@@ -73,6 +73,10 @@
 
 <link href="{{ url_for(theme.css) }}/main.{% if theme.jsdelivr_compress %}min.{% endif %}css?v={{ theme.version }}" rel="stylesheet" type="text/css" />
 
+{% if theme.disqusjs.enable %}
+  <link rel="stylesheet" href="{{ url_for(theme.css) }}/disqusjs.min.css?v={{ theme.disqusjs.version }}">
+{% endif %}
+
 {% if theme.favicon.apple_touch_icon %}
   <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for(theme.favicon.apple_touch_icon) }}?v={{ theme.version }}">
 {% endif %}

@@ -22,6 +22,11 @@
       <div id="vk_comments"></div>
     </div>
 
+  {% elseif theme.disqusjs.enable %}
+    <div class="comments" id="comments">
+      <div id="disqus_thread"></div>
+    </div>
+
   {% elseif theme.disqus.enable %}
     <div class="comments" id="comments">
       <div id="disqus_thread">

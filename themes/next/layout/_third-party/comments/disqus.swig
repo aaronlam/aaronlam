@@ -1,4 +1,29 @@
 {% if not (theme.duoshuo and theme.duoshuo.shortname) and not theme.duoshuo_shortname %}
+  {% if theme.disqusjs.enable %}
+
+    {% if theme.disqusjs.count  %}
+      <script id="dsq-count-scr" src="{{ url_for(theme.js) }}/src/disqus-count.min.js?v={{ theme.disqusjs.version }}" async></script>
+    {% endif %}
+
+    {% if page.comments %}
+      <script src="{{ url_for(theme.js) }}/src/disqus.min.js?v={{ theme.disqusjs.version }}"></script>
+      <script>
+        var dsqjs = new DisqusJS({
+            shortname: '{{ theme.disqusjs.shortname }}',
+            siteName: '{{ theme.disqusjs.siteName }}',
+            identifier: document.location.origin + document.location.pathname + document.location.search,
+            url: document.location.origin + document.location.pathname + document.location.search,
+            title: document.title,
+            api: '{{ theme.disqusjs.api }}',
+            apikey: ['75iOeCKL8JTvz9pX1zqXKcqXsdmHITL9IhmSDbw4WhYMlRod2v5LlJEIPgwyMy92', 'NLPPSIXr0gAgtVhsyDPraicrQh1nSlgGKbkkl09GpYcpapvDbgWsQDpV2pTpyHHX', 'u9eBGtFAZJyv5YJatlkzZRswrlFFuJnfZwaAk3sSS3szKRkBcOKr6smJa7AIbyNB', 'BFHqakwhtPD8Iy2SkjX6Ip0bitnlXuH2QIyYhNM3czJyNp6Os1UnV1DdigYHtMIY', 'SlAHfNK44AyAaMJC3lqvls5LfAyHgHdXbJOglPw6imBarYCbwY88KfjkZ1dttmIE'],
+            admin: '{{ theme.disqusjs.admin }}',
+            adminLabel: '{{ theme.disqusjs.adminLabel }}'
+        });
+      </script>
+    {% endif %}
+    
+  {% endif %}
+
   {% if theme.disqus.enable %}
 
     {% if theme.disqus.count  %}

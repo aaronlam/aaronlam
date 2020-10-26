@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT, aaronlam, live, programmer, csharp, javascript, react, nodejs" />
+  <meta name="keywords" content="TCP,网络,流量控制,拥塞控制," />
 
 
 
@@ -83,13 +83,26 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Aaronlam">
-<meta property="og:url" content="https://www.aaronlam.xyz/archives/2019/12/index.html">
+<meta name="description" content="流量控制1. 什么是流量控制在 TCP 传输中，如果数据发送方的发送速度过快，那么就会造成数据接收方来不及接收所有发送出的数据。那么在这样的状况下，就会有分组丢失的情况发生。控制数据发送方的发送速度，使得数据接收方来得及接收，这就是流量控制。 2. 流量控制的目的流量控制的其根本目的就是防止 TCP 传输中的分组丢失，它是构成 TCP 可靠性传输的其中一个方面。 3. 如何实现流量控制TCP 传输">
+<meta property="og:type" content="article">
+<meta property="og:title" content="粗解TCP的流量控制和拥塞控制">
+<meta property="og:url" content="https://www.aaronlam.xyz/2019/06/30/tcp-traffic-and-congestion-control/index.html">
 <meta property="og:site_name" content="Aaronlam">
+<meta property="og:description" content="流量控制1. 什么是流量控制在 TCP 传输中，如果数据发送方的发送速度过快，那么就会造成数据接收方来不及接收所有发送出的数据。那么在这样的状况下，就会有分组丢失的情况发生。控制数据发送方的发送速度，使得数据接收方来得及接收，这就是流量控制。 2. 流量控制的目的流量控制的其根本目的就是防止 TCP 传输中的分组丢失，它是构成 TCP 可靠性传输的其中一个方面。 3. 如何实现流量控制TCP 传输">
 <meta property="og:locale">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201026180823.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201026183338.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201026185311.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201026190649.png">
+<meta property="article:published_time" content="2019-06-30T12:00:00.000Z">
+<meta property="article:modified_time" content="2020-10-26T11:10:56.016Z">
 <meta property="article:author" content="aaronlam">
+<meta property="article:tag" content="TCP">
+<meta property="article:tag" content="网络">
+<meta property="article:tag" content="流量控制">
+<meta property="article:tag" content="拥塞控制">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201026180823.png">
 
 
 
@@ -119,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="https://www.aaronlam.xyz/archives/2019/12/"/>
+  <link rel="canonical" href="https://www.aaronlam.xyz/2019/06/30/tcp-traffic-and-congestion-control/"/>
 
 
 
 
 
-  <title>归档 | Aaronlam</title>
+  <title>粗解TCP的流量控制和拥塞控制 | Aaronlam</title>
   
 
 
@@ -154,7 +167,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -264,74 +277,203 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
-
-      <span class="archive-page-counter">
-        
-        
-        
-          
-        
-        嗯..! 目前共计 2 篇日志。 继续努力。
-      </span>
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2020">2020</h1>
-          </div>
-        
-        
-
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.aaronlam.xyz/2019/06/30/tcp-traffic-and-congestion-control/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="//cdn.jsdelivr.net/gh/aaronlam/aaronlam@gh-pages/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Aaronlam">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/12/31/hello-world/" itemprop="url">
-              
-                <span itemprop="name">Hello World</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">粗解TCP的流量控制和拥塞控制</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-01-01T00:00:00+08:00"
-              content="2020-01-01" >
-          01-01
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-30T20:00:00+08:00">
+                2019-06-30
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
 
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/06/30/tcp-traffic-and-congestion-control/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/06/30/tcp-traffic-and-congestion-control/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
+      
 
+      
+        <h1 id="流量控制"><a href="#流量控制" class="headerlink" title="流量控制"></a>流量控制</h1><h2 id="1-什么是流量控制"><a href="#1-什么是流量控制" class="headerlink" title="1. 什么是流量控制"></a>1. 什么是流量控制</h2><p>在 TCP 传输中，如果数据发送方的发送速度过快，那么就会造成数据接收方来不及接收所有发送出的数据。那么在这样的状况下，就会有分组丢失的情况发生。控制数据发送方的发送速度，使得数据接收方来得及接收，这就是流量控制。</p>
+<h2 id="2-流量控制的目的"><a href="#2-流量控制的目的" class="headerlink" title="2. 流量控制的目的"></a>2. 流量控制的目的</h2><p>流量控制的其根本目的就是防止 TCP 传输中的分组丢失，它是构成 TCP 可靠性传输的其中一个方面。</p>
+<h2 id="3-如何实现流量控制"><a href="#3-如何实现流量控制" class="headerlink" title="3. 如何实现流量控制"></a>3. 如何实现流量控制</h2><p>TCP 传输的流量控制由<strong>滑动窗口协议</strong>（<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E8%87%AA%E5%8A%A8%E9%87%8D%E4%BC%A0%E8%AF%B7%E6%B1%82"><strong>连续 ARQ 协议</strong></a>）实现的，滑动窗口协议既能保证分组无差错、有序接收，也实现了流量控制的功能。主要的方式就是接收方在返回的 ACK 中会包含自己的接收窗口大小，并利用该接收窗口大小来实现控制发送方的数据发送。</p>
+<hr>
+<h1 id="拥塞控制"><a href="#拥塞控制" class="headerlink" title="拥塞控制"></a>拥塞控制</h1><h2 id="1-什么是拥塞控制"><a href="#1-什么是拥塞控制" class="headerlink" title="1. 什么是拥塞控制"></a>1. 什么是拥塞控制</h2><p>拥塞控制是一种用来调整 TCP 链接单次发送分组数量（<strong>单词发送量</strong>，通常叫 cwnd）的算法</p>
+<h2 id="2-拥塞控制的目的"><a href="#2-拥塞控制的目的" class="headerlink" title="2. 拥塞控制的目的"></a>2. 拥塞控制的目的</h2><p>拥塞控制的其根本目的是防止通信子网中某一部分的分组数量过多，使得该部分的网络来不及处理，导致该通讯子网乃至整个网络性能下降的现象发生。严重的话还会导致网络通信业务陷入停顿，既出现死锁的现象。</p>
+<p>其实就是类似于平时深圳公路网中常见的交通拥挤一样，当节假日出行的车辆大量增加时，各种走向的车流互相干扰。不仅如此，还有各路段不停修路，最终导致的堵车。</p>
+<h2 id="3-如何实现拥塞控制"><a href="#3-如何实现拥塞控制" class="headerlink" title="3. 如何实现拥塞控制"></a>3. 如何实现拥塞控制</h2><p>在讲如何实现拥塞控制之前，需要介绍两个概念，第一个就是<strong>拥塞窗口 cwnd</strong>（<strong>congestion window</strong>），而第二个则是慢开始门限 <strong>ssthresh</strong>（<strong>slow start thresh</strong>）。<strong>后面的内容将会用 cwnd 和 ssthresh 代指它们两个</strong>，下面是对这两个概念的具体解释：</p>
+<ol>
+<li><p>发送方会维持一个拥塞窗口的状态变量，拥塞窗口的大小取决于网络的拥塞程度，并且会根据实际情况动态变化。发送方让自己的发送窗口大小等于拥塞窗口大小，另外考虑到接收方的接受能力，发送方的发送窗口可能还需要小于拥塞窗口。</p>
+</li>
+<li><p>为了防止拥塞窗口增长过快，发送方还会维持一个慢开始门限变量，一旦到达慢开始门限的值后就会从慢开始算法转为执行拥塞避免算法。</p>
+</li>
+</ol>
+<h3 id="1-慢开始算法"><a href="#1-慢开始算法" class="headerlink" title="1) 慢开始算法"></a>1) 慢开始算法</h3><p>慢开始算法的思路就是，不要一开始就发送大量的数据，先探测一下网络的拥塞程度，也就是由小到大逐渐增加 cwnd 的大小。从下图可以看到，一个传输轮次所经历的时间其实就是往返时间 RTT，而且每经过一个传输轮次，cwnd 就加倍。所以慢开始里的“慢”并不是指 cwnd 增长的速率慢，而是指在 TCP 传输开始发送报文段时，初始设置的 cwnd 较小，然后再指数式增大。这当然会比，在初始就设置为较大的 cwnd 一下子把许多报文段注入到网络中要“慢的多”。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201026180823.png" alt="慢开始算法"></p>
+<p>为了防止慢开始算法，让 cwnd 走上无止境的指数式增长的道路，上面提到的 ssthresh 就起到了关键的作用。ssthresh 的具体作用如下，所以在这里可以看出慢开始算法和拥塞避免算法在拥塞控制中是相辅相成的：</p>
+<ol>
+<li>当 <strong>cwnd &lt; ssthresh</strong> 时，就执行慢开始算法；</li>
+<li>当 <strong>cwnd &gt; ssthresh</strong> 时，就改为执行拥塞避免算法；</li>
+<li>当 <strong>cwnd = ssthresh</strong> 时，慢开始与拥塞避免算法任选。</li>
+</ol>
+<h3 id="2-拥塞避免算法"><a href="#2-拥塞避免算法" class="headerlink" title="2) 拥塞避免算法"></a>2) 拥塞避免算法</h3><p>拥塞避免算法的思路就是让 cwnd 缓慢增长，即每经过一个往返时间 RTT 就把发送方的 cwnd +1，而不是指数式的加倍。这样有助于 cwnd 按线性规律的缓慢增长。另外无论是在慢开始算法阶段还是拥塞避免算法阶段，只要发送方判断网络出现拥塞（主要是根据有没有定时的收到接收方的确认，虽然没有收到确认可能是其他原因造成的。但是无法判断具体原因，所以都当做拥塞来进行处理），就把 ssthresh 设置为出现拥塞时的发送窗口大小的一半（但不能小于 2），然后把 cwnd 重新置为 1，然后改为执行慢开始算法（这样做的目的是要迅速减少发送方发送到网络中的分组数，使得拥塞的网络中的路由器有足够的时间把积压的分组处理完毕）。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201026183338.png" alt="拥塞避免算法"></p>
+<ol>
+<li>cwnd 初始化为 1 个报文段，ssthresh 初始值为 16</li>
+<li>开始执行慢开始算法，指数增长到第 4 轮，既 cwnd=ssthresh=16，然后改为执行拥塞避免算法，cwnd 按加法增长（线性规律增长）</li>
+<li>假定 cwnd=24 时，网络出现超时（拥塞），则设置 ssthresh 为出现拥塞时的发送窗口大小的一半，既 ssthresh=12，cwnd 重新设置为 1，然后改为执行慢开始算法。当 cwnd=ssthresh=12 时，为避免拥塞，改为执行拥塞避免算法</li>
+</ol>
+<h3 id="2-快重传算法"><a href="#2-快重传算法" class="headerlink" title="2) 快重传算法"></a>2) 快重传算法</h3><p>快重传算法的思路就是要求接收方在收到 1 个失序的报文段后就立即发出重复确认（为的是让发送方及早知道有报文段没有到达）。快重传算法规定，发送方只要一连收到 3 个重复确认（确认丢失段的前一个段）就应当立即重传对方尚未收到的报文段，而不必继续等待设置重传计时器时间到期。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201026185311.png" alt="快重传算法"></p>
+<h3 id="4-快恢复算法"><a href="#4-快恢复算法" class="headerlink" title="4) 快恢复算法"></a>4) 快恢复算法</h3><p>快重传算法一般与快恢复算法配合使用，快恢复算法的思路就是当发送方连续收到 3 个重复确认时，就执行“乘法减少”算法，设置 ssthresh 为遇到突发情况时发送窗口大小的一半预防网络发生拥塞，考虑到如果网络出现了拥塞就不会接收到好几个重复确认，所以发送方认为现在网络可能没有出现拥塞。所以此时不执行慢开始算法，而是将 cwnd 设置为 ssthresh 减半后的值，然后改为执行拥塞避免算法，使 cwnd 缓慢增长。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201026190649.png" alt="快恢复算法"></p>
+<hr>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>流量控制主要作用于接收方，它是控制发送方的发送速度从而使接受方能够来的急接收发送方所发送的数据，防止分组丢失的控制方法。由<strong>滑动窗口协议</strong>（<strong>连续 ARQ 协议</strong>）实现，滑动窗口协议既保证了分组无差错、有序接收，也实现了流量控制的功能。<br>拥塞控制则作用于网络，它是防止过多的数据注入到传输的网络中，避免网络负载过大的情况发生。常用的控制方法如下：</p>
+<ol>
+<li>慢开始算法+拥塞避免算法</li>
+<li>快重传算法+快恢复算法</li>
+</ol>
+<p>另外，慢开始算法只是在 TCP 传输建立时和网络出现超时时才使用。</p>
+
+      
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/TCP/" rel="tag"># TCP</a>
+          
+            <a href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag"># 网络</a>
+          
+            <a href="/tags/%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6/" rel="tag"># 流量控制</a>
+          
+            <a href="/tags/%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6/" rel="tag"># 拥塞控制</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/31/hello-world/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -339,6 +481,20 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -359,8 +515,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -411,6 +576,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6"><span class="nav-number">1.</span> <span class="nav-text">流量控制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6"><span class="nav-number">1.1.</span> <span class="nav-text">1. 什么是流量控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E7%9A%84%E7%9B%AE%E7%9A%84"><span class="nav-number">1.2.</span> <span class="nav-text">2. 流量控制的目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6"><span class="nav-number">1.3.</span> <span class="nav-text">3. 如何实现流量控制</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6"><span class="nav-number">2.</span> <span class="nav-text">拥塞控制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6"><span class="nav-number">2.1.</span> <span class="nav-text">1. 什么是拥塞控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6%E7%9A%84%E7%9B%AE%E7%9A%84"><span class="nav-number">2.2.</span> <span class="nav-text">2. 拥塞控制的目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6"><span class="nav-number">2.3.</span> <span class="nav-text">3. 如何实现拥塞控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%85%A2%E5%BC%80%E5%A7%8B%E7%AE%97%E6%B3%95"><span class="nav-number">2.3.1.</span> <span class="nav-text">1) 慢开始算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%8B%A5%E5%A1%9E%E9%81%BF%E5%85%8D%E7%AE%97%E6%B3%95"><span class="nav-number">2.3.2.</span> <span class="nav-text">2) 拥塞避免算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%BF%AB%E9%87%8D%E4%BC%A0%E7%AE%97%E6%B3%95"><span class="nav-number">2.3.3.</span> <span class="nav-text">2) 快重传算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%BF%AB%E6%81%A2%E5%A4%8D%E7%AE%97%E6%B3%95"><span class="nav-number">2.3.4.</span> <span class="nav-text">4) 快恢复算法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -548,6 +729,10 @@
   
 
   
+  <script type="text/javascript" src="//cdn.jsdelivr.net/gh/aaronlam/aaronlam@gh-pages/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/aaronlam/aaronlam@gh-pages/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -569,6 +754,18 @@
       <script id="dsq-count-scr" src="https://Aaronlam.disqus.com/count.js" async></script>
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://www.aaronlam.xyz/2019/06/30/tcp-traffic-and-congestion-control/';
+          this.page.identifier = '2019/06/30/tcp-traffic-and-congestion-control/';
+          this.page.title = '粗解TCP的流量控制和拥塞控制';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://Aaronlam.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   

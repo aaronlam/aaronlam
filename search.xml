@@ -23,9 +23,9 @@
     <url>/2019/06/30/tcp-traffic-and-congestion-control/</url>
     <content><![CDATA[<h1 id="流量控制"><a href="#流量控制" class="headerlink" title="流量控制"></a>流量控制</h1><h2 id="1-什么是流量控制"><a href="#1-什么是流量控制" class="headerlink" title="1. 什么是流量控制"></a>1. 什么是流量控制</h2><p>在 TCP 传输中，如果数据发送方的发送速度过快，那么就会造成数据接收方来不及接收所有发送出的数据。那么在这样的状况下，就会有分组丢失的情况发生。控制数据发送方的发送速度，使得数据接收方来得及接收，这就是流量控制。</p>
 <h2 id="2-流量控制的目的"><a href="#2-流量控制的目的" class="headerlink" title="2. 流量控制的目的"></a>2. 流量控制的目的</h2><p>流量控制的其根本目的就是防止 TCP 传输中的分组丢失，它是构成 TCP 可靠性传输的其中一个方面。</p>
-<h2 id="3-如何实现流量控制"><a href="#3-如何实现流量控制" class="headerlink" title="3. 如何实现流量控制"></a>3. 如何实现流量控制</h2><p>TCP 传输的流量控制由<strong>滑动窗口协议</strong>（<a href="https://zh.wikipedia.org/wiki/%E8%87%AA%E5%8A%A8%E9%87%8D%E4%BC%A0%E8%AF%B7%E6%B1%82"><strong>连续 ARQ 协议</strong></a>）实现的，滑动窗口协议既能保证分组无差错、有序接收，也实现了流量控制的功能。主要的方式就是接收方在返回的 ACK 中会包含自己的接收窗口大小，并利用该接收窗口大小来实现控制发送方的数据发送。</p>
+<h2 id="3-如何实现流量控制"><a href="#3-如何实现流量控制" class="headerlink" title="3. 如何实现流量控制"></a>3. 如何实现流量控制</h2><p>TCP 传输的流量控制由<strong>滑动窗口协议</strong>实现的，滑动窗口协议既能保证分组无差错、有序接收，也实现了流量控制的功能。主要的方式就是接收方在返回的 ACK 中会包含自己的接收窗口大小，并利用该接收窗口大小来实现控制发送方的数据发送。</p>
 <hr>
-<h1 id="拥塞控制"><a href="#拥塞控制" class="headerlink" title="拥塞控制"></a>拥塞控制</h1><h2 id="1-什么是拥塞控制"><a href="#1-什么是拥塞控制" class="headerlink" title="1. 什么是拥塞控制"></a>1. 什么是拥塞控制</h2><p>拥塞控制是一种用来调整 TCP 链接单次发送分组数量（<strong>单词发送量</strong>，通常叫 cwnd）的算法</p>
+<h1 id="拥塞控制"><a href="#拥塞控制" class="headerlink" title="拥塞控制"></a>拥塞控制</h1><h2 id="1-什么是拥塞控制"><a href="#1-什么是拥塞控制" class="headerlink" title="1. 什么是拥塞控制"></a>1. 什么是拥塞控制</h2><p>拥塞控制是一种用来调整 TCP 链接单次发送分组数量（<strong>单次发送量</strong>，通常叫 cwnd）的算法</p>
 <h2 id="2-拥塞控制的目的"><a href="#2-拥塞控制的目的" class="headerlink" title="2. 拥塞控制的目的"></a>2. 拥塞控制的目的</h2><p>拥塞控制的其根本目的是防止通信子网中某一部分的分组数量过多，使得该部分的网络来不及处理，导致该通讯子网乃至整个网络性能下降的现象发生。严重的话还会导致网络通信业务陷入停顿，既出现死锁的现象。</p>
 <p>其实就是类似于平时深圳公路网中常见的交通拥挤一样，当节假日出行的车辆大量增加时，各种走向的车流互相干扰。不仅如此，还有各路段不停修路，最终导致的堵车。</p>
 <h2 id="3-如何实现拥塞控制"><a href="#3-如何实现拥塞控制" class="headerlink" title="3. 如何实现拥塞控制"></a>3. 如何实现拥塞控制</h2><p>在讲如何实现拥塞控制之前，需要介绍两个概念，第一个就是<strong>拥塞窗口 cwnd</strong>（<strong>congestion window</strong>），而第二个则是慢开始门限 <strong>ssthresh</strong>（<strong>slow start thresh</strong>）。<strong>后面的内容将会用 cwnd 和 ssthresh 代指它们两个</strong>，下面是对这两个概念的具体解释：</p>

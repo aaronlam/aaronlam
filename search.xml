@@ -1,6 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>CommonJS Module和ES6 Modules之间的引用与转换</title>
+    <url>/2019/10/05/commonjs-and-es6-modules/</url>
+    <content><![CDATA[<p>平时在项目开发的过程中，因为 JavaScript 模块化的历史遗留问题，难免会存在在 CommonJS 的模块里头 <code>import</code> ES6 的模块，或者在 CommonJS 的模块里头 <code>require</code> ES6 的模块的情况发生。为了能够搞清楚他们之间的转换小秘密，所以就专门记录一下，方便日后回顾，顺便上来水一文。</p>
+<blockquote>
+<p>因为这两种模块在网络上存在着各式各样的叫法，所以在文章开始前，为了能够和大家达成一致的共识。在后面我将会用 <strong>CJS</strong> 代指 CommonJS Module，用 <strong>ESM</strong> 代指 ES Modules。</p>
+</blockquote>
+<h1 id="ESM-转-CJS"><a href="#ESM-转-CJS" class="headerlink" title="ESM 转 CJS"></a>ESM 转 CJS</h1><h2 id="1-ESM-export-转-CJS-exports"><a href="#1-ESM-export-转-CJS-exports" class="headerlink" title="1. ESM export 转 CJS exports"></a>1. ESM export 转 CJS exports</h2><p>举个栗子：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// a.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">var</span> foo = <span class="string">&quot;bar&quot;</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<p><code>a.js</code> 中的 <strong>ESM</strong> 在经过 <strong>babel</strong> 转为 <strong>CJS</strong> 后，代码变为：</p>
+<blockquote>
+<p>注：在 ESM 被转为 CJS 时，转译器会在其导出的对象中定义一个值为 <code>true</code> 的私有的变量 <code>__esModule</code></p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="meta">&quot;use strict&quot;</span>;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(<span class="built_in">exports</span>, <span class="string">&quot;__esModule&quot;</span>, &#123; <span class="attr">value</span>: <span class="literal">true</span> &#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">exports</span>.func = func;</span><br><span class="line"><span class="keyword">var</span> foo = (<span class="built_in">exports</span>.foo = <span class="string">&quot;bar&quot;</span>);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="built_in">exports</span>.default = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<p>其实也就等价于：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="meta">&quot;use strict&quot;</span>;</span><br><span class="line"><span class="built_in">exports</span>.__esModule = <span class="literal">true</span>; <span class="comment">// 该属性实际上会通过Object.defineProperty API设置为不可枚举</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exports</span>.foo = <span class="string">&quot;bar&quot;</span>;</span><br><span class="line"><span class="built_in">exports</span>.func = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line"><span class="built_in">exports</span>.default = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+
+<h2 id="2-ESM-import-转-CJS-require"><a href="#2-ESM-import-转-CJS-require" class="headerlink" title="2. ESM import 转 CJS require"></a>2. ESM import 转 CJS require</h2><h3 id="2-1-Default-import"><a href="#2-1-Default-import" class="headerlink" title="2.1 Default import"></a>2.1 Default import</h3><p>还是一个栗子，直接默认导入 <code>a.js</code> 中的模块：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//  b.js</span></span><br><span class="line"><span class="keyword">import</span> a <span class="keyword">from</span> <span class="string">&quot;./a&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br></pre></td></tr></table></figure>
+
+<p><code>b.js</code> 在经过 <strong>babel</strong> 转为 <strong>CJS</strong> 后，代码变为：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="meta">&quot;use strict&quot;</span>;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(<span class="built_in">exports</span>, <span class="string">&quot;__esModule&quot;</span>, &#123; <span class="attr">value</span>: <span class="literal">true</span> &#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> _a = <span class="built_in">require</span>(<span class="string">&quot;./a&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> _a2 = _interopRequireDefault(_a);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">_interopRequireDefault</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 如果是ESM则直接返回obj，否则返回新对象</span></span><br><span class="line">  <span class="keyword">return</span> obj &amp;&amp; obj.__esModule ? obj : &#123; <span class="attr">default</span>: obj &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(_a2.default);</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-Wildcard-import"><a href="#2-2-Wildcard-import" class="headerlink" title="2.2 Wildcard import"></a>2.2 Wildcard import</h3><p>再一个栗子，名字空间导入<code>a.js</code>中的模块：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// b.js</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> a <span class="keyword">from</span> <span class="string">&quot;./a&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br></pre></td></tr></table></figure>
+
+<p><code>b.js</code>在经过 <strong>babel</strong> 转为 <strong>CJS</strong> 后，代码变为：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="meta">&quot;use strict&quot;</span>;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(<span class="built_in">exports</span>, <span class="string">&quot;__esModule&quot;</span>, &#123; <span class="attr">value</span>: <span class="literal">true</span> &#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> _a = <span class="built_in">require</span>(<span class="string">&quot;./a&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> A = _interopRequireWildcard(_a);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">_interopRequireWildcard</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ESM直接返回obj</span></span><br><span class="line">  <span class="keyword">if</span> (obj &amp;&amp; obj.__esModule) &#123;</span><br><span class="line">    <span class="keyword">return</span> obj;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// CJS的话就创建一个新的空对象，并把obj内的所有自有属性都浅复制到新对象中，最后再把obj赋值给新对象的default属性</span></span><br><span class="line">    <span class="keyword">var</span> newObj = &#123;&#125;;</span><br><span class="line">    <span class="keyword">if</span> (obj != <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> obj) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">Object</span>.prototype.hasOwnProperty.call(obj, key)) &#123;</span><br><span class="line">          newObj[key] = obj[key];</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    newObj.default = obj;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> newObj;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h2><ol>
+<li>ESM 的 <code>export</code> 相当于往 CJS 的 <code>exports</code> 上添加属性<ol>
+<li><code>export var/let/const/function/class...</code> 会往 <code>exports</code> 上添加同名属性</li>
+<li><code>export default</code> 会往 <code>exports</code> 上添加 default 属性</li>
+</ol>
+</li>
+<li>ESM 可以 <strong>default import</strong> 和 <strong>wildcard import</strong> CJS<ol>
+<li><strong>default import</strong> CJS 时，会创建一个新的空对象，并把 CJS 的导出对象 <code>exports</code> 赋值到新对象的 default 属性</li>
+<li><strong>wildcard import</strong> CJS 时，会创建一个新的空对象，并把 CJS 的导出对象 <code>exports</code> 中的自有属性浅复制到新的空对象中，最后再把导出对象 <code>exports</code> 赋值到新对象的 default 属性</li>
+</ol>
+</li>
+</ol>
+<h1 id="ESM-中引用-CJS"><a href="#ESM-中引用-CJS" class="headerlink" title="ESM 中引用 CJS"></a>ESM 中引用 CJS</h1><p>根据上面得出的结论，ESM 中引用 CJS 有两种方式，栗子如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// cjs.js</span></span><br><span class="line"><span class="built_in">module</span>.export = &#123;</span><br><span class="line">  <span class="keyword">default</span>: <span class="string">&quot;myDefault&quot;</span>,</span><br><span class="line">  foo: <span class="string">&quot;bar&quot;</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// esm.js</span></span><br><span class="line"><span class="keyword">import</span> cjs <span class="keyword">from</span> <span class="string">&quot;./cjs&quot;</span>;</span><br><span class="line"><span class="comment">// const cjs = (&#123; default: exports &#125;).default;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> cjs2 <span class="keyword">from</span> <span class="string">&quot;./cjs&quot;</span>;</span><br><span class="line"><span class="comment">// const cjs2 = (&#123; default: exports, ...exports &#125;)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; <span class="keyword">default</span> <span class="keyword">as</span> cjs3 &#125; <span class="keyword">from</span> <span class="string">&quot;./cjs&quot;</span>;</span><br><span class="line"><span class="comment">// const cjs3 = (&#123; default: exports &#125;).default</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="CJS-中引用-ESM"><a href="#CJS-中引用-ESM" class="headerlink" title="CJS 中引用 ESM"></a>CJS 中引用 ESM</h1><p>在 CJS 中引用 ESM 相当于直接引用 ESM 转成 CJS 的 <code>module.exports</code>，栗子如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// es.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">let</span> foo = <span class="string">&quot;bar&quot;</span>;</span><br><span class="line"><span class="keyword">export</span> &#123; foo <span class="keyword">as</span> bar &#125;;</span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">cls</span> </span>&#123;&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// cjs.js</span></span><br><span class="line"><span class="keyword">var</span> es = <span class="built_in">require</span>(<span class="string">&quot;./es&quot;</span>);</span><br><span class="line"><span class="comment">/* es结构如下：</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">    foo,</span></span><br><span class="line"><span class="comment">    bar: foo,</span></span><br><span class="line"><span class="comment">    func,</span></span><br><span class="line"><span class="comment">    cls,</span></span><br><span class="line"><span class="comment">    default: 1</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>JacaScript</tag>
+        <tag>ESModules</tag>
+        <tag>CommonJS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/2019/12/31/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -24,6 +87,8 @@
     <content><![CDATA[<h1 id="流量控制"><a href="#流量控制" class="headerlink" title="流量控制"></a>流量控制</h1><h2 id="1-什么是流量控制"><a href="#1-什么是流量控制" class="headerlink" title="1. 什么是流量控制"></a>1. 什么是流量控制</h2><p>在 TCP 传输中，如果数据发送方的发送速度过快，那么就会造成数据接收方来不及接收所有发送出的数据。那么在这样的状况下，就会有分组丢失的情况发生。控制数据发送方的发送速度，使得数据接收方来得及接收，这就是流量控制。</p>
 <h2 id="2-流量控制的目的"><a href="#2-流量控制的目的" class="headerlink" title="2. 流量控制的目的"></a>2. 流量控制的目的</h2><p>流量控制的其根本目的就是防止 TCP 传输中的分组丢失，它是构成 TCP 可靠性传输的其中一个方面。</p>
 <h2 id="3-如何实现流量控制"><a href="#3-如何实现流量控制" class="headerlink" title="3. 如何实现流量控制"></a>3. 如何实现流量控制</h2><p>TCP 传输的流量控制由<strong>滑动窗口协议</strong>（<a href="https://zh.wikipedia.org/wiki/%E8%87%AA%E5%8A%A8%E9%87%8D%E4%BC%A0%E8%AF%B7%E6%B1%82"><strong>连续 ARQ 协议</strong></a>）实现的，滑动窗口协议既能保证分组无差错、有序接收，也实现了流量控制的功能。主要的方式就是接收方在返回的 ACK 中会包含自己的接收窗口大小，并利用该接收窗口大小来实现控制发送方的数据发送。</p>
+<a id="more"></a>
+
 <hr>
 <h1 id="拥塞控制"><a href="#拥塞控制" class="headerlink" title="拥塞控制"></a>拥塞控制</h1><h2 id="1-什么是拥塞控制"><a href="#1-什么是拥塞控制" class="headerlink" title="1. 什么是拥塞控制"></a>1. 什么是拥塞控制</h2><p>拥塞控制是一种用来调整 TCP 链接单次发送分组数量（<strong>单次发送量</strong>，通常叫 cwnd）的算法</p>
 <h2 id="2-拥塞控制的目的"><a href="#2-拥塞控制的目的" class="headerlink" title="2. 拥塞控制的目的"></a>2. 拥塞控制的目的</h2><p>拥塞控制的其根本目的是防止通信子网中某一部分的分组数量过多，使得该部分的网络来不及处理，导致该通讯子网乃至整个网络性能下降的现象发生。严重的话还会导致网络通信业务陷入停顿，既出现死锁的现象。</p>
@@ -62,6 +127,9 @@
 </ol>
 <p>另外，慢开始算法只是在 TCP 传输建立时和网络出现超时时才使用。</p>
 ]]></content>
+      <categories>
+        <category>网络</category>
+      </categories>
       <tags>
         <tag>TCP</tag>
         <tag>网络</tag>

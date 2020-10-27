@@ -54,6 +54,7 @@ typeof DISQUSWIDGETS === "undefined" &&
       for (c = d.slice(k, l); c.length; )
         (b = f.createElement("script")),
           (b.src = a + c.join("&") + r),
+          (b.async = 1),
           s.appendChild(b),
           (k += 10),
           (l += 10),

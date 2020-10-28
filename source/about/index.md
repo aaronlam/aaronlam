@@ -13,7 +13,7 @@ no_toc: true
 # 联系我
 
 - 底下评论
-- 电子邮箱：[a@aaronlam.xyz](mailto://a@aaronlam.xyz)
+- 电子邮箱：[a@aaronlam.xyz](mailto:a@aaronlam.xyz)
 - Telegram：rnamai
 - Github: [aaronlam](https://github.com/aaronlam)
 

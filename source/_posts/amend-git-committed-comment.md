@@ -4,7 +4,7 @@ date: 2018-10-30 23:00:00
 tags:
   - Git
   - 版本管理
-categoires:
+categories:
   - Git
 ---
 
@@ -14,6 +14,8 @@ categoires:
 
 1. 还未将代码 push 到远程仓库
 2. 已将代码 push 到远程仓库
+
+<!--more-->
 
 # 修改最后一次 commit 的描述
 

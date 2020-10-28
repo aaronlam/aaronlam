@@ -40,6 +40,7 @@ comments: true
 }
 </style>
 <div id="about-sponsor">
-    <img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201028183825.png">
-    <img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201028183824.png">
+    <img alt="微信收款" src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201028183825.png">
+    <img alt="支付宝收款" src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201028183824.png">
+    <img alt="QQ收款" src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201028204840.png">
 <div>

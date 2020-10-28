@@ -9,6 +9,8 @@
 <li>还未将代码 push 到远程仓库</li>
 <li>已将代码 push 到远程仓库</li>
 </ol>
+<a id="more"></a>
+
 <h1 id="修改最后一次-commit-的描述"><a href="#修改最后一次-commit-的描述" class="headerlink" title="修改最后一次 commit 的描述"></a>修改最后一次 commit 的描述</h1><p>如果只是想修改最后一次 commit 后的描述，可以直接在命令行中输入以下命令：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit --amend</span><br></pre></td></tr></table></figure>
 
@@ -50,6 +52,9 @@
 
 <p>大功告成！</p>
 ]]></content>
+      <categories>
+        <category>Git</category>
+      </categories>
       <tags>
         <tag>Git</tag>
         <tag>版本管理</tag>

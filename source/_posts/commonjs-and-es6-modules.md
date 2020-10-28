@@ -1,6 +1,6 @@
 ---
 title: CommonJS Module和ES6 Modules之间的引用与转换
-date: 2019-10-5 14:00:00
+date: 2019-10-05 14:00:00
 tags:
   - JacaScript
   - ESModules

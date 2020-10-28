@@ -74,7 +74,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var _a = require("./a");
 var _a2 = _interopRequireDefault(_a);
 function _interopRequireDefault(obj) {
-  // 如果是ESM则直接返回obj，否则返回新对象
+  // 如果是ESM则直接返回obj，否则返回带有default属性的新对象
   return obj && obj.__esModule ? obj : { default: obj };
 }
 console.log(_a2.default);
@@ -125,9 +125,9 @@ function _interopRequireWildcard(obj) {
 1. ESM 的 `export` 相当于往 CJS 的 `exports` 上添加属性
    1. `export var/let/const/function/class...` 会往 `exports` 上添加同名属性
    2. `export default` 会往 `exports` 上添加 default 属性
-2. ESM 可以 **default import** 和 **wildcard import** CJS
-   1. **default import** CJS 时，会创建一个新的空对象，并把 CJS 的导出对象 `exports` 赋值到新对象的 default 属性
-   2. **wildcard import** CJS 时，会创建一个新的空对象，并把 CJS 的导出对象 `exports` 中的自有属性浅复制到新的空对象中，最后再把导出对象 `exports` 赋值到新对象的 default 属性
+2. ESM 可以 **default** `import` 和 **wildcard** `import` CJS
+   1. **default** `import` CJS 时，会创建一个新的空对象，并把 CJS 的导出对象 `exports` 赋值到新对象的 default 属性
+   2. **wildcard** `import` CJS 时，会创建一个新的空对象，并把 CJS 的导出对象 `exports` 中的自有属性浅复制到新的空对象中，最后再把导出对象 `exports` 赋值到新对象的 default 属性
 
 # ESM 中引用 CJS
 
@@ -144,13 +144,13 @@ module.export = {
 ```javascript
 // esm.js
 import cjs from "./cjs";
-// const cjs = ({ default: exports }).default;
+// 相当于const cjs = ({ default: exports }).default;
 
 import * as cjs2 from "./cjs";
-// const cjs2 = ({ default: exports, ...exports })
+// 相当于const cjs2 = ({ ...exports, default: exports })
 
 import { default as cjs3 } from "./cjs";
-// const cjs3 = ({ default: exports }).default
+// 相当于const cjs3 = ({ default: exports }).default
 ```
 
 # CJS 中引用 ESM

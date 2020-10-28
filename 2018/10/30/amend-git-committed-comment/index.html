@@ -76,7 +76,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT, aaronlam, live, programmer, csharp, javascript, react, nodejs" />
+  <meta name="keywords" content="Git,版本管理," />
 
 
 
@@ -87,13 +87,23 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Aaronlam">
-<meta property="og:url" content="https://www.aaronlam.xyz/archives/2019/06/index.html">
+<meta name="description" content="使用 Git 进行项目的版本管理，的确是能让项目代码更加的受控。但是如果能有清晰的 commit 记录以及描述，那将更是会锦上添花。在正常需求开发后，有时难免会过于兴奋手滑敲错 commit 的描述。但如果对于不经常手滑的同学来说，可能还没研究过如何修改 commit 的描述。所以今天，我就想通过这一篇文章简单的记录一下 commit 描述的修改过程，顺便给自己留作回顾的作用。 修改 commit">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何修改Git Commit的描述">
+<meta property="og:url" content="https://www.aaronlam.xyz/2018/10/30/amend-git-committed-comment/index.html">
 <meta property="og:site_name" content="Aaronlam">
+<meta property="og:description" content="使用 Git 进行项目的版本管理，的确是能让项目代码更加的受控。但是如果能有清晰的 commit 记录以及描述，那将更是会锦上添花。在正常需求开发后，有时难免会过于兴奋手滑敲错 commit 的描述。但如果对于不经常手滑的同学来说，可能还没研究过如何修改 commit 的描述。所以今天，我就想通过这一篇文章简单的记录一下 commit 描述的修改过程，顺便给自己留作回顾的作用。 修改 commit">
 <meta property="og:locale">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201028225408.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201028233014.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201028234716.png">
+<meta property="article:published_time" content="2018-10-30T15:00:00.000Z">
+<meta property="article:modified_time" content="2020-10-28T16:21:30.976Z">
 <meta property="article:author" content="aaronlam">
+<meta property="article:tag" content="Git">
+<meta property="article:tag" content="版本管理">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201028225408.png">
 
 
 
@@ -123,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="https://www.aaronlam.xyz/archives/2019/06/"/>
+  <link rel="canonical" href="https://www.aaronlam.xyz/2018/10/30/amend-git-committed-comment/"/>
 
 
 
 
 
-  <title>归档 | Aaronlam</title>
+  <title>如何修改Git Commit的描述 | Aaronlam</title>
   
 
 
@@ -158,7 +168,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -268,74 +278,205 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
-
-      <span class="archive-page-counter">
-        
-        
-        
-          
-        
-        嗯..! 目前共计 4 篇日志。 继续努力。
-      </span>
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
-
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.aaronlam.xyz/2018/10/30/amend-git-committed-comment/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="//cdn.jsdelivr.net/gh/aaronlam/aaronlam@gh-pages/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Aaronlam">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/06/30/tcp-traffic-and-congestion-control/" itemprop="url">
-              
-                <span itemprop="name">粗解TCP的流量控制和拥塞控制</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">如何修改Git Commit的描述</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-06-30T20:00:00+08:00"
-              content="2019-06-30" >
-          06-30
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-30T23:00:00+08:00">
+                2018-10-30
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
 
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/10/30/amend-git-committed-comment/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/10/30/amend-git-committed-comment/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
+      
 
+      
+        <p>使用 Git 进行项目的版本管理，的确是能让项目代码更加的受控。但是如果能有清晰的 commit 记录以及描述，那将更是会锦上添花。在正常需求开发后，有时难免会过于兴奋手滑敲错 commit 的描述。但如果对于不经常手滑的同学来说，可能还没研究过如何修改 commit 的描述。所以今天，我就想通过这一篇文章简单的记录一下 commit 描述的修改过程，顺便给自己留作回顾的作用。</p>
+<p>修改 commit 描述分为以下两种情况，但这两种情况步骤基本相同，只是第二种需要在最后多加一步操作：</p>
+<ol>
+<li>还未将代码 push 到远程仓库</li>
+<li>已将代码 push 到远程仓库</li>
+</ol>
+<h1 id="修改最后一次-commit-的描述"><a href="#修改最后一次-commit-的描述" class="headerlink" title="修改最后一次 commit 的描述"></a>修改最后一次 commit 的描述</h1><p>如果只是想修改最后一次 commit 后的描述，可以直接在命令行中输入以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit --amend</span><br></pre></td></tr></table></figure>
+
+<p>输入完后，会出现以下界面（commit 的描述位于界面的第一行）：</p>
+<ol>
+<li>按 <kbd>i</kbd> 键进入命令行的修改模式，修改位于界面第一行的 commit 描述</li>
+<li>修改完后，按 <kbd>Esc</kbd> 键退出命令行的编辑模式</li>
+<li>再输入 <code>:wq</code> 保存并退出，至此 commit 的描述就修改成功啦！</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201028225408.png" alt="修改最后一次commit的描述"></p>
+<h1 id="修改之前某次-commit-的描述"><a href="#修改之前某次-commit-的描述" class="headerlink" title="修改之前某次 commit 的描述"></a>修改之前某次 commit 的描述</h1><p>如果是想修改之前某次 commit 的描述，则需要比修改最后一次 commit 的描述多上那么几个步骤。其实这个修改的原理，按我的理解就是先把版本回退到你想修改的某个版本，然后再修改当前回退到的版本的 commit 描述，修改完后再回到回退前的最新版本中。那么来吧！</p>
+<p>首先在命令行输入以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 命令中最后的数字2指的是显示倒数第几次的commit，比如我这里的2就代表显示倒数第二次的commit描述</span></span><br><span class="line">git rebase -i HEAD~2</span><br></pre></td></tr></table></figure>
+
+<p>输入完后，会出现以下界面（倒数几次的 commit 的描述都位于界面顶部）：</p>
+<ol>
+<li>想修改哪条 commit 的描述，就把该条 commit 描述前的 <strong>pick</strong> 改成 <strong>edit</strong>（修改的方式同上）</li>
+<li>修改完后按 <kbd>Esc</kbd> 键退出命令行的编辑模式，</li>
+<li>输入 <code>:wq</code> 保存并退出。</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201028233014.png" alt="修改之前某次commit的描述1"></p>
+<p>保存并退出后，会出现以下界面：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201028234716.png" alt="修改之前某次commit的描述2"></p>
+<p>然后，再往命令行中输入以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit --amend</span><br></pre></td></tr></table></figure>
+
+<p>输入完后，就如同上面那样修改完描述，然后保存并退出后，再往命令行中输入以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase --<span class="built_in">continue</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="修改之前的某几次-commit-的描述"><a href="#修改之前的某几次-commit-的描述" class="headerlink" title="修改之前的某几次 commit 的描述"></a>修改之前的某几次 commit 的描述</h1><p>修改之前某几次其实和上面修改某次的步骤差不多，不同之处在于以下几点：</p>
+<ol>
+<li>上面，第一个步骤中的命令，数字需要修改</li>
+<li>然后在修改 <strong>pick</strong> 为 <strong>edit</strong> 的那一个步骤时，修改多个</li>
+<li>最后依次修改描述（顺序是从旧到新），命令行中基本都会提示你接下来的操作是什么，每次修改一个注释都需要重复上面的最后两个步骤，直至修改完你所标记为 <strong>edit</strong> 的所有描述为止</li>
+</ol>
+<h1 id="已经将代码-push-到远程仓库"><a href="#已经将代码-push-到远程仓库" class="headerlink" title="已经将代码 push 到远程仓库"></a>已经将代码 push 到远程仓库</h1><p>在已经把代码 push 到远程仓库的情况下，还想修改 commit 的描述的话，在修改前首先需要从远程仓库 pull 最新的版本到本地仓库，确保两边的版本都是一致的状态。然后再按照情况，选择上面的几种方法来进行修改。最后，修改完需要再强制把本地仓库的版本 push 回远程仓库中。<strong>但很重要的一点是，在进行强制 push 之前，需要再三确认没有人往远程仓库提交更新的版本，否则远程仓库中更新的版本将会被你的版本所覆盖。</strong></p>
+<p>在命令行中输入以下命令，强制 push 本地仓库版本到远程仓库中：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push --force origin master</span><br></pre></td></tr></table></figure>
+
+<p>大功告成！</p>
+
+      
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Git/" rel="tag"># Git</a>
+          
+            <a href="/tags/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/" rel="tag"># 版本管理</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/30/tcp-traffic-and-congestion-control/" rel="prev" title="粗解TCP的流量控制和拥塞控制">
+                粗解TCP的流量控制和拥塞控制 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -343,6 +484,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread"></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -363,8 +513,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -424,6 +583,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E6%9C%80%E5%90%8E%E4%B8%80%E6%AC%A1-commit-%E7%9A%84%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">修改最后一次 commit 的描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E4%B9%8B%E5%89%8D%E6%9F%90%E6%AC%A1-commit-%E7%9A%84%E6%8F%8F%E8%BF%B0"><span class="nav-number">2.</span> <span class="nav-text">修改之前某次 commit 的描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E4%B9%8B%E5%89%8D%E7%9A%84%E6%9F%90%E5%87%A0%E6%AC%A1-commit-%E7%9A%84%E6%8F%8F%E8%BF%B0"><span class="nav-number">3.</span> <span class="nav-text">修改之前的某几次 commit 的描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B7%B2%E7%BB%8F%E5%B0%86%E4%BB%A3%E7%A0%81-push-%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93"><span class="nav-number">4.</span> <span class="nav-text">已经将代码 push 到远程仓库</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -568,6 +743,10 @@
   
 
   
+  <script type="text/javascript" src="//cdn.jsdelivr.net/gh/aaronlam/aaronlam@gh-pages/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/aaronlam/aaronlam@gh-pages/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -589,6 +768,58 @@
       <script id="dsq-count-scr" src="//cdn.jsdelivr.net/gh/aaronlam/aaronlam@gh-pages/js/src/disqus-count.min.js?v=1.3" async></script>
     
 
+    
+      <script>
+        function loadDisqusJS() {
+          var d = document, s = d.createElement('script');
+          s.src="//cdn.jsdelivr.net/gh/aaronlam/aaronlam@gh-pages/js/src/disqus.min.js?v=1.3"
+          s.async = 1; // 保证异步加载
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+          s.onload = s.onreadstatechange = function() {
+            // 保证IE及非IE都能正常script监听onload事件
+            if(!this.readyState || this.readyState == "loaded" || this.readyState == "complete") {
+              var dsqjs = new DisqusJS({
+                  shortname: 'aaronlam',
+                  siteName: 'Aaronlam',
+                  identifier: document.location.origin + document.location.pathname + document.location.search,
+                  url: document.location.origin + document.location.pathname + document.location.search,
+                  title: document.title,
+                  api: '//corsapi.aaronlam.xyz/disqus.com/api/',
+                  apikey: ['3tSA13Wd42mFImQZH1JerSBXZjvKLvKrdhEplfG5k1dL6cmine6bV1UsmhizFvyJ', 'c9nomZ32wB7pDogCbRuTqrY2OKGcJzOXeN1ZNZVCQvSdO5KGerxLNiAdcaMgMKvY', '2jtVcNm4XvnISFqQiiLmjNgt2lramSks68WAnyASnteVzMRnLFYCXSiudbrpoNLr', 'SnBHyhy1pSbmPgKXMATfPUOv3Q2WWuAkv0JS2LjLVUrjZGWQeJdMQhlJUJow6ufb', 'a0tgOWx5UOuVR4jHitN6HA9SZPg61JCynHEx0ZCd7bYR5BhrqQRE15ph00Dl3L1i', '75iOeCKL8JTvz9pX1zqXKcqXsdmHITL9IhmSDbw4WhYMlRod2v5LlJEIPgwyMy92', 'NLPPSIXr0gAgtVhsyDPraicrQh1nSlgGKbkkl09GpYcpapvDbgWsQDpV2pTpyHHX', 'u9eBGtFAZJyv5YJatlkzZRswrlFFuJnfZwaAk3sSS3szKRkBcOKr6smJa7AIbyNB', 'BFHqakwhtPD8Iy2SkjX6Ip0bitnlXuH2QIyYhNM3czJyNp6Os1UnV1DdigYHtMIY', 'SlAHfNK44AyAaMJC3lqvls5LfAyHgHdXbJOglPw6imBarYCbwY88KfjkZ1dttmIE'],
+                  admin: 'aaronlam',
+                  adminLabel: 'Mod'
+              });
+            }
+          }
+        }
+
+        // 判断当前环境是否为浏览器
+        var runningOnBrowser = typeof window !== "undefined";
+        // 通过检查全局对象的scroll属性及检查userAgent判断当前访问者是否为爬虫
+        var isSpiderBot = (runningOnBrowser && !("onscroll" in window)) || (typeof navigator !== "undefined" && /(gle|ing|ro|msn)bot|crawl|spider|yand|duckgo/i.test(navigator.userAgent));
+        // 判断当前浏览器是否支持IntersectionObserver API
+        var supportIntersectionObserver = runningOnBrowser && "IntersectionObserver" in window;
+      
+        setTimeout(function() {
+          if(!isSpiderBot && supportIntersectionObserver) {
+            var disqusJSObserver = new IntersectionObserver(function(entries) {
+              // 对应监控元素已出现在显示视窗中
+              if(entries[0].isIntersecting) {
+                // 加载DisqusJS
+                loadDisqusJS();
+                // 停止继续监控
+                disqusJSObserver.disconnect();
+              }
+            }, { threshold: [0] });
+            // 设置监控的元素
+            disqusJSObserver.observe(document.getElementById('disqus_thread'));
+          } else {
+            // 当前访问者为爬虫或者当前浏览器不支持IntersectionObserver API
+            loadDisqusJS();
+          }
+        })
+      </script>
     
     
   

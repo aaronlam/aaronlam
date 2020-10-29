@@ -1,5 +1,5 @@
 ---
-title: 更优雅的JavaScript
+title: 更优雅的JavaScript 1
 date: 2019-12-13 23:45:00
 tags:
   - JavaScript

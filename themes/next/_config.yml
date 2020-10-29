@@ -158,7 +158,7 @@ toc:
   enable: true
 
   # Automatically add list number to toc.
-  number: true
+  number: false
 
   # If true, all words will placed on next lines if header width longer then sidebar width.
   wrap: false
@@ -801,11 +801,13 @@ vendors:
   # https://github.com/revir/need-more-share2
   needMoreShare2:
 
-# Assets
-#jsdelivr_compress: false
-#css: /css
-#js: /js
-#images: /images
+# Dev Assets
+# jsdelivr_compress: false
+# css: /css
+# js: /js
+# images: /images
+
+# Prod Assets
 jsdelivr_compress: true
 css: //cdn.jsdelivr.net/gh/aaronlam/aaronlam@gh-pages/css
 js: //cdn.jsdelivr.net/gh/aaronlam/aaronlam@gh-pages/js

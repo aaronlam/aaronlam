@@ -802,6 +802,10 @@ vendors:
   needMoreShare2:
 
 # Assets
+#jsdelivr_compress: false
+#css: /css
+#js: /js
+#images: /images
 jsdelivr_compress: true
 css: //cdn.jsdelivr.net/gh/aaronlam/aaronlam@gh-pages/css
 js: //cdn.jsdelivr.net/gh/aaronlam/aaronlam@gh-pages/js

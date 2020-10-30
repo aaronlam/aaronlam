@@ -191,10 +191,10 @@ sidebar:
   b2t: false
 
   # Scroll percent label in b2t button.
-  scrollpercent: false
+  scrollpercent: true
 
   # Enable sidebar on narrow view (only for Muse | Mist).
-  onmobile: false
+  onmobile: true
 
 # ---------------------------------------------------------------
 # Post Settings
@@ -802,16 +802,16 @@ vendors:
   needMoreShare2:
 
 # Dev Assets
-# jsdelivr_compress: false
-# css: /css
-# js: /js
-# images: /images
+jsdelivr_compress: false
+css: /css
+js: /js
+images: /images
 
 # Prod Assets
-jsdelivr_compress: true
-css: //cdn.jsdelivr.net/gh/aaronlam/aaronlam@gh-pages/css
-js: //cdn.jsdelivr.net/gh/aaronlam/aaronlam@gh-pages/js
-images: //cdn.jsdelivr.net/gh/aaronlam/aaronlam@gh-pages/images
+# jsdelivr_compress: true
+# css: //cdn.jsdelivr.net/gh/aaronlam/aaronlam@gh-pages/css
+# js: //cdn.jsdelivr.net/gh/aaronlam/aaronlam@gh-pages/js
+# images: //cdn.jsdelivr.net/gh/aaronlam/aaronlam@gh-pages/images
 
 # Theme version
 version: 5.1.4

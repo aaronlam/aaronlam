@@ -1,6 +1,6 @@
 ---
 title: 更优雅的JavaScript 2
-date: 2020-1-35 21:31:00
+date: 2020-1-15 21:31:00
 tags:
   - JavaScript
   - 代码风格

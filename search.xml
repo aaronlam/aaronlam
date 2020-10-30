@@ -203,6 +203,72 @@
       </tags>
   </entry>
   <entry>
+    <title>更优雅的JavaScript 2</title>
+    <url>/2020/02/04/more-elegant-javascript-2/</url>
+    <content><![CDATA[<p>接着上一文，在<a href="/2019/12/13/more-elegant-javascript-1/">更优雅的 JavaScript 1</a>中，我们聊到了基础的 JavaScript 编程的建议。包括如何可靠的声明变量、常量、函数、以及利用合适的函数合适的构建逻辑，现在我们思考改善代码的第一步，如何命名？</p>
+<p>在我们开始阅读代码之前，编码风格与命名方式会比代码的抽象方式、设计技巧更令我们印象深刻。很多时候也会为项目的整体风格定下基调。如果你阅读过一些算法工程师写的代码，常常会看到<del>单字母变量</del>、<del>反复的声明</del>，<del>不知所以的赋值与拷贝</del>、<del>累赘的条件判断</del>等等。我们虽不能说这样有问题，因为他们的代码大多的确是可以正常的运作，甚至在运行的时间或空间效率上有一些优势。但这在工程，特别是大型工程中是不值得称道的，根据经验我们可以把这类代码归类为“屎山”，充其量是“堆”了一摊高性能的“屎山”。</p>
+<p>而我们现在做的则是脱离“编程只不过是工具”的阶段，脱离“屎山男孩”，让机器面有喜色、富有人性，使阅读者在某个瞬间也能切实的感受到创作者的思维跳动与审美哲学。</p>
+<h1 id="1-富有准确性的命名"><a href="#1-富有准确性的命名" class="headerlink" title="1. 富有准确性的命名"></a>1. 富有准确性的命名</h1><p>事实上，你完全可以使用 <code>doSomeThing</code> 来命名所有的函数，毕竟它们真的只是提供某些微不足道的功能。但当你有了多个，甚至是成百上千个函数时，这将是一场灾难。这是一个浅显易懂的道理，即便是毫无经验的开发人员也会意识到命名爆炸的问题，他们隐约明白了什么是好的编程风格。但最后，甚至是大多数都止步于 <code>doSomeThing</code> 到“优美”之前的某一个站上。然后他们心里就默念，这就够了。</p>
+<ol>
+<li> 命名只需要有必要的词，除非有不要，否则不要堆砌</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// bad</span></span><br><span class="line"><span class="keyword">const</span> theBook = &#123;&#125;;</span><br><span class="line"><span class="keyword">const</span> _book = &#123;&#125;;</span><br><span class="line"><span class="keyword">const</span> bookObj = &#123;&#125;;</span><br><span class="line"><span class="keyword">const</span> theNewBook = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// good</span></span><br><span class="line"><span class="keyword">const</span> book = &#123;&#125;;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>可读的条件判断</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// bad</span></span><br><span class="line"><span class="keyword">if</span> (username &amp;&amp; username.includes(<span class="string">&quot;prefix-&quot;</span>)) &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// bad</span></span><br><span class="line"><span class="keyword">const</span> prefix = username &amp;&amp; username.includes(<span class="string">&quot;prefix-&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// bad</span></span><br><span class="line"><span class="keyword">const</span> availableName = username &amp;&amp; username.includes(<span class="string">&quot;prefix-&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// good</span></span><br><span class="line"><span class="keyword">const</span> hasPrefixName = username &amp;&amp; username.includes(<span class="string">&quot;prefix-&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>可读的函数</li>
+</ol>
+<p>当我们要从网络上获取用户信息时，<code>getUser</code> 就不是一个准确的表达，<code>get</code> 太过于宽泛，它该表示是从数据库获取还是从网络获取？是以用户名获取还是用 ID 获取？这都有区别，现在我们可以先从命名的层面上思考它们的区别：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// bad</span></span><br><span class="line"><span class="keyword">const</span> getUser = <span class="function">(<span class="params">name</span>) =&gt;</span> &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// good</span></span><br><span class="line"><span class="keyword">const</span> fetchUserByName = <span class="function">(<span class="params">name</span>) =&gt;</span> &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// good</span></span><br><span class="line"><span class="keyword">const</span> findOneUserByID = <span class="function">(<span class="params">id</span>) =&gt;</span> &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// good(any environment, any params)</span></span><br><span class="line"><span class="keyword">const</span> getUsers = <span class="function">(<span class="params">...params</span>) =&gt;</span> &#123;&#125;;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>准确的表达</li>
+</ol>
+<p>属性可以避免不必要的描述，言简意赅：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// bad</span></span><br><span class="line"><span class="keyword">const</span> book = &#123;</span><br><span class="line">  bookname: <span class="string">&quot;&quot;</span>,</span><br><span class="line">  length: <span class="string">&quot;&quot;</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// good</span></span><br><span class="line"><span class="keyword">const</span> book = &#123;</span><br><span class="line">  title: <span class="string">&quot;&quot;</span>,</span><br><span class="line">  pages: <span class="string">&quot;&quot;</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>注意单复数：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// bad</span></span><br><span class="line"><span class="keyword">const</span> book = findBooks();</span><br><span class="line"></span><br><span class="line"><span class="comment">// good</span></span><br><span class="line"><span class="keyword">const</span> books = findBooks();</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>不必要的约定</li>
+</ol>
+<p>通常在示例或无意义的遍历中，我们会把每一个回调函数的参数写作 <code>item</code> <code>value</code> <code>element</code> 等等，这在一些场景中的确可以让阅读者忽略掉不必要的描述，从而专注于逻辑本身。但这并非总是合适，特别是我们需要表达状态的时候：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// bad</span></span><br><span class="line"><span class="keyword">const</span> titles = books</span><br><span class="line">  .map(<span class="function">(<span class="params">item</span>) =&gt;</span> item.title)</span><br><span class="line">  .filter(<span class="function">(<span class="params">item</span>) =&gt;</span> item.length &gt; <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// good</span></span><br><span class="line"><span class="keyword">const</span> titles = books</span><br><span class="line">  .map(<span class="function">(<span class="params">book</span>) =&gt;</span> book.title)</span><br><span class="line">  .filter(<span class="function">(<span class="params">title</span>) =&gt;</span> title.length &gt; <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-观察与思考"><a href="#2-观察与思考" class="headerlink" title="2. 观察与思考"></a>2. 观察与思考</h1><p>观察是一个模糊的概念，可以尝试让同事朋友阅读你的代码，问问他们的感觉，那些命名生硬，哪些词不达意，哪些又能让他们感同身受。一个可学习的方式就是在 <code>GitHub</code> 上阅读代码，你也能注意到开发者们的情绪波动，这里真的需要这些定义吗？这里有必要写的这么短小精悍吗？这里是不是写的太过于 <code>OC</code> 风了。试图从阅读代码理解开发者创作时的想法是很有趣的一件事件，这些情绪的波动可以还能让你明白他们大约处于编程、人生、情感的什么状态，有助于你深刻的理解接口与设计。</p>
+<p>在一个项目中见到 <code>created</code> 时，便可以知道这调用在 <code>create</code> 之后，而非之前或者之中。以此类推便可以有 <code>destroyed</code> 或其他函数。如果项目是来自富有经验的开发者，这些细节会帮助你在代码中极快的理解作者的构思。</p>
+<p>在阅读某些源码时，我们可能会注意到一些细节，就是一些旧有的功能被改变了，程序员只能被迫去修改这些已有的接口使之兼容。同时想要与原有的风格保持一些同步，有时也会衍生出一些新的接口，他们被置于一些结构体中，随着时间的推移可以推理，未来的一些接口也会被移入这些结构体 ———— 这就是我们对于命名的观察与思考。我曾经看见过有人说“狗是人类的朋友，taobao 的文档连狗都不如”，这就是他们观察的结果了，虽然好像令人不那么开心。</p>
+<h1 id="3-巧妙与投机取巧"><a href="#3-巧妙与投机取巧" class="headerlink" title="3. 巧妙与投机取巧"></a>3. 巧妙与投机取巧</h1><p>我们可以断定<strong>巧妙</strong>是优雅命名中最重要的一部分，比如 <code>rvm</code> 与其他的一些命令行工具中的 uninstall 功能，其命令为 <code>implode</code> 。这好像有点意思，是吧？但事实上我见到的绝大多数的巧妙不过是“投机取巧”，他们苦心孤诣的作品是一大段没有说明的八进制、二进制代码，一堆三元堆砌的单行逻辑，一些谐音名字，以及不合时宜的正则表达式等等，这并不漂亮，这是歧路。</p>
+<ol>
+<li>自作聪明的谐音</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// bad</span></span><br><span class="line"><span class="keyword">const</span> markdowm2html = <span class="function">(<span class="params">template</span>) =&gt;</span> &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// good</span></span><br><span class="line"><span class="keyword">const</span> markdownToHmtl = <span class="function">(<span class="params">template</span>) =&gt;</span> &#123;&#125;;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>可以语义化的正则</li>
+</ol>
+<p>代码并非是越简短越好，虽然多数场景下，我们需要尽可能的避免长篇累牍。但在必要时，可以使用命名和语义化的代码块来试图说明逻辑：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// bad</span></span><br><span class="line"><span class="keyword">const</span> isUser = <span class="regexp">/^name/</span>.test(user.name) &amp;&amp; <span class="regexp">/^http/</span>.test(user.url);</span><br><span class="line"></span><br><span class="line"><span class="comment">// good</span></span><br><span class="line"><span class="keyword">const</span> isUserName = user.name.startWith(<span class="string">&quot;name&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> isUrl = user.blog.startWith(<span class="string">&quot;http&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> isUser = isUserName &amp;&amp; isUrl;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>优美</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// bad</span></span><br><span class="line"><span class="keyword">const</span> hasDirOrCreateDir = <span class="function">(<span class="params">path</span>) =&gt;</span> &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// good</span></span><br><span class="line"><span class="keyword">const</span> ensureDir = <span class="function">(<span class="params">path</span>) =&gt;</span> &#123;&#125;;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>代码风格</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>粗解TCP的流量控制和拥塞控制</title>
     <url>/2019/06/30/tcp-traffic-and-congestion-control/</url>
     <content><![CDATA[<h1 id="流量控制"><a href="#流量控制" class="headerlink" title="流量控制"></a>流量控制</h1><h2 id="1-什么是流量控制"><a href="#1-什么是流量控制" class="headerlink" title="1. 什么是流量控制"></a>1. 什么是流量控制</h2><p>在 TCP 传输中，如果数据发送方的发送速度过快，那么就会造成数据接收方来不及接收所有发送出的数据。那么在这样的状况下，就会有分组丢失的情况发生。控制数据发送方的发送速度，使得数据接收方来得及接收，这就是流量控制。</p>

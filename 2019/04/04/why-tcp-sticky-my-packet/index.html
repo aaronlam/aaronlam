@@ -97,7 +97,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201030172902.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201030195935.png">
 <meta property="article:published_time" content="2019-04-04T11:30:00.000Z">
-<meta property="article:modified_time" content="2020-10-30T12:03:53.041Z">
+<meta property="article:modified_time" content="2020-10-30T17:04:14.269Z">
 <meta property="article:author" content="aaronlam">
 <meta property="article:tag" content="TCP">
 <meta property="article:tag" content="网络">
@@ -404,7 +404,7 @@
 <a id="more"></a>
 
 <h1 id="序章"><a href="#序章" class="headerlink" title="序章"></a>序章</h1><p>IP 协议在网络层解决了数据包的路由和传输问题，得以让基于其上层的传输层 TCP 协议不用再去关注路由和寻址，那么 TCP 就把这部分的注意力集中到了解决数据传输中的<strong>有序性</strong>和<strong>可靠性</strong>问题去了，以至于可以让其上一层协议不必担心所托付的数据能否排排坐的传输到接收方。只要被写入 TCP 协议缓冲区中的数据，协议栈几乎都能保证其数据的送达。</p>
-<p>当应用层协议使用 TCP 协议进行数据传输时，TCP 协议可能会将应用层协议所发送的信息<strong>重新分割组合到多个数据段</strong>中并以字节流的形式依次发送。那么这样一个 TCP 的数据段可能就不会按应用层发送的信息一一对应上。而数据接收方收到的某个数据段就可能会由<em>多个应用层数据包</em>组成，应用层从 TCP 接收缓冲区读取数据时就会发现粘连的信息，这时就需要对这些粘连的信息按一定规则进行拆分。那么总结下来，就是以下两点：</p>
+<p>当应用层协议使用 TCP 协议进行数据传输时，TCP 协议可能会将应用层协议所发送的信息<strong>重新分割组合到多个数据段</strong>中并以字节流的形式依次发送。那么这样一个 TCP 的数据段可能就不会按应用层发送的信息一一对应上。而数据接收方收到的某个数据段就可能会由<em>多个应用层消息</em>组成，应用层从 TCP 接收缓冲区读取数据时就会发现粘连的信息，这时就需要对这些粘连的信息按消息边界规则进行拆分。那么总结下来，就是以下两点：</p>
 <ol>
 <li>TCP 协议是<strong>面向字节流</strong>的协议，它可能会<strong>重新分割组合</strong>应用层协议的信息到多个数据段中</li>
 <li>应用层协议<strong>没有定义消息的边界</strong>，导致数据的接收方<strong>无法按边界拆分粘连的信息</strong></li>

@@ -76,7 +76,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT, aaronlam, live, programmer, csharp, javascript, react, nodejs" />
+  <meta name="keywords" content="TCP,网络,粘包,数据包," />
 
 
 
@@ -87,13 +87,24 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Aaronlam">
-<meta property="og:url" content="https://www.aaronlam.xyz/tags/JacaScript/index.html">
+<meta name="description" content="其实 TCP 粘包这个问题，在 TCP 的设计角度上看，其问题本质就是一个伪命题。但是为什么会有那么多的开发者提出这样的问题？我们从 TCP 设计的特性可以不难看出，TCP 本就是面向连接、基于字节流且可靠的传输层通信协议，所以在 TCP 的这个层面来说并不存在包的这个概念，也就没有粘包这么一说了。那按照这么说，粘包问题还能凭空出现的？ 在开始之前，我们先达成共识：  协议层中传输数据的基本单位统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="为什么TCP要粘我的数据包">
+<meta property="og:url" content="https://www.aaronlam.xyz/2019/04/04/why-tcp-sticky-my-packet/index.html">
 <meta property="og:site_name" content="Aaronlam">
+<meta property="og:description" content="其实 TCP 粘包这个问题，在 TCP 的设计角度上看，其问题本质就是一个伪命题。但是为什么会有那么多的开发者提出这样的问题？我们从 TCP 设计的特性可以不难看出，TCP 本就是面向连接、基于字节流且可靠的传输层通信协议，所以在 TCP 的这个层面来说并不存在包的这个概念，也就没有粘包这么一说了。那按照这么说，粘包问题还能凭空出现的？ 在开始之前，我们先达成共识：  协议层中传输数据的基本单位统">
 <meta property="og:locale">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201030172902.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201030195935.png">
+<meta property="article:published_time" content="2019-04-04T11:30:00.000Z">
+<meta property="article:modified_time" content="2020-10-30T12:03:53.041Z">
 <meta property="article:author" content="aaronlam">
+<meta property="article:tag" content="TCP">
+<meta property="article:tag" content="网络">
+<meta property="article:tag" content="粘包">
+<meta property="article:tag" content="数据包">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201030172902.png">
 
 
 
@@ -123,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="https://www.aaronlam.xyz/tags/JacaScript/"/>
+  <link rel="canonical" href="https://www.aaronlam.xyz/2019/04/04/why-tcp-sticky-my-packet/"/>
 
 
 
 
 
-  <title>标签: JacaScript | Aaronlam</title>
+  <title>为什么TCP要粘我的数据包 | Aaronlam</title>
   
 
 
@@ -158,7 +169,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -268,54 +279,231 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>JacaScript<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.aaronlam.xyz/2019/04/04/why-tcp-sticky-my-packet/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="//cdn.jsdelivr.net/gh/aaronlam/aaronlam@gh-pages/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Aaronlam">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/10/05/commonjs-and-es6-modules/" itemprop="url">
-              
-                <span itemprop="name">CommonJS Module和ES6 Modules之间的引用与转换</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">为什么TCP要粘我的数据包</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-10-05T14:00:00+08:00"
-              content="2019-10-05" >
-          10-05
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-04T19:30:00+08:00">
+                2019-04-04
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index">
+                    <span itemprop="name">网络</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/04/04/why-tcp-sticky-my-packet/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/04/04/why-tcp-sticky-my-packet/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>其实 TCP 粘包这个问题，在 TCP 的设计角度上看，其问题本质就是一个伪命题。但是为什么会有那么多的开发者提出这样的问题？我们从 TCP 设计的特性可以不难看出，TCP 本就是<strong>面向连接</strong>、<strong>基于字节流</strong>且<strong>可靠</strong>的传输层通信协议，所以在 TCP 的这个层面来说并不存在包的这个概念，也就没有粘包这么一说了。那按照这么说，粘包问题还能凭空出现的？</p>
+<p>在开始之前，我们先达成共识：</p>
+<ol>
+<li>协议层中传输数据的基本单位统称为：Data Unit（数据单元）</li>
+<li>网络层传输的数据单元称为：Packet(包）</li>
+<li>传输层传输的数据单元称为：Segment（段）</li>
+<li>应用层传输的数据单元称为：Message（信息）</li>
+</ol>
+<a id="more"></a>
+
+<h1 id="序章"><a href="#序章" class="headerlink" title="序章"></a>序章</h1><p>IP 协议在网络层解决了数据包的路由和传输问题，得以让基于其上层的传输层 TCP 协议不用再去关注路由和寻址，那么 TCP 就把这部分的注意力集中到了解决数据传输中的<strong>有序性</strong>和<strong>可靠性</strong>问题去了，以至于可以让其上一层协议不必担心所托付的数据能否排排坐的传输到接收方。只要被写入 TCP 协议缓冲区中的数据，协议栈几乎都能保证其数据的送达。</p>
+<p>当应用层协议使用 TCP 协议进行数据传输时，TCP 协议可能会将应用层协议所发送的信息<strong>重新分割组合到多个数据段</strong>中并以字节流的形式依次发送。那么这样一个 TCP 的数据段可能就不会按应用层发送的信息一一对应上。而数据接收方收到的某个数据段就可能会由<em>多个应用层数据包</em>组成，应用层从 TCP 接收缓冲区读取数据时就会发现粘连的信息，这时就需要对这些粘连的信息按一定规则进行拆分。那么总结下来，就是以下两点：</p>
+<ol>
+<li>TCP 协议是<strong>面向字节流</strong>的协议，它可能会<strong>重新分割组合</strong>应用层协议的信息到多个数据段中</li>
+<li>应用层协议<strong>没有定义消息的边界</strong>，导致数据的接收方<strong>无法按边界拆分粘连的信息</strong></li>
+</ol>
+<h1 id="面向字节流"><a href="#面向字节流" class="headerlink" title="面向字节流"></a>面向字节流</h1><p>应用层交给 TCP 协议的数据并不会以包为单位向目的主机传输，这些数据在某些情况下会被组合成一个数据段发送给目标主机。Nagle 算法是一种采用通过减少发送有效数据含量少的 TCP 数据段手段，以提升 TCP 传输性能的算法。因为网络宽带有限，它不会将数据含量很少的数据段直接发送到目标主机，而是会在 TCP 发送缓冲区中等待更多的待发送数据，这种延迟等待并批量发送数据的策略虽然会影响实时性，但是能够降低网络拥堵的可能性并减少额外开销。</p>
+<p>在早期的互联网中，Telnet 是被广泛使用的应用程序，然而因为当时 Telnet 会产生大量只有 1 字节有效数据量的数据段，而这些数据段中都会存在包含 40 字节的协议描述信息。这带来的额外开销是很不乐观的，宽带的利用率只有仅仅的 2.44%，Nagle 算法就是在当时的这种使用场景下设计出来的。</p>
+<p>当应用层协议通过 TCP 协议传输数据时，实际上待发的数据先被写入了 TCP 协议的发送缓冲区中，如果用户开启了 Nagle 算法，那么 TCP 协议可能不会立刻发送写入的数据，而是会等待缓冲区中的数据超过了最大数据段大小（MSS)或者上一个数据段被 ACK 时才会发送缓冲区中的数据。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201030172902.png" alt="Nagle算法重新分割组合应用层协议信息"></p>
+<p>Nagle 算法确实能够在有效数据较少时提高网络宽带的利用率减少 TCP 和 IP 协议描述信息所带来的额外开销，但是使用该算法也可能会导致应用层协议多次写入的数据被重新分割组合发送，当接收方从 TCP 协议栈中读取数据时就会发现不相关的数据出现在同一个数据段中，应用层可能也没有定义消息的边界，造成没有办法对他们进行拆分。</p>
+<p>除了 Nagle 算法之外，TCP 协议中还有另一个用于延迟发送数据的选项 TCP_CORK，如果我们开启了该选项，那么发送的数据小于最大数据段大小时，TCP 协议就会延迟 200ms 发送该数据或者等待缓冲区中的数据超过最大数据段大小。</p>
+<p>无论是 TCP_NODELAY 还是 TCP_CORK，他们都会通过延迟发送数据来提高宽带的利用率，他们会对应用层协议写入的数据进行重新分割组合，而这些机制和配合能够出现的最重要的原因是 — TCP 协议是基础字节流的协议，其本身没有数据包的概念，不会按照数据包的机制去发送数据。</p>
+<h1 id="消息边界"><a href="#消息边界" class="headerlink" title="消息边界"></a>消息边界</h1><p>如果我们系统性地学习过 TCP 协议，那么设计一个基于 TCP 协议且能够被 TCP 协议任意分割组装信息的应用层协议就不会有太大的问题。既然 TCP 协议是基于字节流的，这其实就意味着应用层协议需要自己划分消息的边界。</p>
+<p>如果我们能在应用层协议中定义消息的边界，那么无论 TCP 协议如何对应用层协议的信息进行重新分割组装，那么接收方都能根据约定的消息划分规则来恢复被重新分割组装后的消息。在应用层协议中，最常见的两种边界划分规则就是：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201030195935.png" alt="应用程协议消息边界划分规则"></p>
+<ol>
+<li>基于长度</li>
+<li>基础终结符（Delimiter）</li>
+</ol>
+<p>基于长度的实现有两种方式，固定长度将把应用层的消息都使用统一的大小，但这种固定长度的方式，当有效数据量小于该固定长度时就可能会出现资源浪费的情况。另外一种就是使用不固定长度，而这种方式需要在应用协议的协议头中增加表示数据负载的字段，这样接收方才可以从字节流中分离出不同的消息，HTTP 协议的消息边界就是基于长度实现的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">HTTP&#x2F;1.1 200 OK</span><br><span class="line">Content-Type: text&#x2F;html; charset&#x3D;UFT-8</span><br><span class="line">Content-Length: 150</span><br><span class="line">...</span><br><span class="line">Connection: close</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>example<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello World<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在上述 HTTP 消息中，我们使用 <code>Content-Length</code> 头表示 HTTP 消息的数据负载大小，当应用层协议解析到足够多的字节数后，就能从中分离出完整的 HTTP 消息，无论发送方如何处理对应的消息，我们都可以遵循这一规则完成 HTTP 消息的恢复工作。</p>
+<p>不过 HTTP 协议除了使用基于长度的方式实现边界划分，当发送的内容大小不确定时，也会使用基于终结符的策略，并使用块传输（Chunked Transfer）的机制。此时 HTTP 头中就不再包含 <code>Content-Length</code> 了，它会转而使用负载大小为 0 的 HTTP 消息作为终结符表示信息边界。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>可以这么说，TCP 粘包问题是因为应用层协议开发者的错误设计导致的，他们忽略了 TCP 协议数据传输的核心机制 — 基于字节流，其本身并不存在数据包的概念。所有在 TCP 中传输的数据都是以流的形式进行传输，所以这就需要应用层协议开发者行设计消息的边界划分规则。所以粘包总的来说还是以下两点：</p>
+<ol>
+<li>TCP 协议是<strong>面向字节流</strong>的协议，它可能会<strong>重新分割组合</strong>应用层协议的信息到多个数据段中</li>
+<li>应用层协议<strong>没有定义消息的边界</strong>，导致数据的接收方<strong>无法按边界拆分粘连的信息</strong></li>
+</ol>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/TCP/" rel="tag"># TCP</a>
+          
+            <a href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag"># 网络</a>
+          
+            <a href="/tags/%E7%B2%98%E5%8C%85/" rel="tag"># 粘包</a>
+          
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%8C%85/" rel="tag"># 数据包</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/30/amend-git-committed-comment/" rel="next" title="如何修改Git Commit的描述">
+                <i class="fa fa-chevron-left"></i> 如何修改Git Commit的描述
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/30/tcp-traffic-and-congestion-control/" rel="prev" title="粗解TCP的流量控制和拥塞控制">
+                粗解TCP的流量控制和拥塞控制 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -323,6 +511,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread"></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -343,8 +540,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -404,6 +610,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BA%8F%E7%AB%A0"><span class="nav-text">序章</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E5%AD%97%E8%8A%82%E6%B5%81"><span class="nav-text">面向字节流</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E8%BE%B9%E7%95%8C"><span class="nav-text">消息边界</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -548,6 +770,10 @@
   
 
   
+  <script type="text/javascript" src="//cdn.jsdelivr.net/gh/aaronlam/aaronlam@gh-pages/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/aaronlam/aaronlam@gh-pages/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -569,6 +795,58 @@
       <script id="dsq-count-scr" src="//cdn.jsdelivr.net/gh/aaronlam/aaronlam@gh-pages/js/src/disqus-count.min.js?v=1.3" async></script>
     
 
+    
+      <script>
+        function loadDisqusJS() {
+          var d = document, s = d.createElement('script');
+          s.src="//cdn.jsdelivr.net/gh/aaronlam/aaronlam@gh-pages/js/src/disqus.min.js?v=1.3"
+          s.async = 1; // 保证异步加载
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+          s.onload = s.onreadstatechange = function() {
+            // 保证IE及非IE都能正常script监听onload事件
+            if(!this.readyState || this.readyState == "loaded" || this.readyState == "complete") {
+              var dsqjs = new DisqusJS({
+                  shortname: 'aaronlam',
+                  siteName: 'Aaronlam',
+                  identifier: document.location.origin + document.location.pathname + document.location.search,
+                  url: document.location.origin + document.location.pathname + document.location.search,
+                  title: document.title,
+                  api: '//corsapi.aaronlam.xyz/disqus.com/api/',
+                  apikey: ['3tSA13Wd42mFImQZH1JerSBXZjvKLvKrdhEplfG5k1dL6cmine6bV1UsmhizFvyJ', 'c9nomZ32wB7pDogCbRuTqrY2OKGcJzOXeN1ZNZVCQvSdO5KGerxLNiAdcaMgMKvY', '2jtVcNm4XvnISFqQiiLmjNgt2lramSks68WAnyASnteVzMRnLFYCXSiudbrpoNLr', 'SnBHyhy1pSbmPgKXMATfPUOv3Q2WWuAkv0JS2LjLVUrjZGWQeJdMQhlJUJow6ufb', 'a0tgOWx5UOuVR4jHitN6HA9SZPg61JCynHEx0ZCd7bYR5BhrqQRE15ph00Dl3L1i', '75iOeCKL8JTvz9pX1zqXKcqXsdmHITL9IhmSDbw4WhYMlRod2v5LlJEIPgwyMy92', 'NLPPSIXr0gAgtVhsyDPraicrQh1nSlgGKbkkl09GpYcpapvDbgWsQDpV2pTpyHHX', 'u9eBGtFAZJyv5YJatlkzZRswrlFFuJnfZwaAk3sSS3szKRkBcOKr6smJa7AIbyNB', 'BFHqakwhtPD8Iy2SkjX6Ip0bitnlXuH2QIyYhNM3czJyNp6Os1UnV1DdigYHtMIY', 'SlAHfNK44AyAaMJC3lqvls5LfAyHgHdXbJOglPw6imBarYCbwY88KfjkZ1dttmIE'],
+                  admin: 'aaronlam',
+                  adminLabel: 'Mod'
+              });
+            }
+          }
+        }
+
+        // 判断当前环境是否为浏览器
+        var runningOnBrowser = typeof window !== "undefined";
+        // 通过检查全局对象的scroll属性及检查userAgent判断当前访问者是否为爬虫
+        var isSpiderBot = (runningOnBrowser && !("onscroll" in window)) || (typeof navigator !== "undefined" && /(gle|ing|ro|msn)bot|crawl|spider|yand|duckgo/i.test(navigator.userAgent));
+        // 判断当前浏览器是否支持IntersectionObserver API
+        var supportIntersectionObserver = runningOnBrowser && "IntersectionObserver" in window;
+      
+        setTimeout(function() {
+          if(!isSpiderBot && supportIntersectionObserver) {
+            var disqusJSObserver = new IntersectionObserver(function(entries) {
+              // 对应监控元素已出现在显示视窗中
+              if(entries[0].isIntersecting) {
+                // 加载DisqusJS
+                loadDisqusJS();
+                // 停止继续监控
+                disqusJSObserver.disconnect();
+              }
+            }, { threshold: [0] });
+            // 设置监控的元素
+            disqusJSObserver.observe(document.getElementById('disqus_thread'));
+          } else {
+            // 当前访问者为爬虫或者当前浏览器不支持IntersectionObserver API
+            loadDisqusJS();
+          }
+        })
+      </script>
     
     
   

@@ -4,7 +4,7 @@ date: 2019-12-13 23:45:00
 tags:
   - JavaScript
   - 代码风格
-categoires:
+categories:
   - 前端
 ---
 

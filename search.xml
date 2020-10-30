@@ -194,6 +194,9 @@
 <p>你可能会发现有些时候不可避免的引用并改变了函数外部的状态，比如缓存某些值，为此你陷入了重构的苦恼。事实上不必过于忧虑，你想做的必然有其道理。这就是<strong>编程中取舍</strong>的问题，学会在编程、架构、工程上有所取舍（并不是随心所欲）后构建出的产品，自然会带有一定的特色。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// bad</span></span><br><span class="line"><span class="keyword">const</span> user = getUser();</span><br><span class="line"><span class="keyword">const</span> upload = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  user.tempField = <span class="string">&quot;temp content&quot;</span>;</span><br><span class="line">  <span class="comment">// fetch user...</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// good</span></span><br><span class="line"><span class="keyword">const</span> user = getUser();</span><br><span class="line"><span class="keyword">const</span> upload = <span class="function">(<span class="params">user</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> tempUser = &#123; ...user, <span class="attr">tempField</span>: <span class="string">&quot;temp content&quot;</span> &#125;;</span><br><span class="line">  <span class="comment">// fetch user...</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 ]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
       <tags>
         <tag>JavaScript</tag>
         <tag>代码风格</tag>

@@ -97,7 +97,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201030172902.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201030195935.png">
 <meta property="article:published_time" content="2019-04-04T11:30:00.000Z">
-<meta property="article:modified_time" content="2020-10-31T06:11:20.245Z">
+<meta property="article:modified_time" content="2020-10-31T09:30:21.140Z">
 <meta property="article:author" content="aaronlam">
 <meta property="article:tag" content="TCP">
 <meta property="article:tag" content="网络">
@@ -410,7 +410,7 @@
 <li>TCP 协议是<strong>面向字节流</strong>的协议，它可能会<strong>重新分割组合</strong>应用层协议的消息到多个数据段中</li>
 <li>应用层协议<strong>没有定义消息的边界</strong>，导致数据的接收方<strong>无法按边界拆分粘连的消息</strong></li>
 </ol>
-<h1 id="面向字节流"><a href="#面向字节流" class="headerlink" title="面向字节流"></a>面向字节流</h1><p>应用层交给 TCP 协议的数据并不会以包为单位向目的主机传输，这些数据在某些情况下会被组合成一个数据段发送给目标主机。Nagle 算法是一种采用通过减少发送有效数据含量少的 TCP 数据段手段，以提升 TCP 传输性能的算法。因为网络宽带有限，它不会将数据含量很少的数据段直接发送到目标主机，而是会在 TCP 发送缓冲区中等待更多的待发送数据，这种延迟等待并批量发送数据的策略虽然会影响实时性，但是能够降低网络拥堵的可能性并减少额外开销。</p>
+<h1 id="面向字节流"><a href="#面向字节流" class="headerlink" title="面向字节流"></a>面向字节流</h1><p>应用层交给 TCP 协议的数据并不会以包为单位向目标主机传输，这些数据在某些情况下会被组合成一个数据段发送给目标主机。Nagle 算法是一种采用通过减少发送有效数据含量少的 TCP 数据段手段，以提升 TCP 传输性能的算法。因为网络宽带有限，它不会将数据含量很少的数据段直接发送到目标主机，而是会在 TCP 发送缓冲区中等待更多的待发送数据，这种延迟等待并批量发送数据的策略虽然会影响实时性，但是能够降低网络拥堵的可能性并减少额外开销。</p>
 <p>在早期的互联网中，Telnet 是被广泛使用的应用程序，然而因为当时 Telnet 会产生大量只有 1 字节有效数据量的数据段，而这些数据段中都会存在包含 40 字节的协议描述信息。这带来的额外开销是很不乐观的，宽带的利用率只有仅仅的 2.44%，Nagle 算法就是在当时的这种使用场景下设计出来的。</p>
 <p>当应用层协议通过 TCP 协议传输数据时，实际上待发的数据先被写入了 TCP 协议的发送缓冲区中，如果用户开启了 Nagle 算法，那么 TCP 协议可能不会立刻发送写入的数据，而是会等待缓冲区中的数据超过了最大数据段大小（MSS）或者上一个数据段被 ACK 时才会发送缓冲区中的数据。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201030172902.png" alt="Nagle算法重新分割组合应用层协议消息"></p>

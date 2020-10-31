@@ -97,7 +97,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201030172902.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201030195935.png">
 <meta property="article:published_time" content="2019-04-04T11:30:00.000Z">
-<meta property="article:modified_time" content="2020-10-31T03:22:32.036Z">
+<meta property="article:modified_time" content="2020-10-31T04:47:19.875Z">
 <meta property="article:author" content="aaronlam">
 <meta property="article:tag" content="TCP">
 <meta property="article:tag" content="网络">
@@ -399,25 +399,25 @@
 <li>协议层中传输数据的基本单位统称为：Data Unit（数据单元）</li>
 <li>网络层传输的数据单元称为：Packet(包）</li>
 <li>传输层传输的数据单元称为：Segment（段）</li>
-<li>应用层传输的数据单元称为：Message（信息）</li>
+<li>应用层传输的数据单元称为：Message（消息）</li>
 </ol>
 <a id="more"></a>
 
 <h1 id="序章"><a href="#序章" class="headerlink" title="序章"></a>序章</h1><p>IP 协议在网络层解决了数据包的路由和传输问题，得以让基于其上层的传输层 TCP 协议不用再去关注路由和寻址，那么 TCP 就把这部分的注意力集中到了解决数据传输中的<strong>有序性</strong>和<strong>可靠性</strong>问题去了，以至于可以让其上一层协议不必担心所托付的数据能否排排坐的传输到接收方。只要被写入 TCP 协议缓冲区中的数据，协议栈几乎都能保证其数据的送达。</p>
-<p>当应用层协议使用 TCP 协议进行数据传输时，TCP 协议可能会将应用层协议所发送的信息<strong>重新分割组合到多个数据段</strong>中并以字节流的形式依次发送。那么这样一个 TCP 的数据段可能就不会按应用层发送的信息一一对应上。而数据接收方收到的某个数据段就可能会由<em>多个应用层消息</em>组成，应用层从 TCP 接收缓冲区读取数据时就会发现粘连的信息，这时就需要对这些粘连的信息按消息边界规则进行拆分。那么总结下来，就是以下两点：</p>
+<p>当应用层协议使用 TCP 协议进行数据传输时，TCP 协议可能会将应用层协议所发送的消息<strong>重新分割组合到多个数据段</strong>中并以字节流的形式依次发送。那么这样一个 TCP 的数据段可能就不会按应用层发送的消息一一对应上。而数据接收方收到的某个数据段就可能会由<em>多个应用层消息</em>组成，应用层从 TCP 接收缓冲区读取数据时就会发现粘连的消息，这时就需要对这些粘连的消息按消息边界规则进行拆分。那么总结下来，就是以下两点：</p>
 <ol>
-<li>TCP 协议是<strong>面向字节流</strong>的协议，它可能会<strong>重新分割组合</strong>应用层协议的信息到多个数据段中</li>
-<li>应用层协议<strong>没有定义消息的边界</strong>，导致数据的接收方<strong>无法按边界拆分粘连的信息</strong></li>
+<li>TCP 协议是<strong>面向字节流</strong>的协议，它可能会<strong>重新分割组合</strong>应用层协议的消息到多个数据段中</li>
+<li>应用层协议<strong>没有定义消息的边界</strong>，导致数据的接收方<strong>无法按边界拆分粘连的消息</strong></li>
 </ol>
 <h1 id="面向字节流"><a href="#面向字节流" class="headerlink" title="面向字节流"></a>面向字节流</h1><p>应用层交给 TCP 协议的数据并不会以包为单位向目的主机传输，这些数据在某些情况下会被组合成一个数据段发送给目标主机。Nagle 算法是一种采用通过减少发送有效数据含量少的 TCP 数据段手段，以提升 TCP 传输性能的算法。因为网络宽带有限，它不会将数据含量很少的数据段直接发送到目标主机，而是会在 TCP 发送缓冲区中等待更多的待发送数据，这种延迟等待并批量发送数据的策略虽然会影响实时性，但是能够降低网络拥堵的可能性并减少额外开销。</p>
 <p>在早期的互联网中，Telnet 是被广泛使用的应用程序，然而因为当时 Telnet 会产生大量只有 1 字节有效数据量的数据段，而这些数据段中都会存在包含 40 字节的协议描述信息。这带来的额外开销是很不乐观的，宽带的利用率只有仅仅的 2.44%，Nagle 算法就是在当时的这种使用场景下设计出来的。</p>
 <p>当应用层协议通过 TCP 协议传输数据时，实际上待发的数据先被写入了 TCP 协议的发送缓冲区中，如果用户开启了 Nagle 算法，那么 TCP 协议可能不会立刻发送写入的数据，而是会等待缓冲区中的数据超过了最大数据段大小（MSS）或者上一个数据段被 ACK 时才会发送缓冲区中的数据。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201030172902.png" alt="Nagle算法重新分割组合应用层协议信息"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201030172902.png" alt="Nagle算法重新分割组合应用层协议消息"></p>
 <p>Nagle 算法确实能够在有效数据较少时提高网络宽带的利用率减少 TCP 和 IP 协议描述信息所带来的额外开销，但是使用该算法也可能会导致应用层协议多次写入的数据被重新分割组合发送，当接收方从 TCP 协议栈中读取数据时就会发现不相关的数据出现在同一个数据段中，应用层可能也没有定义消息的边界，造成没有办法对他们进行拆分。</p>
 <p>除了 Nagle 算法之外，TCP 协议中还有另一个用于延迟发送数据的选项 TCP_CORK，如果我们开启了该选项，那么发送的数据小于最大数据段大小时，TCP 协议就会延迟 200ms 发送该数据或者等待缓冲区中的数据超过最大数据段大小。</p>
 <p>无论是 TCP_NODELAY 还是 TCP_CORK，他们都会通过延迟发送数据来提高宽带的利用率，他们会对应用层协议写入的数据进行重新分割组合，而这些机制和配合能够出现的最重要的原因是 — TCP 协议是基础字节流的协议，其本身没有数据包的概念，不会按照数据包的机制去发送数据。</p>
-<h1 id="消息边界"><a href="#消息边界" class="headerlink" title="消息边界"></a>消息边界</h1><p>如果我们系统性地学习过 TCP 协议，那么设计一个基于 TCP 协议且能够被 TCP 协议任意分割组装信息的应用层协议就不会有太大的问题。既然 TCP 协议是基于字节流的，这其实就意味着应用层协议需要自己划分消息的边界。</p>
-<p>如果我们能在应用层协议中定义消息的边界，那么无论 TCP 协议如何对应用层协议的信息进行重新分割组装，那么接收方都能根据约定的消息划分规则来恢复被重新分割组装后的消息。在应用层协议中，最常见的两种边界划分规则就是：</p>
+<h1 id="消息边界"><a href="#消息边界" class="headerlink" title="消息边界"></a>消息边界</h1><p>如果我们系统性地学习过 TCP 协议，那么设计一个基于 TCP 协议且能够被 TCP 协议任意分割组装消息的应用层协议就不会有太大的问题。既然 TCP 协议是基于字节流的，这其实就意味着应用层协议需要自己划分消息的边界。</p>
+<p>如果我们能在应用层协议中定义消息的边界，那么无论 TCP 协议如何对应用层协议的消息进行重新分割组装，那么接收方都能根据约定的消息划分规则来恢复被重新分割组装后的消息。在应用层协议中，最常见的两种边界划分规则就是：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201030195935.png" alt="应用程协议消息边界划分规则"></p>
 <ol>
 <li>基于长度</li>
@@ -429,11 +429,11 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>example<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello World<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>在上述 HTTP 消息中，我们使用 <code>Content-Length</code> 头表示 HTTP 消息的数据负载大小，当应用层协议解析到足够多的字节数后，就能从中分离出完整的 HTTP 消息，无论发送方如何处理对应的消息，我们都可以遵循这一规则完成 HTTP 消息的恢复工作。</p>
-<p>不过 HTTP 协议除了使用基于长度的方式实现边界划分，当发送的内容大小不确定时，也会使用基于终结符的策略，并使用块传输（Chunked Transfer）的机制。此时 HTTP 头中就不再包含 <code>Content-Length</code> 了，它会转而使用负载大小为 0 的 HTTP 消息作为终结符表示信息边界。</p>
+<p>不过 HTTP 协议除了使用基于长度的方式实现边界划分，当发送的内容大小不确定时，也会使用基于终结符的策略，并使用块传输（Chunked Transfer）的机制。此时 HTTP 头中就不再包含 <code>Content-Length</code> 了，它会转而使用负载大小为 0 的 HTTP 消息作为终结符表示消息边界。</p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>可以这么说，TCP 粘包问题是因为应用层协议开发者的错误设计导致的，他们忽略了 TCP 协议数据传输的核心机制 — 基于字节流，其本身并不存在数据包的概念。所有在 TCP 中传输的数据都是以流的形式进行传输，所以这就需要应用层协议开发者行设计消息的边界划分规则。所以粘包总的来说还是以下两点：</p>
 <ol>
-<li>TCP 协议是<strong>面向字节流</strong>的协议，它可能会<strong>重新分割组合</strong>应用层协议的信息到多个数据段中</li>
-<li>应用层协议<strong>没有定义消息的边界</strong>，导致数据的接收方<strong>无法按边界拆分粘连的信息</strong></li>
+<li>TCP 协议是<strong>面向字节流</strong>的协议，它可能会<strong>重新分割组合</strong>应用层协议的消息到多个数据段中</li>
+<li>应用层协议<strong>没有定义消息的边界</strong>，导致数据的接收方<strong>无法按边界拆分粘连的消息</strong></li>
 </ol>
 
       

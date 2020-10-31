@@ -22,7 +22,7 @@ no_toc: true
 - [Namesilo Domain](https://www.namesilo.com/register.php?rid=ee62476we)
 - [Vultr VPS](https://www.vultr.com/?ref=6902477)
 
-# 赞助我
+# 打赏我
 
 <style>
 #about-sponsor {

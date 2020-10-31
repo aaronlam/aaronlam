@@ -337,6 +337,8 @@
 <li>我还在！</li>
 </ol>
 <p>说这是一个错误的类型的原因在于，它只以片面的以相似性解释了三次握手的表层含义，而并没有把其正正的原因从其表面展露出来。而这种类比带来的解释往往就只有这样片面的相似性，它只有在我们想要通俗易懂地介绍事物的特性时才能发挥较大的作用。而文章后面的篇幅会侧面的解释该类比存在的问题，好！那我们就继续往下。</p>
+<a id="more"></a>
+
 <h1 id="序章"><a href="#序章" class="headerlink" title="序章"></a>序章</h1><p>很多人在思考这个问题的时候其实关注点都放在了三次握手的<strong>三次</strong>上面，这虽然很重要。但是如果我们选择重新审视这个问题，我们对于所建立的连接中的<strong>连接</strong>是否是真的清楚？只有知道<strong>连接的定义</strong>，才能尝试回答为什么 TCP 协议建立连接需要三次握手。</p>
 <blockquote>
 <p>The reliability and flow control mechanisms described above require that TCPs initialize and maintain certain status information for each data stream. The combination of this information, including sockets, sequence numbers, and window sizes, is called a connection.</p>

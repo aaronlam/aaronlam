@@ -14,7 +14,7 @@ no_toc: true
 
 - 底下评论
 - 电子邮箱：[a@aaronlam.xyz](mailto:a@aaronlam.xyz)
-- Telegram：rnamai
+- Telegram：[rnamai](https://t.me/rnamai)
 - GitHub: [aaronlam](https://github.com/aaronlam)
 
 # 拉推广

@@ -34,7 +34,11 @@ typeof DISQUSWIDGETS === "undefined" &&
         m = b[n];
         for (var o = 0; o < m.length; o++) {
           i = m[o];
-          g = i.getAttribute("data-disqus-identifier");
+          g = i.getAttribute("data-disqus-identifier")
+            ? window.location.origin +
+              "/" +
+              i.getAttribute("data-disqus-identifier")
+            : i.getAttribute("data-disqus-identifier");
           h =
             (i.hash === "#disqus_thread" &&
               i.href.replace("#disqus_thread", "")) ||

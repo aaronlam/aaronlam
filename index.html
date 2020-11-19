@@ -914,6 +914,258 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.aaronlam.xyz/2019/08/01/http-cache/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="//cdn.jsdelivr.net/gh/aaronlam/aaronlam@gh-pages/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Aaronlam">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/01/http-cache/" itemprop="url">HTTP/前端文件缓存</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-01T20:00:20+08:00">
+                2019-08-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index">
+                    <span itemprop="name">网络</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/08/01/http-cache/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/08/01/http-cache/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>缓存在开发人员的眼里并不陌生，它对于程序的性能和效率的提升起到了至关重要的作用。甚至是在 CPU 与内存这种硬件与硬件间的交互，也存在着多级别的缓存用以提升交互间的速度。同样的，在前端要进行性能的优化，减少与服务端的资源请求，提升页面的加载速度，自然也就摆脱不了缓存这个“魔咒”。而前端文件缓存实质上也就是 HTTP 缓存，而 HTTP 缓存经过 HTTP 版本的迭代升级，也存在着几种不同的类型的缓存。</p>
+<h1 id="缓存类型"><a href="#缓存类型" class="headerlink" title="缓存类型"></a>缓存类型</h1><p>对于 HTTP 来说，总共分为如下两种类型的缓存，<strong>而强缓存优先级高于协商缓存</strong>。也就是说如果客户端已经存在强缓存后，若还未过期，就不会触发协商缓存。而不同版本的 HTTP 协议，设置这两种类型的缓存，所使用的响应和请求头也各不相同。</p>
+<h2 id="1-强缓存"><a href="#1-强缓存" class="headerlink" title="1.强缓存"></a>1.强缓存</h2><p>强缓存中的“强”一字，指的是让浏览器按照服务端所提供的有效时间来缓存资源，所以就那么一点强制的感觉。而服务端一般使用如下两种 HTTP 响应头部属性，来达到让客户端把资源以强缓存的形式存入缓存数据库。</p>
+<h3 id="1-Expires"><a href="#1-Expires" class="headerlink" title="1) Expires"></a>1) Expires</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 服务端响应头部</span><br><span class="line">...</span><br><span class="line">Expires: Wed, 21 Oct 2019 00:00:00 GMT</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p><code>Expires</code> 是服务端用于强缓存的 HTTP 1.0 <strong>响应头属性</strong>，其值为服务端返回的资源到期（有效）时间，既下一次请求该资源时，客户端会到缓存数据库中取出所缓存资源的 <code>Expires</code> 属性值并与此次资源请求的时间做比较，若请求时间小于该值，就直接使用缓存数据库中所缓存的资源。</p>
+<h3 id="2-Cache-Control"><a href="#2-Cache-Control" class="headerlink" title="2) Cache-Control"></a>2) Cache-Control</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 服务端响应头部</span><br><span class="line">...</span><br><span class="line">Cache-Control:public, max-age&#x3D;31536000</span><br><span class="line"># Expires会被忽略</span><br><span class="line">Expires: Wed, 21 Oct 2019 00:00:00 GMT</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>上文已经提到 <code>Expires</code> 是 HTTP 1.0 的<strong>响应头属性</strong>，所以目前已逐渐被淘汰。这样 HTTP 1.1 中的 <code>Cache-Control</code> 就顺势就替代了它，<strong>并且 <code>Expires</code> 和 <code>Cache-Control</code> 同时存在时，<code>Cache-Control</code> 的优先级要高于 <code>Expires</code>。</strong><code>Cache-Control</code> 相较于 <code>Expires</code> 具备更多的特性，指定资源有效时间也改为了相对时间并以秒为单位，而其值就包括如下选项：</p>
+<ol>
+<li>private：仅客户端可以缓存该资源</li>
+<li>public：客户端和代理服务器都可以缓存该资源</li>
+<li>max-age=xxx：在客户端中缓存的资源将在资源请求发送后的 xxx 秒后失效</li>
+<li>s-maxage=xxx：在代理服务器中缓存的资源将在资源请求发送后的 xxx 秒后失效</li>
+<li>no-cache：不使用强缓存，需要使用协商缓存</li>
+<li>no-store：资源禁止被缓存，需要每次都请求服务端获取资源</li>
+<li>immutable：对于同时设置了 max-age 和 immutable 的资源，如果还在有效期内，用户就算点击了刷新也不再请求服务器获取资源（仅在 HTTPS 下有效）</li>
+</ol>
+<p>当客户端在下一次请求该资源时，客户端会到缓存数据库中取出所缓存资源的 <code>Cache-Control</code> 属性值的 <strong>max-age 和上一次资源请求的时间相加</strong>并与此次的资源请求时间做比较，若请求时间小于相加值，就直接使用缓存数据库中所缓存的资源。</p>
+<h3 id="3-Cache-Control-相较于-Expires-的优势"><a href="#3-Cache-Control-相较于-Expires-的优势" class="headerlink" title="3) Cache-Control 相较于 Expires 的优势"></a>3) Cache-Control 相较于 Expires 的优势</h3><p>上文已经说过 Cache-Control 和 Expires 分别是 HTTP 1.1 和 HTTP 1.0 用于强缓存的 HTTP 响应头属性。那么为什么有了 Expires 后，还要在新版本中增加多一个 Cache-Control？ Cache-Control 主要是用来解决以下几个问题：</p>
+<ol>
+<li><code>Expires</code> 的值是服务端生成的一个绝对时间，这样的话若客户端与服务端存在时差，就会出现缓存命中误差的情况。</li>
+<li><code>Expires</code> 缺少更加精确控制强缓存的特性，如 <code>Cache-Control</code> 中的：private、public、no-cache、no-store 等等</li>
+</ol>
+<h2 id="2-协商缓存"><a href="#2-协商缓存" class="headerlink" title="2.协商缓存"></a>2.协商缓存</h2><p>协商缓存顾名思义，就是让客户端与服务端协商当前所缓存的资源是否还是有效可用。而服务端一般在客户端第一次进行资源请求时使用如下两种 HTTP 响应头部属性，告知客户端下次再请求该资源时，在请求头附上在上一次服务端响应时所接收到的属性值来让服务端进行缓存资源的有效性和可用性的判断。</p>
+<h3 id="1-Last-Modified-与-If-Modified-Since"><a href="#1-Last-Modified-与-If-Modified-Since" class="headerlink" title="1) Last-Modified 与 If-Modified-Since"></a>1) Last-Modified 与 If-Modified-Since</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 服务端响应头部</span><br><span class="line">...</span><br><span class="line">Last-Modified: Wed, 21 Oct 2019 00:00:00 GMT</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 客户端请求头部</span><br><span class="line">...</span><br><span class="line">If-Modified-Since: Wed, 21 Oct 2019 00:00:00 GMT</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p><code>Last-Modified</code> 是服务端用于协商缓存的 HTTP 1.0 <strong>响应头属性</strong>，而<code>If-Modified-Since</code>则是客户端用于协商缓存的 HTTP 1.0 <strong>请求头属性</strong>，其值一般是资源在服务端的最后修改时间。</p>
+<ul>
+<li>在客户端第一次向服务端请求资源时，服务端会在其响应头部加入 <code>Last Modified</code> 属性，告知该资源的最后修改时间</li>
+<li>客户端在接收到服务端的响应后会按照响应头中的缓存标识，在缓存数据库中存入资源及其缓存标识</li>
+<li>在客户端下一次请求该资源时，会在响应头中加上 <code>Last Modified</code> 对应的响应头属性 <code>If-Modified-Since</code> 并填上其值。</li>
+<li>服务端接收请求后就会取出客户端请求头中的 <code>If-Modified-Since</code> 属性值与该资源的最后修改时间做比较：<ul>
+<li>若资源的最后修改时间大于 <code>If-Modified-Since</code> 的值，说明资源有更新的版本，返回 200 状态响应，并在响应头中设置新 <code>Last-Modified</code> 属性值和在其请求体中附上更新的资源</li>
+<li>若资源的最后修改时间小于 <code>If-Modified-Since</code> 的值，说明资源无更新的版本，返回 304 状态响应，告知客户端资源无更新，可以使用所缓存的资源</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-Etag-和-If-None-Match"><a href="#2-Etag-和-If-None-Match" class="headerlink" title="2) Etag 和 If-None-Match"></a>2) Etag 和 If-None-Match</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 服务端响应头部</span><br><span class="line">...</span><br><span class="line">ETag: &quot;44a64df551425fcc55e4d42a148795d9f25f89d5&quot;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 客户端请求头部</span><br><span class="line">...</span><br><span class="line">If-None-Match: &quot;44a64df551425fcc55e4d42a148795d9f25f89d5&quot;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>跟上文一样，<code>Etag</code> 也是服务端用于协商缓存<strong>响应头属性</strong>，而<code>If-None-Match</code>同样也是客户端用于协商缓存的<strong>请求头属性</strong>，不过 <code>Etag</code> 和 <code>If-None-Match</code> 是在 HTTP 1.1 中才出现的，并且其值是资源在服务端的唯一标识（生成规则由服务端决定）。</p>
+<ul>
+<li>在客户端第一次向服务端请求资源时，服务端会在其响应头部加入<code>Etag</code>属性，告知该资源的唯一标识</li>
+<li>客户端在接收到服务端的响应后会按照响应头中的缓存标识，在缓存数据库中存入资源及其缓存标识</li>
+<li>在客户端下一次请求该资源时，会在响应头中加上<code>Etag</code>对应的响应头属性<code>If-None-Match</code>并填上其值。</li>
+<li>服务端接收请求后就会取出客户端请求头中的<code>If-None-Match</code>属性值与该资源目前的唯一标识做比较：<ul>
+<li>若不一致，说明资源有更新的版本，返回 200 状态响应，并在响应头中设置新 <code>Etag</code> 属性值和在其请求体中附上更新的资源</li>
+<li>若一致，说明资源无更新的版本，返回 304 状态响应，并在响应头中设置 <code>Etag</code> 属性值（与 <code>Last-Modified</code> 不同），告知客户端资源无更新，可以使用所缓存的资源</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-Etag-相较于-Last-Modified-的优势"><a href="#3-Etag-相较于-Last-Modified-的优势" class="headerlink" title="3) Etag 相较于 Last-Modified 的优势"></a>3) Etag 相较于 Last-Modified 的优势</h3><p>上文已经说过 Etag/If-None-Matach 和 Last-Modified/If-Modified-Since 分别是 HTTP 1.1 和 HTTP 1.0 用于协商缓存的 HTTP 响应和请求的头属性。那么为什么有了 Last-Modified 后，还要在新版本中增加多一个 Etag？Etag 主要是用来解决以下几个问题：</p>
+<ol>
+<li>一些文件的修改时间也许会被周期性的修改，但其内容并无变化，这个时候就不希望客户端重新获取该资源</li>
+<li>某些文件的修改非常频繁，比如在秒级以内的短期修改，而 Last-Modified 只能检测到的时间最小粒度仅为秒级，这样就无法精确的让客户端获取资源最新的版本</li>
+<li>某些服务端无法精确的得到资源的最后修改时间</li>
+</ol>
+<p>这时，利用 Etag 就能更加精确的控制资源缓存，因为 Etag 是服务端程序自动生成的资源唯一标识，资源每次变动 ，都会生成新的 Etag 值。<strong>并且 Last-Modified 和 Etag 是可以同时使用，但是 Etag 优先级要高于 Last-Modified。</strong></p>
+<h1 id="缓存步骤整体概括"><a href="#缓存步骤整体概括" class="headerlink" title="缓存步骤整体概括"></a>缓存步骤整体概括</h1><ol>
+<li>在客户端第一次 HTTP 请求服务端资源时，服务端会把该资源的强缓存标识和协商缓存标识（如：Expires、Cache-Control、Last-Modified、Etag 等头部属性）设置于 HTTP 响应的头部中</li>
+<li>客户端在接收到服务端的响应后，会把响应头部的相关缓存标识与资源一同存入缓存数据库中</li>
+<li>客户端再次请求该资源时，会先到本地的缓存数据库中查找是否存在该资源的缓存，资源缓存存在时，则会取出当时一同存入的服务端强缓存标识中资源的有效期值（如：Expires 的值、Cache-Control 的 max-age 的值）进行如下判断：<ul>
+<li>若还处于强缓存的有效期内，则直接使用所缓存的资源</li>
+<li>若已经过了强缓存有效期，则判断是否存在协商缓存标识（如：Last-Modified、Etag）<ul>
+<li>若存在协商缓存标识，则在请求服务端的请求头中设置对应的协商缓存标识（如：If-Modified-Since、If-None-Match）</li>
+<li>若不存在协商缓存标识，则直接请求服务端获取资源，<strong>后续将轮回到第 1 步</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201119214520.png" alt="HTTP缓存概括"></p>
+<h1 id="Cache-Control-的-max-age-0-和-no-cache-的区别"><a href="#Cache-Control-的-max-age-0-和-no-cache-的区别" class="headerlink" title="Cache-Control 的 max-age=0 和 no-cache 的区别"></a>Cache-Control 的 max-age=0 和 no-cache 的区别</h1><p>他们两个在浏览器操作上的区别就是，max-age=0 相当于用户在浏览器按下了 F5（CTRL+R） 进行刷新操作，而 no-cache 则是相当于用户在浏览器同时按下了 CTRL+F5 进行了强制刷新操作。那么它们其本质的区别是什么？好奇宝宝请看下面：</p>
+<ol>
+<li><p>max-age=0：当客户端在请求头中设置 Cache-Control 属性且值为 max-age=0 时，那么客户端会从缓存数据库中取出所缓存资源的 Etag（或 Last-Modified），并在请求头中设置 Etag （或 Last-Modified）在 HTTP 请求中所对应的 If-None-Match（或 If-Modified-Since） 属性（没错 Etag 和 Last-Modified 是 HTTP 响应头部的属性），服务端在收到请求后，会取出 If-None-Match（或 If-Modified-Since） 的值并找到对应的资源进行如下判断：</p>
+<ul>
+<li>若无更新则返回 304 状态响应，告知客户端资源无更新，可以使用所缓存的资源</li>
+<li>若有更新则返回 200 状态响应，并在响应头设置新 Etag（或 Last-Modified） 属性值和在其请求体中附上更新的资源</li>
+</ul>
+</li>
+<li><p>no-cahce：当客户端在请求头中设置 Cache-Control 属性且值为 no-cache 时，那么客户端将无视缓存数据库中所缓存的资源和其 Etag，直接向服务端发送一个全新的资源请求。</p>
+</li>
+</ol>
+<p>最后用一张图说明用户行为对 HTTP 缓存的影响</p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201120002635.png" alt="用户行为对缓存的影响"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.aaronlam.xyz/2019/07/18/why-https-laency/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1713,171 +1965,13 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.aaronlam.xyz/2018/10/30/amend-git-committed-comment/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="//cdn.jsdelivr.net/gh/aaronlam/aaronlam@gh-pages/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Aaronlam">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/30/amend-git-committed-comment/" itemprop="url">如何修改Git Commit的描述</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-30T23:00:00+08:00">
-                2018-10-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Git/" itemprop="url" rel="index">
-                    <span itemprop="name">Git</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/10/30/amend-git-committed-comment/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/10/30/amend-git-committed-comment/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>使用 Git 进行项目的版本管理，的确是能让项目代码更加的受控。但是如果能有清晰的 commit 记录以及描述，那将更是会锦上添花。在需求正常开发完后，有时难免会过于兴奋手滑敲错 commit 的描述。但如果对于不经常手滑的同学来说，可能还没研究过如何修改 commit 的描述。所以今天，我就想通过这一篇文章简单的记录一下 commit 描述的修改过程，顺便给自己留作回顾的作用。</p>
-<p>修改 commit 描述分为以下两种情况，但这两种情况步骤基本相同，只是第二种需要在最后多加一步操作：</p>
-<ol>
-<li>还未将代码 push 到远程仓库</li>
-<li>已将代码 push 到远程仓库</li>
-</ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/30/amend-git-committed-comment/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+  </nav>
+
 
 
           </div>
@@ -1921,7 +2015,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1932,7 +2026,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
@@ -1943,7 +2037,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

@@ -145,6 +145,8 @@
     <title>HTTP/前端文件缓存</title>
     <url>/2019/08/01/http-cache/</url>
     <content><![CDATA[<p>缓存在开发人员的眼里并不陌生，它对于程序的性能和效率的提升起到了至关重要的作用。甚至是在 CPU 与内存这种硬件与硬件间的交互，也存在着多级别的缓存用以提升交互间的性能。同样的，在前端要进行性能的优化，减少客户端与服务端的资源请求，提升客户端页面的加载速度，自然也就摆脱不了缓存这个“魔咒”。而前端文件缓存实质上也就是 HTTP 缓存，而 HTTP 缓存经过 HTTP 版本的迭代升级，也存在着几种不同的缓存设置方式。</p>
+<a id="more"></a>
+
 <h1 id="缓存类型"><a href="#缓存类型" class="headerlink" title="缓存类型"></a>缓存类型</h1><p>对于 HTTP 来说，总共分为如下两种类型的缓存，<strong>而强缓存优先级高于协商缓存</strong>。也就是说如果客户端已经存在强缓存后，若还未过期，就不会触发协商缓存。而不同版本的 HTTP 协议，设置这两种类型的缓存，所使用的响应和请求头也各不相同。</p>
 <h2 id="1-强缓存"><a href="#1-强缓存" class="headerlink" title="1.强缓存"></a>1.强缓存</h2><p>强缓存中的“强”一字，指的是让浏览器按照服务端所提供的有效时间来缓存资源，所以就那么一点强制的感觉。而服务端一般使用如下两种 HTTP 响应头部属性，来达到让客户端把资源以强缓存的形式存入缓存数据库。</p>
 <h3 id="1-Expires"><a href="#1-Expires" class="headerlink" title="1) Expires"></a>1) Expires</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 服务端响应头部</span><br><span class="line">...</span><br><span class="line">Expires: Wed, 21 Oct 2019 00:00:00 GMT</span><br><span class="line">...</span><br></pre></td></tr></table></figure>

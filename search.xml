@@ -722,11 +722,11 @@
 <li>项目中常用的配置文件</li>
 <li>项目统一代码风格和规范配置</li>
 <li>项目统一代码提交规范配置</li>
-<li>webpack 基本配置</li>
+<li>Webpack 基本配置</li>
 <li>TypeScript + React 开发环境搭建</li>
-<li>webpack 公共构建环境优化</li>
-<li>webpack 开发构建环境优化</li>
-<li>webpack 生产构建环境优化</li>
+<li>Webpack 公共构建环境优化</li>
+<li>Webpack 开发构建环境优化</li>
+<li>Webpack 生产构建环境优化</li>
 </ol>
 <h2 id="项目初始化及配置文件"><a href="#项目初始化及配置文件" class="headerlink" title="项目初始化及配置文件"></a>项目初始化及配置文件</h2><p>我使用的开发机和编辑器分别是 win 10 和 VSCode，Node 版本为 12.10.0，命令行使用的是 VSCode 中的 Terminal。在实践过程中所安装的全部依赖均为目前最新版本，并且文章会不定时更新，确保文章具有时效性。</p>
 <h3 id="1-package-json"><a href="#1-package-json" class="headerlink" title="1. package.json"></a>1. package.json</h3><p>搭建项目的第一步就是新建项目文件夹，然后初始化项目，生成项目配置文件 package.json。</p>

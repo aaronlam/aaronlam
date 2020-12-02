@@ -748,7 +748,7 @@ Misc
 npm i -D stylelint-order stylelint-config-rational-order stylelint-declaration-block-no-ignored-properties
 ```
 
-安装完后，我们把 `.stylelint.js` 配置文件修改成以下内容：
+安装完后，我们把 `.stylelintrc.js` 配置文件修改成以下内容：
 
 ```javascript
 module.exports = {
@@ -831,7 +831,7 @@ Stylelint 与 Prettier 的冲突解决方法是与 ESLint 的解决方法一样�
 npm i -D stylelint-config-prettier
 ```
 
-安装完后，再到 `.stylelint.js` 配置文件的 `extends` 属性中，添加以下配置：
+安装完后，再到 `.stylelintrc.js` 配置文件的 `extends` 属性中，添加以下配置：
 
 ```javascript
 {
@@ -876,7 +876,7 @@ npm i -D husky lint-staged
   },
   "lint-staged": {
     "*.{ts,tsx,js}": ["eslint -c .eslintrc.js"],
-    "*.{less,scss,css}": ["stylelint --config .stylelint.js"],
+    "*.{less,scss,css}": ["stylelint --config .stylelintrc.js"],
     "*.{ts,tsx,js,json,html,yml,less,scss,css,md}": ["prettier --write"]
   }
 }

@@ -26,8 +26,9 @@ categories:
 3. 项目统一代码提交规范配置
 4. webpack 基本配置
 5. TypeScript + React 开发环境搭建
-6. webpack 开发构建优化
-7. webpack 生产构建优化
+6. webpack 公共构建环境优化
+7. webpack 开发构建环境优化
+8. webpack 生产构建环境优化
 
 ## 项目初始化及配置文件
 

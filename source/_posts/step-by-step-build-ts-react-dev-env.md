@@ -9,11 +9,13 @@ categories:
   - 前端
 ---
 
-如果现在要开发一个 React 项目，那最快的方式应该就是直接使用 Facebook 官方开源的脚手架 [creat-react-app](https://github.com/facebook/create-react-app)，简称：CRA。但是，随着项目的业务场景复杂度提升，难免会需要在开发环境里做一些配置上的调整。这个时候就只能把脚手架进行 eject 后，亲自上阵修改 webpack 的配置了，即便是这样 CRA 对于 webpack 的配置灵活度也是相对的不太高。如果这个时候对 webpack 不够熟练的话，就会有种心有余而力不足的感觉。
+如果现在要开发一个 React 项目，那最快的方式应该就是直接使用 Facebook 官方开源的脚手架 [creat-react-app](https://github.com/facebook/create-react-app)，简称：CRA。但是，随着项目的业务场景复杂度提升，难免会需要在开发环境里做一些配置上的调整。这个时候就只能把脚手架进行 eject 后，亲自上阵修改 Webpack 的配置了，即便是这样 CRA 对于 Webpack 的配置灵活度也是相对的不太高。如果这个时候对 Webpack 不够熟练的话，就会有种心有余而力不足的感觉。
 
-想当初我为了要给公司的前端项目搭建开发环境时，也是被 webpack 折腾的死去活来，配置 webpack 的时候总是记不住配置里的那些字段，而且配置时还要牵扯到一系列的工具，像 ES6 编译器 Babel、CSS 预处理器 less/sass、CSS 后处理器 postcss，还有各种 webapck 的 loader 和 plugin。所以，在刚开始的一段时间里都还是直接 CRA 了事。不过在经过一段时间的毒打后，在后续的项目里逐渐的把 CRA 替换为自行搭建的开发环境。现在让我从零开始一个前端项目的话，我更多的会选择自己去搭建开发环境，其次才会去选择官方的 CLI。
+想当初我为了要给公司的前端项目搭建开发环境时，也是被 Webpack 折腾的死去活来，配置 Webpack 的时候总是记不住配置里的那些字段，而且配置时还要牵扯到一系列的工具，像 ES6 编译器 Babel、CSS 预处理器 less/sass、CSS 后处理器 postcss，还有各种 webapck 的 loader 和 plugin。所以，在刚开始的一段时间里都还是直接 CRA 了事。不过在经过一段时间的毒打后，在后续的项目里逐渐的把 CRA 替换为自行搭建的开发环境。现在让我从零开始一个前端项目的话，我更多的会选择自己去搭建开发环境，其次才会去选择官方的 CLI。
 
 而这篇文章最主要目的是想让大家（特别是新手）能够从零开始，一步一步搭建出一个完整的开发环境。然后在搭建的过程中，一点一点的了解每一步中所配置项的作用及其原理，每一个插件的作用及其影响并对比同功能插件的差别。只要跟着步骤来走，就一定能实现所说的同样功能。
+
+先附上项目地址：[webpack-typescript-react-practice2](https://github.com/aaronlam/webpack-typescript-react-practice2)
 
 <!--more-->
 

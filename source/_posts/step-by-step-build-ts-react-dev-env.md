@@ -24,11 +24,11 @@ categories:
 1. 项目中常用的配置文件
 2. 项目统一代码风格和规范配置
 3. 项目统一代码提交规范配置
-4. webpack 基本配置
+4. Webpack 基本配置
 5. TypeScript + React 开发环境搭建
-6. webpack 公共构建环境优化
-7. webpack 开发构建环境优化
-8. webpack 生产构建环境优化
+6. Webpack 公共构建环境优化
+7. Webpack 开发构建环境优化
+8. Webpack 生产构建环境优化
 
 ## 项目初始化及配置文件
 

@@ -1440,7 +1440,7 @@ devtool 中的一些设置，可以帮我们将构建打包（编译）后的代
 ```diff
 module.exports = merge(common, {
   mode: 'development',
-+ devtool: 'cheap-module-eval',
++ devtool: 'cheap-module-eval-source-map',
   devServer: {
     host: SERVER_HOST, // 指定host，不设置的话默认为localhost
     port: SERVER_PORT, // 指定端口，不设置的话默认为8080

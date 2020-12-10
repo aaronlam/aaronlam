@@ -61,6 +61,138 @@
       </tags>
   </entry>
   <entry>
+    <title>搭建公司内部的npm私服</title>
+    <url>/2019/01/01/build-private-npm-proxy/</url>
+    <content><![CDATA[<p>由于我们公司内部的前端项目越来越多并且迭代速度越来越快，项目里的业务系统也精细的进行了不同的划分，那么这些项目之间的公共代码以及公共组件的提取、维护、管理问题就以愈显突出。所以，最近都在进行公共库的维护以及公共组件的提取工作，然后再把这些公共库和公共组件库以依赖包的形式进行管理，通过版本号的形式进行发布。这就让我们可以把这些单独“拎出来的代码”能够以 <code>npm install</code> 或 <code>yarn add</code> 的形式来进行依赖包安装，然后再引入到实际用到的每个项目里，这样一旦这些公共库或公共组件库更新了，就不用在每个项目里一份一份的复制粘贴了，直接 <code>npm update</code> 或 <code>yarn upgrade</code> 了事。</p>
+<p>但是，对于一些公共库的代码可能会涉及到比较核心的业务逻辑，就导致我们没办法把这些库代码的依赖包以 npm 包的形式发布到公网的 npm 仓库；同时，由于每次前端项目进行依赖包安装时，其安装的速度都依赖于网络以及第三方镜像。所以，这就迫切的需要有一个公司内部的 npm 私有仓库了，也就是 npm 私服。在我研究了目前 npm 私服的几乎所有搭建方式后，总结下来总共有以下几种：</p>
+<p>付费：</p>
+<ol>
+<li><a href="https://www.myget.org/">MyGet</a>：9 刀每月，两个账号，1GB 空间</li>
+<li><a href="https://www.npmjs.com/">NPM Org</a>：每个账号每月 7 刀</li>
+</ol>
+<p>免费：</p>
+<ol>
+<li><a href="https://docs.npmjs.com/misc/registry">DIY NPM</a></li>
+<li><a href="https://github.com/cnpm/cnpmjs.org">CNPM</a></li>
+<li><a href="https://www.sonatype.com/">Nexus</a></li>
+<li><a href="https://www.npmjs.com/package/sinopia">Sinopia</a></li>
+<li><a href="https://verdaccio.org/">Verdaccio</a></li>
+</ol>
+<p>首先排除付费，根据搭建方式和易用程度来选本来是选择 Sinopia 的，因为其搭建十分简单友好，基本就是傻瓜式的。不过到其 GitHub Repo 页面看到貌似已经放弃维护很多年了，然后再深入调查发现有一群人出了个分支，而这个分支就是 Verdaccio。然后还发现 Verdaccio 延续了 Sinopia 的简单便捷，并且这个库也在积极维护中，看起来就比 Sinopia 靠谱一点。最后就果断的选择了 Verdaccio 来搭建公司内部的 npm 私服。</p>
+<p>不过如果公司内部有 Java 技术栈团队的可以尝试一下 Nexus，因为看到他貌似也可以进行 maven/gralde 仓库的统一管理。而我们公司虽然也有 Java 技术栈的团队，但是由于我们部门后端是 .Net 技术栈，遂放弃！</p>
+<h2 id="搭建步骤"><a href="#搭建步骤" class="headerlink" title="搭建步骤"></a>搭建步骤</h2><p>在搭建时我是向公司的运维同学申请了一台内存 4GB 的 Linux 虚拟机，这个配置的话在后续的使用中也没有出现过太大的问题。所以，大家可以根据实际情况来挑选合适的配置进行搭建。但下面的演示步骤，我拿的是 Windows 开发机进行演示的。无须担心，他们的搭建步骤基本是一致的。</p>
+<h3 id="1-安装-Node-js"><a href="#1-安装-Node-js" class="headerlink" title="1. 安装 Node.js"></a>1. 安装 Node.js</h3><p>由于我的电脑已经安装上了，所以这里就不再演示了。</p>
+<h3 id="2-安装-Verdaccio-依赖包"><a href="#2-安装-Verdaccio-依赖包" class="headerlink" title="2. 安装 Verdaccio 依赖包"></a>2. 安装 Verdaccio 依赖包</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm i -g verdaccio</span><br></pre></td></tr></table></figure>
+
+<p>如果安装过程报了 grywarn 的权限错误的话，那么需要加上 <code>--unsafe-perm</code>，如下命令：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm i -g verdaccio --unsafe-perm</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-启动-Verdaccio"><a href="#3-启动-Verdaccio" class="headerlink" title="3. 启动 Verdaccio"></a>3. 启动 Verdaccio</h3><p>安装完依赖包后，我们就可以在命令行中输入 <code>verdaccio</code> 命令启动，如下所示：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210145307.png" alt="启动Verdaccio"></p>
+<p>此时，我们在浏览器中，输入 <code>http://localhost:4873</code> 就可以看到用 Verdaccio 搭建好的 npm 私服了，如下所示：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210145522.png" alt="Verdaccio首页"></p>
+<h2 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a>使用步骤</h2><h3 id="1-安装-nrm-yrm"><a href="#1-安装-nrm-yrm" class="headerlink" title="1. 安装 nrm/yrm"></a>1. 安装 nrm/yrm</h3><p>在使用 Verdaccio 所搭建的 npm 私服之前，我们可以先安装 <code>nrm</code> 或者 <code>yrm</code> 来管理自己的 npm 源，这两个命令行工具可以帮助我们快速的修改、切换、增加源。由于 <code>nrm</code> 和 <code>yrm</code> 的使用方式是类似的，所以下面都以 <code>nrm</code> 作为演示的例子。</p>
+<p>执行下面的命令安装其依赖包：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm i -g nrm</span><br></pre></td></tr></table></figure>
+
+<p>如果想了解更多关于 <code>nrm</code> 的命令，可以执行命令 <code>nrm --help</code> 来查看所列出的所有命令。</p>
+<h3 id="2-使用-nrm-添加私服源"><a href="#2-使用-nrm-添加私服源" class="headerlink" title="2. 使用 nrm 添加私服源"></a>2. 使用 nrm 添加私服源</h3><p>我们刚刚已经启动了 Verdaccio，也就表明我们使用 Verdaccio 所搭建的 npm 私服源正在悄悄运行中了。此时，如果我们想要使用他的话就可以用 <code>nrm</code> 来添加该私服源。当然不使用 <code>nrm</code> ，手动使用命令 <code>npm config set registry http://127.0.0.1:4873</code> 去设置 npm 的源地址，或者在项目根目录下创建 <code>.npmrc</code> 配置文件来配置项目使用的源地址也是可以的，不过为了便捷性我们还是使用 <code>nrm</code> 吧。</p>
+<p>执行下面的命令添加 npm 私服源：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 这里的verdaccio是名字，可以输入任意名字</span></span><br><span class="line">nrm add verdaccio http://127.0.0.1:4873</span><br></pre></td></tr></table></figure>
+
+<p>添加完后，此时我们就可以执行以下命令，列出目前所有的源：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nrm ls</span><br></pre></td></tr></table></figure>
+
+<p>下图中所列出的就是 <code>nrm</code> 中我们所有能够切换的 npm 源了，刚添加的私服源在最下面：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210152437.png" alt="所有npm源"></p>
+<h3 id="3-利用-nrm-使用私服源"><a href="#3-利用-nrm-使用私服源" class="headerlink" title="3. 利用 nrm 使用私服源"></a>3. 利用 nrm 使用私服源</h3><p>上面我们已经列出了所有能切换的 npm 源了，列表中也出现了我们所添加的私服源。</p>
+<p>执行下面的命令把当前 npm 的源切换到私服源：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nrm use verdaccio</span><br></pre></td></tr></table></figure>
+
+<p>如下图所示，我们就已经切换到刚添加的私服源了：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210153024.png" alt="切换私服源"></p>
+<h3 id="4-创建私服源账号"><a href="#4-创建私服源账号" class="headerlink" title="4. 创建私服源账号"></a>4. 创建私服源账号</h3><p>有发布过 npm 包的同学应该知道，在发布前我们都需要先注册 npm 官方源的账号，这样我们才能够把我们开发的 npm 包发布到对应的账号下供别人使用。而我们的私服源也是同样道理，如果要发布包到私服里，也是需要先创建一个私服的账号。我们刚刚已经使用 <code>nrm</code> 把 npm 的源切换到了 verdaccio （私服）源下，那么如何创建账号？往下看！</p>
+<p>执行以下命令后就可以根据提示创建账号：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm adduser</span><br></pre></td></tr></table></figure>
+
+<p>如下图所示，我在自己搭建的私服源中创建了 test 账号：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210154239.png" alt="创建私服源账号"></p>
+<h3 id="5-登录私服源账号"><a href="#5-登录私服源账号" class="headerlink" title="5. 登录私服源账号"></a>5. 登录私服源账号</h3><p>既然账号都已经创建了，自然就可以使用刚刚的账号登录到所搭建的私服源中。</p>
+<p>执行以下命令登录私服源账号：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm login</span><br></pre></td></tr></table></figure>
+
+<p>如下图所示，如我们的预期一样，所注册的账号已经可以登录到私服源了：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210154239.png" alt="登录私服源账号"></p>
+<h3 id="6-发布包到私服源"><a href="#6-发布包到私服源" class="headerlink" title="6. 发布包到私服源"></a>6. 发布包到私服源</h3><p>现在，我们可以尝试一下创建一个项目然后把该项目发布到私服源中。我这里是随便创建了一个文件夹 <code>verdaccio-npm-publish-demo</code>，然后用 VSCode 打开后在终端执行 <code>npm init</code> 初始化项目，再创建一个 <code>index.js</code> 文件，内容就为 <code>console.log(&#39;publish demo&#39;)</code>，如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210160045.png" alt="项目概览图"></p>
+<p>此时，我们回到在终端中，执行命令 <code>npm login</code> 登录到私服源中，然后再执行命令 <code>npm publish</code> 来把包发布到私服源里去。此时终端就会显示包已经发布成功，如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210164544.png" alt="私服源包发布"></p>
+<p>我们访问私服源的首页，也会看到我们刚刚所发布的包，如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210164312.png" alt="已发布的包"></p>
+<h3 id="7-安装私服源里的包"><a href="#7-安装私服源里的包" class="headerlink" title="7. 安装私服源里的包"></a>7. 安装私服源里的包</h3><p>我们已经把项目 <code>verdaccio-npm-publish-demo</code> 以包的形式发布到私服源里了，那么自然的就能够在其他项目里安装这个包。<strong>我们可以像平常安装包依赖一样安装这个包，前提是我们已经把 npm 的源切换到了私服源。</strong>我这里创建了多一个项目 <code>verdaccio-npm-install-demo</code> 来演示安装私服源里的依赖包。</p>
+<p>如下图所示，项目 <code>verdaccio-npm-install-demo</code> 里安装了私服源里的 <code>verdaccio-npm-publish-demo</code> 依赖包：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210165808.png" alt="私服源依赖包安装"></p>
+<h2 id="优化配置"><a href="#优化配置" class="headerlink" title="优化配置"></a>优化配置</h2><p>从上面启动 Verdaccio 的信息来看，他的配置文件应该是 <code>C:\Users\Administrator\AppData\Roaming\verdaccio\</code> 文件夹下的 <code>config.yaml</code> 文件，所以，我们接下来都会在该配置文件中做进一步的配置。</p>
+<h3 id="1-外网访问"><a href="#1-外网访问" class="headerlink" title="1. 外网访问"></a>1. 外网访问</h3><p>如果外网也需要访问该 npm 私服的话，那么需要在配置文件的底部增加以下配置：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">listen:</span> <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span><span class="string">:4873</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-用户控制"><a href="#2-用户控制" class="headerlink" title="2. 用户控制"></a>2. 用户控制</h3><p>在上文中可以看到 Verdaccio 默认是允许任何人创建账号的，如果没有进一步的配置，那么所创建账号的账号都会有 publish 的权限。所以，如果我们要把控好权限，就要进一步的配置他。</p>
+<p>此时，我们打开配置文件，进行以下修改：</p>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">auth:</span><br><span class="line">  htpasswd:</span><br><span class="line">    file: ./htpasswd</span><br><span class="line"><span class="addition">+   max_users: -1</span></span><br><span class="line">    # Maximum amount of users allowed to register, defaults to &quot;+inf&quot;.</span><br><span class="line">    # You can set this to -1 to disable registration.</span><br><span class="line">    # max_users: 1000</span><br></pre></td></tr></table></figure>
+
+<p>问题来了，如果设置为了 <code>max_users: -1</code>，那以后要怎么增加用户呢？有以下两种方式：</p>
+<ol>
+<li>手动编辑 <code>htpasswd</code> 文件</li>
+<li>使用第三方工具，以 命令的形式增加用户</li>
+</ol>
+<p>执行以下命令安装 sinopia-adduser（没错，由于 Verdaccio 是由 Sinopia 所分支出来的，所以工具也通用）：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm i g sinopia-adduser</span><br></pre></td></tr></table></figure>
+
+<p>安装好后，到 <code>htpasswd</code> 文件目录下，运行一下命令：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sinopia-adduser</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-权限控制"><a href="#3-权限控制" class="headerlink" title="3. 权限控制"></a>3. 权限控制</h3><p>既然用户已经控制住了，权限当然也要进行控制。我们可以在 Verdaccio 的配置文件中，发现 <code>packages</code> 的配置项，内容如下：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">packages:</span></span><br><span class="line">  <span class="string">&quot;@*/*&quot;</span><span class="string">:</span></span><br><span class="line">    <span class="comment"># scoped packages</span></span><br><span class="line">    <span class="attr">access:</span> <span class="string">$all</span></span><br><span class="line">    <span class="attr">publish:</span> <span class="string">$authenticated</span></span><br><span class="line">    <span class="attr">unpublish:</span> <span class="string">$authenticated</span></span><br><span class="line">    <span class="attr">proxy:</span> <span class="string">npmjs</span></span><br><span class="line"></span><br><span class="line">  <span class="string">&quot;**&quot;</span><span class="string">:</span></span><br><span class="line">    <span class="comment"># allow all users (including non-authenticated users) to read and</span></span><br><span class="line">    <span class="comment"># publish all packages</span></span><br><span class="line">    <span class="comment">#</span></span><br><span class="line">    <span class="comment"># you can specify usernames/groupnames (depending on your auth plugin)</span></span><br><span class="line">    <span class="comment"># and three keywords: &quot;$all&quot;, &quot;$anonymous&quot;, &quot;$authenticated&quot;</span></span><br><span class="line">    <span class="attr">access:</span> <span class="string">$all</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># allow all known users to publish/publish packages</span></span><br><span class="line">    <span class="comment"># (anyone can register by default, remember?)</span></span><br><span class="line">    <span class="attr">publish:</span> <span class="string">$authenticated</span></span><br><span class="line">    <span class="attr">unpublish:</span> <span class="string">$authenticated</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># if package is not available locally, proxy requests to &#x27;npmjs&#x27; registry</span></span><br><span class="line">    <span class="attr">proxy:</span> <span class="string">npmjs</span></span><br></pre></td></tr></table></figure>
+
+<p>下面简单的介绍一下以上的一些配置项含义：</p>
+<p>首先，上面对于 <code>packages</code> 配置项的子配置项有两个，一个是 <code>@*/*</code> 另外一个是 <code>**</code>，而这两个配置项有个名称叫 <code>scope</code>，其作用是用来匹配依赖包名字的。那这样就不难发现 <code>@*/*</code> 应该就是用来匹配类似 <code>@babel/preset-env</code> 这种依赖包的，而 <code>**</code> 就是用来匹配 <code>webpack</code> 这种依赖包的。这样的话，我们就可以针对依赖包的名字做以下的详细配置。</p>
+<p>权限：</p>
+<ul>
+<li><code>access</code> 表示哪一类用户可以安装此类依赖包（install）</li>
+<li><code>publish</code> 表示哪一类用户可以发布此类依赖包（publish）</li>
+<li><code>proxy</code> 这里的值对应的是配置文件中的 <code>uplinks</code> 配置项里的子项名称，<code>uplinks</code> 配置项是配置上游 npm 源的。而 <code>proxy</code> 配置项的作用是如果私服源不存在依赖包，那就去对应配置的上游 npm 源获取。</li>
+</ul>
+<p>值得含义：</p>
+<ul>
+<li><code>$all</code> 表示所有人（已注册，未注册）都可以执行对应操作</li>
+<li><code>$authenticated</code> 表示只有注册且登录的用户才可以执行对应操作</li>
+<li><code>$anonymous</code> 表示只有未注册登录可以执行对应操作</li>
+</ul>
+<p>那就是说，如果我们需要指定某个用户才有权限，就直接配置上其账号名称即可（多个用户用空格隔开），比如：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">access:</span> <span class="string">aaronlam</span> <span class="string">test</span></span><br></pre></td></tr></table></figure>
+
+<p>修改完配置后重启 verdaccio 即可！</p>
+<h2 id="进程守护"><a href="#进程守护" class="headerlink" title="进程守护"></a>进程守护</h2><p>如果此时直接在服务器中执行命令 <code>verdaccio</code> 开启 npm 私服的话，那么就没办法保证其进程能够一直安全的运行。万一进程挂了，那就麻烦大了，所以我们需要使用 Node.js 里的进程守护工具 <code>pm2</code> 来对 <code>verdaccio</code> 进程进行托管启动。</p>
+<p>执行以下命令安装依赖包：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm i -g pm2</span><br></pre></td></tr></table></figure>
+
+<p>安装好后，我们就可以通过以下命令让 <code>pm2</code> 来托管运行我们的 <code>verdaccio</code>：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pm2 start verdaccio</span><br></pre></td></tr></table></figure>
+
+<p>此时，我们可以通过以下命令来查看 <code>verdaccio</code> 的实时日志：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pm2 show verdaccio</span><br></pre></td></tr></table></figure>
+
+<p>至此，我们对于搭建公司内部的 npm 私服就完成啦！其实 <code>verdaccio</code> 还有其他的一些插件可以搭配使用，这个就让大家自己去探索了。另外，关于 <code>pm2</code> 命令行进程守护工具的更多用法，可以移步到 <a href="https://pm2.keymetrics.io/docs/usage/quick-start/">pm2 官网的文档</a>查看。</p>
+]]></content>
+      <categories>
+        <category>Node.js</category>
+      </categories>
+      <tags>
+        <tag>Node.js</tag>
+        <tag>npm</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CommonJS Module和ES6 Modules之间的引用与转换</title>
     <url>/2019/10/05/commonjs-and-es6-modules/</url>
     <content><![CDATA[<p>平时在项目开发的过程中，因为 JavaScript 模块化的历史遗留问题，难免会存在在 CommonJS 的模块里头 <code>import</code> ES6 的模块，或者在 CommonJS 的模块里头 <code>require</code> ES6 的模块的情况发生。为了能够搞清楚他们之间的转换小秘密，所以就专门记录一下，方便日后回顾，顺便上来水一文。</p>

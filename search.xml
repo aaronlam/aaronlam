@@ -80,6 +80,8 @@
 </ol>
 <p>首先排除付费，根据搭建方式和易用程度来选本来是选择 Sinopia 的，因为其搭建十分简单友好，基本就是傻瓜式的。不过到其 GitHub Repo 页面看到貌似已经放弃维护很多年了，然后再深入调查发现有一群人出了个分支，而这个分支就是 Verdaccio。然后还发现 Verdaccio 延续了 Sinopia 的简单便捷，并且这个库也在积极维护中，看起来就比 Sinopia 靠谱一点。最后就果断的选择了 Verdaccio 来搭建公司内部的 npm 私服。</p>
 <p>不过如果公司内部有 Java 技术栈团队的可以尝试一下 Nexus，因为看到他貌似也可以进行 maven/gralde 仓库的统一管理。而我们公司虽然也有 Java 技术栈的团队，但是由于我们部门后端是 .Net 技术栈，遂放弃！</p>
+<a id="more"></a>
+
 <h2 id="搭建步骤"><a href="#搭建步骤" class="headerlink" title="搭建步骤"></a>搭建步骤</h2><p>在搭建时我是向公司的运维同学申请了一台内存 4GB 的 Linux 虚拟机，这个配置的话在后续的使用中也没有出现过太大的问题。所以，大家可以根据实际情况来挑选合适的配置进行搭建。但下面的演示步骤，我拿的是 Windows 开发机进行演示的。无须担心，他们的搭建步骤基本是一致的。</p>
 <h3 id="1-安装-Node-js"><a href="#1-安装-Node-js" class="headerlink" title="1. 安装 Node.js"></a>1. 安装 Node.js</h3><p>由于我的电脑已经安装上了，所以这里就不再演示了。</p>
 <h3 id="2-安装-Verdaccio-依赖包"><a href="#2-安装-Verdaccio-依赖包" class="headerlink" title="2. 安装 Verdaccio 依赖包"></a>2. 安装 Verdaccio 依赖包</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm i -g verdaccio</span><br></pre></td></tr></table></figure>

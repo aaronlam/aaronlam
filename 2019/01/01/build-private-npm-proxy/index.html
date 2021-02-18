@@ -94,23 +94,23 @@
 <meta property="og:site_name" content="Aaronlam">
 <meta property="og:description" content="由于我们公司内部的前端项目越来越多并且迭代速度越来越快，项目里的业务系统也精细的进行了不同的划分，那么这些项目之间的公共代码以及公共组件的提取、维护、管理问题就也愈显的突出。所以，最近都在进行公共库的维护以及公共组件的提取工作，然后再把这些公共库和公共组件库以依赖包的形式进行管理，同样的我们使用了 SemVer 来进行版本号的规范化，最后再以依赖包的形式进行发布。这就让我们可以把这些单独“拎出来的">
 <meta property="og:locale">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210145307.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210145522.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210152437.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210153024.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210154239.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210154239.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210160045.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210164544.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210164312.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210165808.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201210145307.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201210145522.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201210152437.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201210153024.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201210154239.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201210154239.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201210160045.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201210164544.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201210164312.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201210165808.png">
 <meta property="article:published_time" content="2019-01-01T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-12-11T06:15:15.341Z">
+<meta property="article:modified_time" content="2021-02-18T08:00:23.092Z">
 <meta property="article:author" content="aaronlam">
 <meta property="article:tag" content="Node.js">
 <meta property="article:tag" content="npm">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210145307.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201210145307.png">
 
 
 
@@ -426,9 +426,9 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -g verdaccio --unsafe-perm</span><br></pre></td></tr></table></figure>
 
 <h3 id="3-启动-Verdaccio"><a href="#3-启动-Verdaccio" class="headerlink" title="3. 启动 Verdaccio"></a>3. 启动 Verdaccio</h3><p>安装完依赖包后，我们就可以在命令行中输入 <code>verdaccio</code> 命令启动，如下所示：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210145307.png" alt="启动Verdaccio"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201210145307.png" alt="启动Verdaccio"></p>
 <p>此时，我们在浏览器中，输入 <code>http://localhost:4873</code> 就可以看到用 Verdaccio 搭建好的 npm 私服了，如下所示：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210145522.png" alt="Verdaccio首页"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201210145522.png" alt="Verdaccio首页"></p>
 <h2 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a>使用步骤</h2><h3 id="1-安装-nrm-yrm"><a href="#1-安装-nrm-yrm" class="headerlink" title="1. 安装 nrm/yrm"></a>1. 安装 nrm/yrm</h3><p>在使用 Verdaccio 所搭建的 npm 私服之前，我们可以先安装 <code>nrm</code> 或者 <code>yrm</code> 来管理自己的 npm 源，这两个命令行工具可以帮助我们快速的修改、切换、增加源。由于 <code>nrm</code> 和 <code>yrm</code> 的使用方式是类似的，所以下面都以 <code>nrm</code> 作为演示的例子。</p>
 <p>执行下面的命令安装其依赖包：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -g nrm</span><br></pre></td></tr></table></figure>
@@ -442,34 +442,34 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nrm ls</span><br></pre></td></tr></table></figure>
 
 <p>下图中所列出的就是 <code>nrm</code> 中我们所有能够切换的 npm 源了，刚添加的私服源在最下面：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210152437.png" alt="所有npm源"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201210152437.png" alt="所有npm源"></p>
 <h3 id="3-利用-nrm-使用私服源"><a href="#3-利用-nrm-使用私服源" class="headerlink" title="3. 利用 nrm 使用私服源"></a>3. 利用 nrm 使用私服源</h3><p>上面我们已经列出了所有能切换的 npm 源了，列表中也出现了我们所添加的私服源。</p>
 <p>执行下面的命令把当前 npm 的源切换到私服源：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nrm use verdaccio</span><br></pre></td></tr></table></figure>
 
 <p>如下图所示，我们就已经切换到刚添加的私服源了：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210153024.png" alt="切换私服源"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201210153024.png" alt="切换私服源"></p>
 <h3 id="4-创建私服源账号"><a href="#4-创建私服源账号" class="headerlink" title="4. 创建私服源账号"></a>4. 创建私服源账号</h3><p>有发布过 npm 包的同学应该知道，在发布前我们都需要先注册 npm 官方源的账号，这样我们才能够把我们开发的 npm 包发布到对应的账号下供别人使用。而我们的私服源也是同样道理，如果要发布包到私服里，也是需要先创建一个私服的账号。我们刚刚已经使用 <code>nrm</code> 把 npm 的源切换到了 verdaccio （私服）源下，那么如何创建账号？往下看！</p>
 <p>执行以下命令后就可以根据提示创建账号：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm adduser</span><br></pre></td></tr></table></figure>
 
 <p>如下图所示，我在自己搭建的私服源中创建了 test 账号：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210154239.png" alt="创建私服源账号"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201210154239.png" alt="创建私服源账号"></p>
 <h3 id="5-登录私服源账号"><a href="#5-登录私服源账号" class="headerlink" title="5. 登录私服源账号"></a>5. 登录私服源账号</h3><p>既然账号都已经创建了，自然就可以使用刚刚的账号登录到所搭建的私服源中。</p>
 <p>执行以下命令登录私服源账号：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm login</span><br></pre></td></tr></table></figure>
 
 <p>如下图所示，如我们的预期一样，所注册的账号已经可以登录到私服源了：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210154239.png" alt="登录私服源账号"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201210154239.png" alt="登录私服源账号"></p>
 <h3 id="6-发布包到私服源"><a href="#6-发布包到私服源" class="headerlink" title="6. 发布包到私服源"></a>6. 发布包到私服源</h3><p>现在，我们可以尝试一下创建一个项目然后把该项目发布到私服源中。我这里是随便创建了一个文件夹 <code>verdaccio-npm-publish-demo</code>，然后用 VSCode 打开后在终端执行 <code>npm init</code> 初始化项目，再创建一个 <code>index.js</code> 文件，内容就为 <code>console.log(&#39;publish demo&#39;)</code>，如下：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210160045.png" alt="项目概览图"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201210160045.png" alt="项目概览图"></p>
 <p>此时，我们回到在终端中，执行命令 <code>npm login</code> 登录到私服源中，然后再执行命令 <code>npm publish</code> 来把包发布到私服源里去。此时终端就会显示包已经发布成功，如下：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210164544.png" alt="私服源包发布"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201210164544.png" alt="私服源包发布"></p>
 <p>我们访问私服源的首页，也会看到我们刚刚所发布的包，如下：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210164312.png" alt="已发布的包"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201210164312.png" alt="已发布的包"></p>
 <h3 id="7-安装私服源里的包"><a href="#7-安装私服源里的包" class="headerlink" title="7. 安装私服源里的包"></a>7. 安装私服源里的包</h3><p>我们已经把项目 <code>verdaccio-npm-publish-demo</code> 以包的形式发布到私服源里了，那么自然的就能够在其他项目里安装这个包。<strong>我们可以像平常安装包依赖一样安装这个包，前提是我们已经把 npm 的源切换到了私服源。</strong>我这里创建了多一个项目 <code>verdaccio-npm-install-demo</code> 来演示安装私服源里的依赖包。</p>
 <p>如下图所示，项目 <code>verdaccio-npm-install-demo</code> 里安装了私服源里的 <code>verdaccio-npm-publish-demo</code> 依赖包：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210165808.png" alt="私服源依赖包安装"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201210165808.png" alt="私服源依赖包安装"></p>
 <h2 id="优化配置"><a href="#优化配置" class="headerlink" title="优化配置"></a>优化配置</h2><p>从上面启动 Verdaccio 的信息来看，他的配置文件应该是 <code>C:\Users\Administrator\AppData\Roaming\verdaccio\</code> 文件夹下的 <code>config.yaml</code> 文件，所以，我们接下来都会在该配置文件中做进一步的配置。</p>
 <h3 id="1-外网访问"><a href="#1-外网访问" class="headerlink" title="1. 外网访问"></a>1. 外网访问</h3><p>如果外网也需要访问该 npm 私服的话，那么需要在配置文件的底部增加以下配置：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">listen:</span> <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span><span class="string">:4873</span></span><br></pre></td></tr></table></figure>
@@ -740,7 +740,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

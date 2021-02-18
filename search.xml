@@ -20,7 +20,7 @@
 <li>修改完后，按 <kbd>Esc</kbd> 键退出命令行的编辑模式</li>
 <li>再输入 <code>:wq</code> 保存并退出，至此 commit 的描述就修改成功啦！</li>
 </ol>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201028225408.png" alt="修改最后一次commit的描述"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201028225408.png" alt="修改最后一次commit的描述"></p>
 <h1 id="修改之前某次-commit-的描述"><a href="#修改之前某次-commit-的描述" class="headerlink" title="修改之前某次 commit 的描述"></a>修改之前某次 commit 的描述</h1><p>如果是想修改之前某次 commit 的描述，则需要比修改最后一次 commit 的描述多上那么几个步骤。其实这个修改的原理，按我的理解就是先把版本回退到你想修改的某个版本，然后再修改当前回退到的版本的 commit 描述，修改完后再回到回退前的最新版本中。那么来吧！</p>
 <p>首先在命令行输入以下命令：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 命令中最后的数字2指的是显示倒数第几次的commit，比如我这里的2就代表显示倒数第二次的commit描述</span></span><br><span class="line">git rebase -i HEAD~2</span><br></pre></td></tr></table></figure>
@@ -31,9 +31,9 @@
 <li>修改完后按 <kbd>Esc</kbd> 键退出命令行的编辑模式，</li>
 <li>输入 <code>:wq</code> 保存并退出。</li>
 </ol>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201028233014.png" alt="修改之前某次commit的描述1"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201028233014.png" alt="修改之前某次commit的描述1"></p>
 <p>保存并退出后，会出现以下界面：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201028234716.png" alt="修改之前某次commit的描述2"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201028234716.png" alt="修改之前某次commit的描述2"></p>
 <p>然后，再往命令行中输入以下命令：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit --amend</span><br></pre></td></tr></table></figure>
 
@@ -90,9 +90,9 @@
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm i -g verdaccio --unsafe-perm</span><br></pre></td></tr></table></figure>
 
 <h3 id="3-启动-Verdaccio"><a href="#3-启动-Verdaccio" class="headerlink" title="3. 启动 Verdaccio"></a>3. 启动 Verdaccio</h3><p>安装完依赖包后，我们就可以在命令行中输入 <code>verdaccio</code> 命令启动，如下所示：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210145307.png" alt="启动Verdaccio"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201210145307.png" alt="启动Verdaccio"></p>
 <p>此时，我们在浏览器中，输入 <code>http://localhost:4873</code> 就可以看到用 Verdaccio 搭建好的 npm 私服了，如下所示：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210145522.png" alt="Verdaccio首页"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201210145522.png" alt="Verdaccio首页"></p>
 <h2 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a>使用步骤</h2><h3 id="1-安装-nrm-yrm"><a href="#1-安装-nrm-yrm" class="headerlink" title="1. 安装 nrm/yrm"></a>1. 安装 nrm/yrm</h3><p>在使用 Verdaccio 所搭建的 npm 私服之前，我们可以先安装 <code>nrm</code> 或者 <code>yrm</code> 来管理自己的 npm 源，这两个命令行工具可以帮助我们快速的修改、切换、增加源。由于 <code>nrm</code> 和 <code>yrm</code> 的使用方式是类似的，所以下面都以 <code>nrm</code> 作为演示的例子。</p>
 <p>执行下面的命令安装其依赖包：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm i -g nrm</span><br></pre></td></tr></table></figure>
@@ -106,34 +106,34 @@
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nrm ls</span><br></pre></td></tr></table></figure>
 
 <p>下图中所列出的就是 <code>nrm</code> 中我们所有能够切换的 npm 源了，刚添加的私服源在最下面：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210152437.png" alt="所有npm源"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201210152437.png" alt="所有npm源"></p>
 <h3 id="3-利用-nrm-使用私服源"><a href="#3-利用-nrm-使用私服源" class="headerlink" title="3. 利用 nrm 使用私服源"></a>3. 利用 nrm 使用私服源</h3><p>上面我们已经列出了所有能切换的 npm 源了，列表中也出现了我们所添加的私服源。</p>
 <p>执行下面的命令把当前 npm 的源切换到私服源：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nrm use verdaccio</span><br></pre></td></tr></table></figure>
 
 <p>如下图所示，我们就已经切换到刚添加的私服源了：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210153024.png" alt="切换私服源"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201210153024.png" alt="切换私服源"></p>
 <h3 id="4-创建私服源账号"><a href="#4-创建私服源账号" class="headerlink" title="4. 创建私服源账号"></a>4. 创建私服源账号</h3><p>有发布过 npm 包的同学应该知道，在发布前我们都需要先注册 npm 官方源的账号，这样我们才能够把我们开发的 npm 包发布到对应的账号下供别人使用。而我们的私服源也是同样道理，如果要发布包到私服里，也是需要先创建一个私服的账号。我们刚刚已经使用 <code>nrm</code> 把 npm 的源切换到了 verdaccio （私服）源下，那么如何创建账号？往下看！</p>
 <p>执行以下命令后就可以根据提示创建账号：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm adduser</span><br></pre></td></tr></table></figure>
 
 <p>如下图所示，我在自己搭建的私服源中创建了 test 账号：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210154239.png" alt="创建私服源账号"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201210154239.png" alt="创建私服源账号"></p>
 <h3 id="5-登录私服源账号"><a href="#5-登录私服源账号" class="headerlink" title="5. 登录私服源账号"></a>5. 登录私服源账号</h3><p>既然账号都已经创建了，自然就可以使用刚刚的账号登录到所搭建的私服源中。</p>
 <p>执行以下命令登录私服源账号：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm login</span><br></pre></td></tr></table></figure>
 
 <p>如下图所示，如我们的预期一样，所注册的账号已经可以登录到私服源了：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210154239.png" alt="登录私服源账号"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201210154239.png" alt="登录私服源账号"></p>
 <h3 id="6-发布包到私服源"><a href="#6-发布包到私服源" class="headerlink" title="6. 发布包到私服源"></a>6. 发布包到私服源</h3><p>现在，我们可以尝试一下创建一个项目然后把该项目发布到私服源中。我这里是随便创建了一个文件夹 <code>verdaccio-npm-publish-demo</code>，然后用 VSCode 打开后在终端执行 <code>npm init</code> 初始化项目，再创建一个 <code>index.js</code> 文件，内容就为 <code>console.log(&#39;publish demo&#39;)</code>，如下：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210160045.png" alt="项目概览图"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201210160045.png" alt="项目概览图"></p>
 <p>此时，我们回到在终端中，执行命令 <code>npm login</code> 登录到私服源中，然后再执行命令 <code>npm publish</code> 来把包发布到私服源里去。此时终端就会显示包已经发布成功，如下：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210164544.png" alt="私服源包发布"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201210164544.png" alt="私服源包发布"></p>
 <p>我们访问私服源的首页，也会看到我们刚刚所发布的包，如下：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210164312.png" alt="已发布的包"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201210164312.png" alt="已发布的包"></p>
 <h3 id="7-安装私服源里的包"><a href="#7-安装私服源里的包" class="headerlink" title="7. 安装私服源里的包"></a>7. 安装私服源里的包</h3><p>我们已经把项目 <code>verdaccio-npm-publish-demo</code> 以包的形式发布到私服源里了，那么自然的就能够在其他项目里安装这个包。<strong>我们可以像平常安装包依赖一样安装这个包，前提是我们已经把 npm 的源切换到了私服源。</strong>我这里创建了多一个项目 <code>verdaccio-npm-install-demo</code> 来演示安装私服源里的依赖包。</p>
 <p>如下图所示，项目 <code>verdaccio-npm-install-demo</code> 里安装了私服源里的 <code>verdaccio-npm-publish-demo</code> 依赖包：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210165808.png" alt="私服源依赖包安装"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201210165808.png" alt="私服源依赖包安装"></p>
 <h2 id="优化配置"><a href="#优化配置" class="headerlink" title="优化配置"></a>优化配置</h2><p>从上面启动 Verdaccio 的信息来看，他的配置文件应该是 <code>C:\Users\Administrator\AppData\Roaming\verdaccio\</code> 文件夹下的 <code>config.yaml</code> 文件，所以，我们接下来都会在该配置文件中做进一步的配置。</p>
 <h3 id="1-外网访问"><a href="#1-外网访问" class="headerlink" title="1. 外网访问"></a>1. 外网访问</h3><p>如果外网也需要访问该 npm 私服的话，那么需要在配置文件的底部增加以下配置：</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">listen:</span> <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span><span class="string">:4873</span></span><br></pre></td></tr></table></figure>
@@ -355,7 +355,7 @@
 </ul>
 </li>
 </ol>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201119214520.png" alt="HTTP缓存概括"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201119214520.png" alt="HTTP缓存概括"></p>
 <h1 id="Cache-Control-的-max-age-0-和-no-cache-的区别"><a href="#Cache-Control-的-max-age-0-和-no-cache-的区别" class="headerlink" title="Cache-Control 的 max-age=0 和 no-cache 的区别"></a>Cache-Control 的 max-age=0 和 no-cache 的区别</h1><p>他们两个在浏览器操作上的区别就是，max-age=0 相当于用户在浏览器按下了 F5（CTRL+R） 进行刷新操作，而 no-cache 则是相当于用户在浏览器同时按下了 CTRL+F5 进行了强制刷新操作。那么它们其本质的区别是什么？好奇宝宝请看下面：</p>
 <ol>
 <li><p>max-age=0：当客户端在请求头中设置 Cache-Control 属性且值为 max-age=0 时，那么客户端会从缓存数据库中取出所缓存资源的 Etag（或 Last-Modified），并在请求头中设置 Etag （或 Last-Modified）在 HTTP 请求中所对应的 If-None-Match（或 If-Modified-Since） 属性（没错 Etag 和 Last-Modified 是 HTTP 响应头部的属性），服务端在收到请求后，会取出 If-None-Match（或 If-Modified-Since） 的值并找到对应的资源进行如下判断：</p>
@@ -368,7 +368,7 @@
 </li>
 </ol>
 <p>最后用一张图说明用户行为对 HTTP 缓存的影响</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201120002635.png" alt="用户行为对缓存的影响"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201120002635.png" alt="用户行为对缓存的影响"></p>
 ]]></content>
       <categories>
         <category>前端</category>
@@ -529,7 +529,7 @@
 </li>
 </ol>
 <h3 id="1-慢开始算法"><a href="#1-慢开始算法" class="headerlink" title="1) 慢开始算法"></a>1) 慢开始算法</h3><p>慢开始算法的思路就是，不要一开始就发送大量的数据，先探测一下网络的拥塞程度，也就是由小到大逐渐增加 cwnd 的大小。从下图可以看到，一个传输轮次所经历的时间其实就是往返时间 RTT，而且每经过一个传输轮次，cwnd 就加倍。所以慢开始里的“慢”并不是指 cwnd 增长的速率慢，而是指在 TCP 传输开始发送报文段时，初始设置的 cwnd 较小，然后再指数式增大。这当然会比，在初始就设置为较大的 cwnd 一下子把许多报文段注入到网络中要“慢的多”。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201026180823.png" alt="慢开始算法"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201026180823.png" alt="慢开始算法"></p>
 <p>为了防止慢开始算法，让 cwnd 走上无止境的指数式增长的道路，上面提到的 ssthresh 就起到了关键的作用。ssthresh 的具体作用如下，所以在这里可以看出慢开始算法和拥塞避免算法在拥塞控制中是相辅相成的：</p>
 <ol>
 <li>当 <strong>cwnd &lt; ssthresh</strong> 时，就执行慢开始算法；</li>
@@ -537,16 +537,16 @@
 <li>当 <strong>cwnd = ssthresh</strong> 时，慢开始与拥塞避免算法任选。</li>
 </ol>
 <h3 id="2-拥塞避免算法"><a href="#2-拥塞避免算法" class="headerlink" title="2) 拥塞避免算法"></a>2) 拥塞避免算法</h3><p>拥塞避免算法的思路就是让 cwnd 缓慢增长，即每经过一个往返时间 RTT 就把发送方的 cwnd +1，而不是指数式的加倍。这样有助于 cwnd 按线性规律的缓慢增长。另外无论是在慢开始算法阶段还是拥塞避免算法阶段，只要发送方判断网络出现拥塞（主要是根据有没有定时的收到接收方的确认，虽然没有收到确认可能是其他原因造成的。但是无法判断具体原因，所以都当做拥塞来进行处理），就把 ssthresh 设置为出现拥塞时的发送窗口大小的一半（但不能小于 2），然后把 cwnd 重新置为 1，然后改为执行慢开始算法（这样做的目的是要迅速减少发送方发送到网络中的分组数，使得拥塞的网络中的路由器有足够的时间把积压的分组处理完毕）。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201026183338.png" alt="拥塞避免算法"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201026183338.png" alt="拥塞避免算法"></p>
 <ol>
 <li>cwnd 初始化为 1 个报文段，ssthresh 初始值为 16</li>
 <li>开始执行慢开始算法，指数增长到第 4 轮，既 cwnd=ssthresh=16，然后改为执行拥塞避免算法，cwnd 按加法增长（线性规律增长）</li>
 <li>假定 cwnd=24 时，网络出现超时（拥塞），则设置 ssthresh 为出现拥塞时的发送窗口大小的一半，既 ssthresh=12，cwnd 重新设置为 1，然后改为执行慢开始算法。当 cwnd=ssthresh=12 时，为避免拥塞，改为执行拥塞避免算法</li>
 </ol>
 <h3 id="2-快重传算法"><a href="#2-快重传算法" class="headerlink" title="2) 快重传算法"></a>2) 快重传算法</h3><p>快重传算法的思路就是要求接收方在收到 1 个失序的报文段后就立即发出重复确认（为的是让发送方及早知道有报文段没有到达）。快重传算法规定，发送方只要一连收到 3 个重复确认（确认丢失段的前一个段）就应当立即重传对方尚未收到的报文段，而不必继续等待设置重传计时器时间到期。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201026185311.png" alt="快重传算法"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201026185311.png" alt="快重传算法"></p>
 <h3 id="4-快恢复算法"><a href="#4-快恢复算法" class="headerlink" title="4) 快恢复算法"></a>4) 快恢复算法</h3><p>快重传算法一般与快恢复算法配合使用，快恢复算法的思路就是当发送方连续收到 3 个重复确认时，就执行“乘法减少”算法，设置 ssthresh 为遇到突发情况时发送窗口大小的一半预防网络发生拥塞，考虑到如果网络出现了拥塞就不会接收到好几个重复确认，所以发送方认为现在网络可能没有出现拥塞。所以此时不执行慢开始算法，而是将 cwnd 设置为 ssthresh 减半后的值，然后改为执行拥塞避免算法，使 cwnd 缓慢增长。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201026190649.png" alt="快恢复算法"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201026190649.png" alt="快恢复算法"></p>
 <hr>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>流量控制主要作用于接收方，它是控制发送方的发送速度从而使接受方能够来的急接收发送方所发送的数据，防止分组丢失的控制方法。由<strong>滑动窗口协议</strong>（<strong>连续 ARQ 协议</strong>）实现，滑动窗口协议既保证了分组无差错、有序接收，也实现了流量控制的功能。<br>拥塞控制则作用于网络，它是防止过多的数据注入到传输的网络中，避免网络负载过大的情况发生。常用的控制方法如下：</p>
 <ol>
@@ -569,7 +569,7 @@
     <title>粗解为什么HTTPS需要七次握手</title>
     <url>/2019/07/18/why-https-laency/</url>
     <content><![CDATA[<p>毋庸置疑，目前互联网世界里 HTTP 协议（Hypertext Transfer Protocol）已经是大家日常网上冲浪时最常用的应用层协议。但是，由于 HTTP 其本身主要就是用于传输超文本的网络协议，并不会保证所传输的数据是否安全可靠。所以，在使用 HTTP 协议进行密码数据传输时，就类似于在通往数据接收方的路上，走着一个衣服上写着密码内容的人。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201104152419.png" alt="SSL发展史"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201104152419.png" alt="SSL发展史"></p>
 <p>由于使用 HTTP 协议就如同让数据在大街上裸奔的原因，所以网景（Netscape）在 1995 年设计了 HTTPS 协议，使用了安全套接字层（Secure Sockets Layer：SSL）保证数据传输的安全可靠。随着传输层安全协议协议（Transport Layer Security）的发展，我们目前已经用 TLS 替代了废弃的 SSL 协议，而一般现在所说的 SSL 都是代指 TLS。</p>
 <p>所以，可以说 HTTPS 是对 HTTP 协议的一种扩展，由于其基于了传输层的安全协议，我们得以可以使用它在互联网上安全地上网冲浪，传输私密数据等等。然而 HTTPS 从第一次发出建立连接请求到连接成功建立发送数据，<strong>这中间需要七次握手存在 4.5 倍的往返延迟（Round-Trip Time：RTT），比 HTTP 要多出几倍。</strong>所以，今天在这里就粗解一下其中的过程及其原因。</p>
 <ol>
@@ -581,7 +581,7 @@
 <a id="more"></a>
 
 <h1 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h1><p>HTTP 协议作为应用层协议，它底下需要依赖传输层协议作为其提供数据传输功能的基础，而 HTTP 协议一般都会使用 TCP 协议作为其底层的传输层协议。为了阻止历史连接的错误建立，TCP 协议通信的双方会通过三次握手的机制进行连接的建立，而先前我已经写过一篇文章详细分析为什么 TCP 建立个连接得握三次手，在这里我们简单回顾一下 TCP 链接建立的整个过程。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201102140120.png" alt="TCP三次通信建立连接"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201102140120.png" alt="TCP三次通信建立连接"></p>
 <ol>
 <li>客户端向服务端发送含有 SYN 控制标识以及初始序列号 SEQNO 值为 100 的数据段</li>
 <li>服务端收到数据段后，向客户端发送含有 ACK、SYN 控制标识以及确认序列号 ACKNO 值为 101 和初始序列号 SEQNO 值为 200 的数据段</li>
@@ -589,10 +589,10 @@
 </ol>
 <p>TCP 连接的双方会通过三次握手，确定 TCP 连接所需的初始序列号、窗口大小以及最大数据段，这样通信双方就能利用数据段中的序列号保证双方的数据不乱、不重、不漏，又通过窗口大小控制流量并以最大数据段大小控制自身所传输数据段的大小避免其下层 IP 协议对数据包进行分片。</p>
 <p>以前 TCP 协议为了交换建立连接所需的信息迫不得已需要进行三次握手，甚至如今大多数场景下也是无法避免。不过在 2014 年所提出的 TCP 开启（TCP Fast Open：TFO）却可以在某些特定场景下通过一次通信建立 TCP 连接。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201104174440.png" alt="TCP Fast Open"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201104174440.png" alt="TCP Fast Open"></p>
 <p>TCP 快启使用的策略是 TCP 连接建立之初，客户端在向服务端发送含有 SYN 控制标识以及初始序列号值的数据段时会在其数据段内标记快启选项，服务器收到数据段后，会生成一个 TFO Cookie 并将其放在包含 ACK、SYN 控制标识以及确认序列号值和初始化序列号值的数据段中发往客户端，客户端收到数据段后会把 Cookie 储存下来。当客户端与服务端重新建立连接时，它会发送含有 SYN 控制标识以及初始序列号值和所存储的 Cookie 的数据段重新与服务端建立 TCP 连接，服务端校验客户端数据段内所携带的 Cookie 无误后，就向客户端发送含有 ACK、SYN 控制标识以及确认序列号值和初始化序列号值的数据段，随后开始传输数据，这样下来就能在后续的连接建立中减少通信的次数。</p>
 <h1 id="TLS"><a href="#TLS" class="headerlink" title="TLS"></a>TLS</h1><p>由于 TLS 其本身并不提供传输的可靠性保障，所以 TLS 是构建在 TCP 协议之上的，用以在 TCP 协议上构建安全的传输通道。在通信双方建立可靠的 TCP 协议连接之后，就需要通过 TLS 握手交换双方的密钥，在这里我们主要介绍 TLS 1.2 版本的连接建立的握手过程。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201104191345.png" alt="TLS四次握手"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201104191345.png" alt="TLS四次握手"></p>
 <ol>
 <li>客户端向服务端发送 Client Hello 消息，其中携带客户端所支持的协议版本、加密算法、压缩算法以及客户端生成的随机字符串</li>
 <li>服务端收到客户端支持的协议版本、加密压缩算法等信息后<ol>
@@ -618,7 +618,7 @@
 <p>TLS 握手的关键在于利用通信双发生成的随机字符串和服务端的证书公钥生成一个双方经过协商后的对称密钥，这样通信双方就可以使用这个对称密钥在后续的数据传输中加密消息数据，防止中间人的监听和攻击，保证通讯安全。</p>
 <p>而在 TLS1.2 中，我们需要 2 RTT 才能建立 TLS 连接，但是 TLS 1.3 经过优化协议，将原本两次往返延迟降低至一次，大幅度减少了建立 TLS 连接所需要的时间和资源，让客户端可以在 1 RTT 之后就能立即向服务端传输应用层的消息数据，而在这里就不详细介绍 TLS 1.3 是如何建立连接的了。除了减少常规的握手开销外，TLS 1.3 还引入了 0 RTT 连接建立的特性，可以让原本的 40% 的连接可以通过该特性建立连接，而该特性与 TCP 协议的 TFO 的实现原理较为相似，其策略都是通过存储会话信息和重用会话信息来实现的，所以存在一定的安全风险。</p>
 <h1 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h1><p>在已经建立好的 TCP 和 TLS 的通道上传输数据是很简单的事情了，HTTP 协议可以直接利用其下层可靠且安全的连接通道进行数据传输。TCP 解决了数据不乱、不重、不漏，而 TLS 解决了数据的安全问题，可谓铜墙铁壁般。由于 HTTP 是通过 TCP 的套接字接口向服务端写入消息数据，服务端在接受到数据且处理后会通过相同的途径返回消息数据。因为整个过程需要客户端发送请求以及服务端返回相应，所以整个流程是需要 1 RTT。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201104191348.png" alt="HTTP请求响应"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201104191348.png" alt="HTTP请求响应"></p>
 <p>由于进行数据交换的操作时 1 RTT 已经是极限，所以 HTTP 协议本身已经是没有可优化的空间了。不过随着请求的数量逐渐增加，利用 HTTP/2 就可以复用已经建立的 TCP 连接减少 TCP 和 TLS 握手带来的额外开销。</p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>如文章一开始所提到的，HTTPS 需要七次握手，其中各层中所需要的握手次数情况如下：</p>
 <ol>
@@ -661,13 +661,13 @@
 <p>The reliability and flow control mechanisms described above require that TCPs initialize and maintain certain status information for each data stream. The combination of this information, including sockets, sequence numbers, and window sizes, is called a connection.</p>
 </blockquote>
 <p><a href="https://tools.ietf.org/html/rfc793">RFC793 - Transmission Control Protocol</a> 文档中非常清楚的定义了 TCP 协议中的连接是什么东西，在这里简单的总结一下：<strong>为了保证传输可靠性和流的控制机制</strong>，TCP 协议需要为每个<strong>数据段初始化和维护其状态信息</strong>，而这些<strong>状态信息由：sockets、序列号（sequence no: SEQ）和窗口大小（window size）组成</strong>，然后这些数据段发送与接收就构成了 TCP 协议连接。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201031224224.png" alt="构成TCP连接的根本要素"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201031224224.png" alt="构成TCP连接的根本要素"></p>
 <p>所以，建立 TCP 连接其根本就是要让通信双方对于以上三个要素达成共识。而连接中的 sockets 是由互联网地址和端口号组成，即：IP + 端口。窗口大小则主要用来做流控制，最后的序列号则是用来确定连接发起方发送的数据段序列号，接收方可以通过序列号与发送方确认包的成功接收。那么既然这样，问题好像就被转换成了：<em>为什么需要三次握手才能初始化 sockets、序列号和窗口大小？</em> 那么我们就继续顺着网线，分析并查找答案！</p>
 <h2 id="历史连接"><a href="#历史连接" class="headerlink" title="历史连接"></a>历史连接</h2><p><a href="https://tools.ietf.org/html/rfc793">RFC 793 - Transmission Control Protocol</a> 文档中其实就提到了 TCP 连接使用三次握手的首要原因，其解释是：为了防止历史的重复建立连接请求而引起连接错乱，最终导致 TCP 协议通信双方建立了错误的连接。</p>
 <blockquote>
 <p>The principle reason for the three-way handshake is to prevent old duplicate connection initiations from causing confusion.</p>
 </blockquote>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201101015627.png" alt="TCP两次通信建立连接造成的混乱"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201101015627.png" alt="TCP两次通信建立连接造成的混乱"></p>
 <p>可以想象一个场景，如果通信双方建立连接的通信只有两次，那么发送方一旦发出建立连接请求后，它就没办法撤回这一请求。如果在网络情况复杂或者网络状态差的场景下，发送方在想与接收方建立连接时，连续的发送了多次建立连接的请求。此时假设 TCP 协议建立连接只通信两次，那么接收方就只能选择接受或者拒绝，它并不知道此次所收到的建立连接的请求是否是因为网络堵塞，而已被发送方置为过期的请求。</p>
 <p>因为这个原因，TCP 协议选择采用了三次握手并在其数据段头引入了 RST 控制标识，当接收方收到请求时就会将发送方发来的 SEQ + 1 发回给对方，这时由发送方根据接收到的 SEQ + 1 的值来判断当前连接是否是历史连接：</p>
 <ol>
@@ -688,9 +688,9 @@
 <li>接收方可以根据数据段内的序列号进行数据段的重新排序</li>
 </ol>
 <p>所以说序列号在 TCP 协议连接起至关重要的作用并不是空谈，而该初始序列号作为 TCP 协议数据段内的一部分，也就需要发送方在三次握手的第一阶段发送带有 SYN 控制标识数据段时一同在 SEQ 字段赋上初始序列号的值，而接收方则在接收到 SYN 控件标识的数据段后，需要回复带有 ACK 控制标识和值为 SEQ + 1 的确认序列号数据段与之进行确认。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201102135809.png" alt="TCP四次通信建立连接"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201102135809.png" alt="TCP四次通信建立连接"></p>
 <p>如上图所示，通信双方都分别向对方发送包含 SYN 和 ACK 控制标识的数据段，使对方获取了自己所设置的初始序列号之后连接就建立了。<strong>由于 TCP 协议数据段头中的巧妙设计，以至于一个数据段头内可同时包含 ACK 和 SYN 控制标识，所以接收方就可以把中间的两次通信合二为一，这也就帮助我们将通讯次数减少为三次。</strong></p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201102140120.png" alt="TCP三次通信建立连接"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201102140120.png" alt="TCP三次通信建立连接"></p>
 <p>除此之外，由于网络作为一个分布式系统，其中并不存在一个用于计数的全局计数器，并且 TCP 可能具有不同的机制来选择初始序列号。接收方在接收第一个包含 SYN 控制标识的数据段时无法知道该数据段是否是因为网络阻塞而刚到达的旧延迟数据段，除非接收方记住了连接上使用的最后一个序列号。这样可行性会比较低，因为一旦这样接收方要记的东西就太多了，但是让发送方记录下发出的序列号来判断连接是否过期就可行的多。</p>
 <h2 id="通信次数"><a href="#通信次数" class="headerlink" title="通信次数"></a>通信次数</h2><p>当我们讨论 TCP 建立连接需要的通信的次数时，我们经常会执着于为什么通信三次才可以建立连接，而不是两次、四次或者更多次？讨论使用更多的次数来建立连接往往是没有建设性意义的。因为我们总是可以使用更多的通信次数交换相同的东西。而我们追求的其实是用最少的通信次数完成预期的信息交换。也就是我们在上面所说的<em>两次握手</em>没办法建立 TCP 连接，而<em>四次握手</em>又有点多余，所以通过精心设计的数据段头（同时包含 SYN 和 ACK 控制标识）以至于最终可以达到三次握手就能建立 TCP 连接。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>文章开始我们把关注点从<strong>为什么要三次握手</strong>才能建立 TCP 连接上，转向了<strong>什么是 TCP 连接</strong>，从而使建立 TCP 连接的本质浮出水面。而 TCP 连接有着非常清楚的定义：为了保证传输可靠性和流的控制机制，TCP 协议需要为每个<strong>数据段初始化和维护其状态信息</strong>，而这些<strong>状态信息由：sockets、序列号（sequence no: SEQ）和窗口大小（window size）组成</strong>，然后这些数据段发送与接收就构成了 TCP 协议连接。</p>
@@ -716,7 +716,7 @@
 <p>但是你不知道的是，当应用层协议使用传输层的 TCP 协议进行数据传输时，传输层 TCP 协议可能会将应用层所发送的消息分成多个数据段，我们一般称呼它叫：<strong>TCP 分段</strong>。而在其下层的网络层 IP 协议也有可能会对传输层 TCP 协议的数据段分成多个数据包，我们一般称呼它叫：<strong>IP 分片</strong>。但是由于 TCP 协议会自行先分段，所以正常情况下都轮不到 IP 协议进行分片。那为什么它们要拆分我们的数据呢？又为什么 TCP 协议自行分段后，就没 IP 协议什么事了呢？我们带着这些疑问继续探索。</p>
 <a id="more"></a>
 
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201031123646.png" alt="TCP分段IP分包"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201031123646.png" alt="TCP分段IP分包"></p>
 <p>在开始之前，我们先达成共识：</p>
 <ol>
 <li>协议层中传输数据的基本单位统称为：Data Unit（数据单元）</li>
@@ -732,7 +732,7 @@
 </ol>
 <h1 id="最大传输单元和-IP-协议分片"><a href="#最大传输单元和-IP-协议分片" class="headerlink" title="最大传输单元和 IP 协议分片"></a>最大传输单元和 IP 协议分片</h1><p>IP 协议适用于传输数据包的协议，作为网络层协议，它能提供数据的<strong>路由</strong>和<strong>寻址</strong>功能，让数据能通过网络到达目的地。但是由于现实中物理设备的限制，导致传输于网络中的数据包不能太大，所以在不同设备进行数据传输前，需要先确定一个 IP 数据包的大小上限，<strong>既最大传输单元</strong>（MTU）,MTU 是 IP 数据包能够传输的数据大小上限。</p>
 <p>MTU 的值不是越大越好，更大的 MTU 意味着更低的额外开销，但会增加丢包所带来的风险。更小的 MTU 意味着更低的网络延迟，但太小又会让额外开销加大。所以有一个合适 MTU 值对于网络传输来说是非常重要的，每一个物理设备都自己的 MTU，两个主机之间的 MTU 依赖其底层的网络能力，它由整个链路上 MTU 最小的那台物理设备所决定。如下图所示：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201031133126.png" alt="链路MTU发现"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201031133126.png" alt="链路MTU发现"></p>
 <p><strong>路径最大传输单元发现</strong>（Path MTU Discovery，PMTUD）是用来确定两个主机数据传输 MTU 的机制，它的工作原理如下：</p>
 <ol>
 <li>向目标主机发送数据包头 DF 控制位设置为 1 的 IP 数据包 ，DF 是不分片（Don’t Fragment）的缩写</li>
@@ -748,7 +748,7 @@
 </blockquote>
 <p>位于第二层的以太网协议对其<strong>数据帧的数据栏位</strong>限制一般都是 1500 字节，所以在一般情况下，IP 主机的路径 MTU 都是 1500，扣除 IP 协议数据包头部占用的 20 字节，则如果数据包内的数据大于 1480 字节，那么 IP 协议就开始拆分我们的数据，把数据分到多个数据包中分片传输。</p>
 <p>IP 协议的数据包分片对于传输层协议是透明的，假设我们使用 UDP 协议传输 2000 字节的数据，加上 UDP 协议报头占用的 8 字节，则 IP 协议需要传输 2008 字节的数据。但是当 IP 协议发现自己的路径 MTU 是 1480 字节时，它察觉到其要传输的数据 2008 字节大于 MTU 的 1480 字节，就会手起刀落对 UDP 的数据报进行拆分。如下图所示：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201031141508.png" alt="IP协议对UDP数据报进行分片"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201031141508.png" alt="IP协议对UDP数据报进行分片"></p>
 <p>具体分片后的情况如下：</p>
 <ol>
 <li>20 字节 IP 协议数据包头 + 8 字节 UDP 协议数据报头 + 1472 字节数据</li>
@@ -758,7 +758,7 @@
 <h1 id="IP-协议分片与-TCP-最大分段大小"><a href="#IP-协议分片与-TCP-最大分段大小" class="headerlink" title="IP 协议分片与 TCP 最大分段大小"></a>IP 协议分片与 TCP 最大分段大小</h1><p>TCP 协议是面向字节流的协议，应用层交给 TCP 协议的数据并不会以消息为单位往目标主机发送，并且 TCP 协议引入了最大分段大小（Maximum segment size，MSS）这一概念，它是 TCP 数据段能够携带的数据上限。在正常情况下，TCP 链接的 MSS 是 MTU - 40 字节（IP 和 TCP 协议头部各占用 20 字节），既 1460 字节；不过如果通信双方没有指定 MSS 的话，在默认情况下 MSS 的大小是 536 字节。所以应用层交给 TCP 协议发送的数据大小如果大于 MSS 就可能会被拆分到多个数据段里。</p>
 <p>IP 协议的 MTU 是物理设备上的限制，它限制了传输路径上能够发送数据包大小的上限。而 TCP 协议的 MSS 是操作系统内核层面的限制，通信双方会在三次握手时确定这次所建立连接的 MSS 值。一旦确定了 MSS，TCP 协议就会对应用层交给 TCP 协议发送的数据按 MSS 的大小进行拆分，构成多个数据段。而需要注意的是，IP 协议和 TCP 协议虽然都会对数据进行拆分，但是 IP 协议以数据包为单位组织数据，而 TCP 协议以数据段为单位组织数据。这一点在文章开始的达成共识时有提到过。</p>
 <p>如下图所示，如果 TCP 连接 MSS 是 1460 字节，应用层想通过 TCP 协议传输 2000 字节的消息数据，那么 TCP 协议会根据 MSS 将 2000 字节的数据拆分到两个数据段中：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201031154702.png" alt="TCP协议数据段进行分段"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201031154702.png" alt="TCP协议数据段进行分段"></p>
 <p>最终分段后的情况如下：</p>
 <ol>
 <li>20 字节 IP 协议数据包头 + 20 字节 TCP 协议数据段头 + 1460 字节消息数据</li>
@@ -766,7 +766,7 @@
 </ol>
 <p>从应用层的角度来看，两个数据段中的 2000 字节数据构成了源主机想要发送的消息，但是 TCP 协议是面向字节流的，向协议写入的数据会以流的形式传递到对端。TCP 协议为了保证可靠性，会通过 IP 协议的 MTU 计算出 MSS 并根据 MSS 大小进行分段，以至于能够避免 IP 协议对装有数据段的数据包进行分片。因为 IP 协议对数据包的分片对于上层来说是透明的，如果上层协议不针对 MTU 做一些大小限制，那么 IP 协议进行分片操作时，将导致部分数据包里的部分数据与包含传输层的协议头的数据包分离，一旦数据包发生丢失就只能丢弃全部数据。损失惨重！</p>
 <p>我们可以通过一个例子分析 MSS 存在的必要性。如下图所示，假设 TCP 协议中不存在 MSS 的概念，因为每个数据段的大小没有上限，当 TCP 协议交给 IP 协议各发送两个共 1600 字节的 IP 协议数据包时，由于物理设备的限制，IP 协议的路径 MTU 为 1500，所以 IP 协议会对数据包进行分片：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201031164352.png" alt="IP协议第TCP协议数据段进行分片"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201031164352.png" alt="IP协议第TCP协议数据段进行分片"></p>
 <p>所以就会造成不存在 TCP 协议头的数据包，那么当 IP 协议进行数据传输时出现了丢包，TCP 协议的接收方就没办法对数据段进行重组，最终导致整个 TCP 数据段都需要重传，带来了更多的额外开销。</p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>TCP/IP 拆分数据究根结底就是因为物理设备的限制：</p>
 <ol>
@@ -809,13 +809,13 @@
 <h1 id="面向字节流"><a href="#面向字节流" class="headerlink" title="面向字节流"></a>面向字节流</h1><p>应用层交给 TCP 协议的数据并不会以包为单位向目标主机传输，这些数据在某些情况下会被组合成一个数据段发送给目标主机。Nagle 算法是一种采用通过减少发送有效数据含量少的 TCP 数据段手段，以提升 TCP 传输性能的算法。因为网络宽带有限，它不会将数据含量很少的数据段直接发送到目标主机，而是会在 TCP 发送缓冲区中等待更多的待发送数据，这种延迟等待并批量发送数据的策略虽然会影响实时性，但是能够降低网络拥堵的可能性并减少额外开销。</p>
 <p>在早期的互联网中，Telnet 是被广泛使用的应用程序，然而因为当时 Telnet 会产生大量只有 1 字节有效数据量的数据段，而这些数据段中都会存在包含 40 字节的协议描述信息。这带来的额外开销是很不乐观的，宽带的利用率只有仅仅的 2.44%，Nagle 算法就是在当时的这种使用场景下设计出来的。</p>
 <p>当应用层协议通过 TCP 协议传输数据时，实际上待发的数据先被写入了 TCP 协议的发送缓冲区中，如果用户开启了 Nagle 算法，那么 TCP 协议可能不会立刻发送写入的数据，而是会等待缓冲区中的数据超过了最大数据段大小（MSS）或者上一个数据段被 ACK 时才会发送缓冲区中的数据。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201030172902.png" alt="Nagle算法重新分割组合应用层协议消息"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201030172902.png" alt="Nagle算法重新分割组合应用层协议消息"></p>
 <p>Nagle 算法确实能够在有效数据较少时提高网络宽带的利用率减少 TCP 和 IP 协议描述信息所带来的额外开销，但是使用该算法也可能会导致应用层协议多次写入的数据被重新分割组合发送，当接收方从 TCP 协议栈中读取数据时就会发现不相关的数据出现在同一个数据段中，应用层可能也没有定义消息的边界，造成没有办法对他们进行拆分。</p>
 <p>除了 Nagle 算法之外，TCP 协议中还有另一个用于延迟发送数据的选项 TCP_CORK，如果我们开启了该选项，那么发送的数据小于最大数据段大小时，TCP 协议就会延迟 200ms 发送该数据或者等待缓冲区中的数据超过最大数据段大小。</p>
 <p>无论是 TCP_NODELAY 还是 TCP_CORK，他们都会通过延迟发送数据来提高宽带的利用率，他们会对应用层协议写入的数据进行重新分割组合，而这些机制和配合能够出现的最重要的原因是 — TCP 协议是基础字节流的协议，其本身没有数据包的概念，不会按照数据包的机制去发送数据。</p>
 <h1 id="消息边界"><a href="#消息边界" class="headerlink" title="消息边界"></a>消息边界</h1><p>如果我们系统性地学习过 TCP 协议，那么设计一个基于 TCP 协议且能够被 TCP 协议任意分割组装消息的应用层协议就不会有太大的问题。既然 TCP 协议是基于字节流的，这其实就意味着应用层协议需要自己划分消息的边界。</p>
 <p>如果我们能在应用层协议中定义消息的边界，那么无论 TCP 协议如何对应用层协议的消息进行重新分割组装，那么接收方都能根据约定的消息划分规则来恢复被重新分割组装后的消息。在应用层协议中，最常见的两种边界划分规则就是：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201030195935.png" alt="应用程协议消息边界划分规则"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201030195935.png" alt="应用程协议消息边界划分规则"></p>
 <ol>
 <li>基于长度</li>
 <li>基础终结符（Delimiter）</li>
@@ -888,7 +888,7 @@
 <p>git ignore，顾名思义就是让 git 选择性根据规则忽略掉一些文件的版本控制。VSCode 也会监听该文件之外的所有文件，如果没有进行忽略的文件有所改动时，在 git 进行提交时就会被识别为需要提交的文件。</p>
 <p><code>node_modules</code> 是我们安装第三方依赖包的文件夹，这个是肯定要添加到 <code>.gitignore</code> 中的，且不说这个文件夹里面成千上万个文件会给编辑器带来的性能压力，也会给提交至远端的版本管理服务器造成不小的压力。另外就是这个文件夹内的东西，完全是可以通过命令 <code>npm install</code> 获取到。</p>
 <p>所以不需要进行版本控制的文件或文件夹都要添加进来，比如项目中常见的：build, dist 文件夹等，还有操作系统中默认生成的，如 MacOS 系统生成的 DS_Store 文件等。但是，我们对于系统或者编辑器自动生成的文件并不都是了如指掌的，那么我们就可以通过 VSCode 的 <a href="https://marketplace.visualstudio.com/items?itemName=codezombiech.gitignore">gitignore</a> 插件来生成 <code>.gitignore</code> 文件常用的配置规则信息。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201126141031.png" alt="gitignore插件"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201126141031.png" alt="gitignore插件"></p>
 <p>安装好插件后，<kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>p</kbd> 唤出 VSCode 的命令面板，输入 <code>Add gitignore</code> 命令，即可在输入框继续输入系统或者编辑器名字，来自动生成相应需要忽略的文件或文件夹规则至 <code>.gitignore</code> 文件中。可操作多次，后续操作的规则信息将自动追加至 <code>.gitignore</code> 文件中。</p>
 <p>我添加了以下几个忽略规则配置项：</p>
 <ol>
@@ -898,7 +898,7 @@
 <li>VSCode</li>
 </ol>
 <p>大家可以酌情添加，如果插件中没有的规则，可自行手动添加至 <code>.gitignore</code> 中，具体的配置规则可以<a href="https://git-scm.com/docs/gitignore">参考这里</a>，比如我自己就添加了 <code>dist</code> 和 <code>build</code>，用于忽略后续 webapck 打包构建出的文件。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201126143100.gif" alt="gitignore添加规则"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201126143100.gif" alt="gitignore添加规则"></p>
 <h3 id="4-npmrc"><a href="#4-npmrc" class="headerlink" title="4. .npmrc"></a>4. .npmrc</h3><p>众所周知，由于有股神秘不可抗拒的力量，国内无论是 github 还是 npm 的连接速度都是非常抽搐的。大家也不想在使用 npm 安装项目依赖包时，忍受着如龟速般的安装进度。所以我们一般都会在 Terminal 里输入以下命令把 npm 或 yarn 的源切换为淘宝的镜像源。</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm config set registery https://registery.npm.taobao.org</span><br><span class="line"><span class="meta">#</span><span class="bash"> or</span></span><br><span class="line">yarn config set registery https://registery.npm.taobao.org</span><br></pre></td></tr></table></figure>
 
@@ -920,7 +920,7 @@
 
 <p>对于一个刚接手这种项目的你，然而你又有强迫症，会不会顿时产生一个念头，<strong>人间不值得！</strong>如果我们从项目搭建的开始就有手段去约束项目中的代码风格，使其风格统一，将会极大地提升代码的可维护性，很重要的一点是能够关爱每位强迫症开发患者。</p>
 <h3 id="1-EditorConfig"><a href="#1-EditorConfig" class="headerlink" title="1. EditorConfig"></a>1. EditorConfig</h3><p>EditorConfig 是跨编辑器维护代码风格一致性的规范，通过其 <code>.editorconfig</code> 文件，我们可以让多个开发人员，使用不同的编辑器时使代码格式化风格仍然能保持一致。有的 IDE 会直接内置 EditorConfig 规范，如：IDEA。但 VSCode 则需要安装<a href="https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig">EditorConfig For VS Code</a>插件来进行支持。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201126155008.png" alt="EditorConfig For VS Code插件"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201126155008.png" alt="EditorConfig For VS Code插件"></p>
 <p>安装完插件后，在 VSCode 中使用快捷键 <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>p</kbd> 唤出命令面板，输入 <code>Generate .editorcondig</code> 即可快速生成 <code>.editorconfig</code> 文件。但是，有时候因为 VSCode 抽风会时不时的找不到该命令，如果你恰好也找不到，那么我们就手动创建该配置文件把。</p>
 <p>该配置文件的配置信息特别简单，就几个配置项，如下：</p>
 <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">root = true</span><br><span class="line"></span><br><span class="line">[*]</span><br><span class="line">indent_style = space</span><br><span class="line">indent_size = 2</span><br><span class="line">charset = utf-8</span><br><span class="line">trim_trailing_whitespace = true</span><br><span class="line">insert_final_newline = true</span><br><span class="line">end_of_line = unset</span><br></pre></td></tr></table></figure>
@@ -967,7 +967,7 @@
 </ul>
 <p>因为目前我们还没有代码文件，所以也就没办法在命令行里用 Prettier 展示一番他的威力。</p>
 <h4 id="Prettier-VSCode-插件"><a href="#Prettier-VSCode-插件" class="headerlink" title="Prettier VSCode 插件"></a>Prettier VSCode 插件</h4><p>我们在 VSCode 中安装 <a href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode">Prettier - Code formatter</a> 插件：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201126183753.png" alt="Prettier - Code formatter插件"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201126183753.png" alt="Prettier - Code formatter插件"></p>
 <p>插件安装完后，我们在项目的根目录新建一个 <code>.vscode</code> 文件夹，然后在此文件夹下再新建一个 <code>settings.json</code> 文件。虽然是 <code>.json</code> 后缀的文件，但是其实是 <code>jsonc</code> 格式的文件，<code>jsonc</code> 和 <code>json</code> 文件的区别就在于，是否能添加注释，而这个 <code>c</code> 就是 <code>cmmont</code>（注释）的意思。</p>
 <p>而该文件与 VSCode 的全局配置文件 <code>settings.json</code> 一样，都是用于配置 VSCode 的。但是该文件的优先级会高于 VSCode 全局的 <code>settings.json</code>，这样当别人 clone 了项目进行协同开发，也不会因为全局的 <code>settings.json</code> 的配置不同而导致 prettier 或后面会讲到的 eslint 或 stylelint 失效，接下来我们暂时添加以下内容到文件中：</p>
 <figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="comment">// 指定哪些文件不参与搜索</span></span><br><span class="line">  <span class="attr">&quot;search.exclude&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;**/node_modules&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;dist&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;yarn.lock&quot;</span>: <span class="literal">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 指定哪些文件不被VSCode监听，预防启动VSCode时扫描的文件太多，导致CPU占用过高</span></span><br><span class="line">  <span class="attr">&quot;files.watcherExclude&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;**/.git/objects/**&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;**/.git/subtree-cache/**&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;**/node_modules/*/**&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;**/dist/**&quot;</span>: <span class="literal">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 保存时，自动进行一次代码风格格式化</span></span><br><span class="line">  <span class="attr">&quot;editor.formatOnSave&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="comment">// 配置VSCode使用Prettier插件替代默认的Formatter</span></span><br><span class="line">  <span class="attr">&quot;[javascript]&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;editor.defaultFormatter&quot;</span>: <span class="string">&quot;esbenp.prettier-vscode&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;[javascriptreact]&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;editor.defaultFormatter&quot;</span>: <span class="string">&quot;esbenp.prettier-vscode&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;[typescript]&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;editor.defaultFormatter&quot;</span>: <span class="string">&quot;esbenp.prettier-vscode&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;[typescriptreact]&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;editor.defaultFormatter&quot;</span>: <span class="string">&quot;esbenp.prettier-vscode&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;[json]&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;editor.defaultFormatter&quot;</span>: <span class="string">&quot;esbenp.prettier-vscode&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;[jsonc]&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;editor.defaultFormatter&quot;</span>: <span class="string">&quot;esbenp.prettier-vscode&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;[html]&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;editor.defaultFormatter&quot;</span>: <span class="string">&quot;esbenp.prettier-vscode&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;[css]&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;editor.defaultFormatter&quot;</span>: <span class="string">&quot;esbenp.prettier-vscode&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;[less]&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;editor.defaultFormatter&quot;</span>: <span class="string">&quot;esbenp.prettier-vscode&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;[scss]&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;editor.defaultFormatter&quot;</span>: <span class="string">&quot;esbenp.prettier-vscode&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;[yaml]&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;editor.defaultFormatter&quot;</span>: <span class="string">&quot;esbenp.prettier-vscode&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;[markdown]&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;editor.defaultFormatter&quot;</span>: <span class="string">&quot;esbenp.prettier-vscode&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -1062,19 +1062,19 @@
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> add = <span class="function">(<span class="params">a, b</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(a + b);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> add;</span><br></pre></td></tr></table></figure>
 
 <p>此时你应该会发现没有任何的错误提示，很明显代码里使用了违反规则的变量定义符号 <code>var</code>，理论上来说 eslint 应该要报错，但没有报错。我们可以通过 OUTPUT 窗口得知，其实是因为 <code>@typescript-eslint/eslint-plugin</code> 这个插件需要我们安装 TypeScript 依赖，</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201127132331.png" alt="缺少typescript依赖"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201127132331.png" alt="缺少typescript依赖"></p>
 <p>虽然 TypeScript 部分的内容应该在后面才开始讲。但是为了 eslint 插件现在能够正常工作，我们就先执行以下命令安装 TypeScript 依赖：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm i -D typescipt</span><br></pre></td></tr></table></figure>
 
 <p>安装完之后，再回头看看 <code>hello.ts</code> 文件的内容，就一堆红色波浪线了！</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201127133702.png" alt="eslint生效"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201127133702.png" alt="eslint生效"></p>
 <p>其实安装 ESLint VSCode 插件后，是能够支持自动修复功能的，所以我们安装 <a href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint">ESLint</a> 插件：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201127134336.png" alt="ESLint插件"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201127134336.png" alt="ESLint插件"></p>
 <p>然后我们到先前创建的 <code>.vscode/settings.json</code> 配置文件中添加以下配置信息：</p>
 <figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;eslint.validate&quot;</span>: [</span><br><span class="line">    <span class="string">&quot;javascript&quot;</span>,</span><br><span class="line">    <span class="string">&quot;javascriptreact&quot;</span>,</span><br><span class="line">    <span class="string">&quot;typescript&quot;</span>,</span><br><span class="line">    <span class="string">&quot;typescriptreact&quot;</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="comment">// 代替VSCode的TS语法只能提示</span></span><br><span class="line">  <span class="attr">&quot;typescript.tsdk&quot;</span>: <span class="string">&quot;./node_modules/typescript/lib&quot;</span>,</span><br><span class="line">  <span class="comment">// 保存时，自动进行一次eslint代码修复</span></span><br><span class="line">  <span class="attr">&quot;editor.codeActionsOnSave&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;source.fixAll.eslint&quot;</span>: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>这时，我们回到 <code>hello.ts</code> 中，保存文件时，VSCode 就会通知 ESLint，而 ESLint 插件就会根据 <code>.eslintrc.js</code> 配置文件中的配置信息来修复问题代码，如下所示：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201127141242.gif" alt="ESLint保存时修复问题代码"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201127141242.gif" alt="ESLint保存时修复问题代码"></p>
 <p>不过有时候我们并不希望 ESLint 或 Prettier 对某些文件作任何修改，比如某个特定的情况下我想去看看打包后的内容。但是打包后的内容肯定不符合各种 lint 规则，但我又不希望在按下保存时对其进行修复，此时就需要我们创建两个配置文件 <code>.eslintignore</code> 和 <code>.prettierignore</code>，一般会保持这两个配置文件的内容一致，内容如下：</p>
 <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">/node_modules</span><br><span class="line">/build</span><br><span class="line">/dist</span><br></pre></td></tr></table></figure>
 
@@ -1096,12 +1096,12 @@
 <p>其中关于 xxx/**/* 这种写法感兴趣的，可以 Google 一下：<a href="https://www.google.com/search?q=glob%E6%A8%A1%E5%BC%8F">glob 模式</a></p>
 </blockquote>
 <p>和 eslint 一样，想要在编辑代码时有错误提示和自动修复功能，就需要 stylelint VSCode 插件<br>，所以我们安装 <a href="https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint">stylelint</a> 插件：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201127145516.png" alt="stylelint插件"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201127145516.png" alt="stylelint插件"></p>
 <p>安装完后，我们对先前的 <code>.vscode/settings.json</code> 配置文件，添加以下代码：</p>
 <figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="comment">// 保存时，自动进行一次代码风格格式化</span></span><br><span class="line">  <span class="attr">&quot;editor.formatOnSave&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="comment">// 保存时，自动进行一次eslint和styleline代码修复</span></span><br><span class="line">  <span class="attr">&quot;editor.codeActionsOnSave&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;source.fixAll.eslint&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;source.fixAll.stylelint&quot;</span>: <span class="literal">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 使用stylelint自身的校验即可</span></span><br><span class="line">  <span class="attr">&quot;css.validate&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="attr">&quot;less.validate&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="attr">&quot;scss.validate&quot;</span>: <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>我们随便创建一个 <code>.less</code> 文件，测试一下刚刚的配置是否生效。可以看到在样式代码文件里，已经有错误提示和保存时的自动修复问题代码的功能了：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201127150647.gif" alt="stylelint保存时自动修复问题代码"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201127150647.gif" alt="stylelint保存时自动修复问题代码"></p>
 <p>现在我们可以再下载社区里一些比较优秀的 stylelint 扩展和插件：</p>
 <ul>
 <li><code>stylelint-config-rational-order</code> 用于规范我们在书写样式属性时，按照以下的属性类型顺序来排序</li>
@@ -1127,7 +1127,7 @@
 <p>这样，我们在控制台的命令行界面中执行 <code>npm run lint-eslint</code> 时，eslint 就会以 <code>.eslintrc.js</code> 配置文件里配置的代码规范， 到 <code>src</code> 文件夹下对指定后缀的代码文件内容进行检测，而 <code>npm run lint-stylelint</code> 也是类似原理。执行 <code>npm run lint</code> 的话会按顺序合并执行前两个指令。</p>
 <p>我估计有小伙伴就会问，前面都已经在 <code>.vscode/settings.json</code> 配置文件里配置了保存代码时自动进行一次代码风格格式化（<code>editor.formatOnSave</code>）和代码规范修复（<code>editor.codeActionsOnSave</code>）了，为啥还需要配置 <code>package.json</code> 里 <code>scripts</code> 属性的 lint 命令？其实，这是为了提供给后面章节中提到的 lint-staged 使用的，而 lint-staged 是什么？跟着我继续走，很快你就会知道了！</p>
 <h3 id="6-解决-lint-与-Prettier-的冲突"><a href="#6-解决-lint-与-Prettier-的冲突" class="headerlink" title="6. 解决 lint 与 Prettier 的冲突"></a>6. 解决 lint 与 Prettier 的冲突</h3><p>前面在 ESLint 小节开头里也说了， 虽然 lint 工具有一定的格式化代码的能力，但是其主要功能并不是负责格式化代码，所以格式化代码的工作就交由前面两个专门进行代码风格格式化的工具进行处理了。所以有时候 eslint 和 stylelint 的格式化规则会与 prettier 的格式化规则产生冲突，比如在配置文件 <code>.eslintrc.js</code> 中属性 <code>extends</code> 中的配置设置了缩进为 4，但是在配置文件 <code>.prettierrc</code> 中设置了缩进为 2，那就会出现保存时，先是 eslint 自定修复缩进为 4，然后 prettier 又不开心的把缩进改为 2，然后 eslint 也不开心，直接报错！</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201127162605.gif" alt="ESLint与Prettier冲突"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201127162605.gif" alt="ESLint与Prettier冲突"></p>
 <p>那已经冲突了，我们要如何解决呢？其实官方已经提供了很好的解决方案，在查阅 Prettier 官网文档中的 <a href="https://prettier.io/docs/en/integrating-with-linters.html">Integrating with Linters</a> 章节可知，针对 eslint 和 stylelint 都有相应的插件支持解决该类问题，其原理基本都是禁用其与 prettier 发生冲突的规则，从而达到解决冲突的效果。</p>
 <h4 id="1-解决-ESLint-与-Prettier-的冲突"><a href="#1-解决-ESLint-与-Prettier-的冲突" class="headerlink" title="1. 解决 ESLint 与 Prettier 的冲突"></a>1. 解决 ESLint 与 Prettier 的冲突</h4><p>执行以下命令安装 <a href="https://github.com/prettier/eslint-config-prettier">eslint-config-prettier</a> ，这样就可以禁用 eslint 中所有和 prettier 产生冲突的规则。</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm i -D eslint-config-prettier</span><br></pre></td></tr></table></figure>
@@ -1192,7 +1192,7 @@
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 提交所有变更文件到暂存区</span></span><br><span class="line">git add -A</span><br><span class="line"><span class="meta">#</span><span class="bash"> 把暂存区的所有变更文件提交到分支</span></span><br><span class="line">git commit -m &quot;chora: add commitlint to force commit style&quot;</span><br></pre></td></tr></table></figure>
 
 <p>如预期那样，出现了如下图的报错：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201129013626.png" alt="commitlint报错"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201129013626.png" alt="commitlint报错"></p>
 <p>那我们把 commit message 中的 type 进行更正，就能成功 commit 啦！更正后的 commit 脚本如下：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git commit -m &quot;chore: add commitlint to force commit style&quot;</span><br></pre></td></tr></table></figure>
 
@@ -1238,7 +1238,7 @@
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm run build</span><br></pre></td></tr></table></figure>
 
 <p>大概一两秒后，就会发现命令行中有结果反馈，并且项目根目录下会多出一个 <code>dist</code> 文件夹，里面的文件和我们在 Webpack 构建打包配置文件中，所配置的预期是一致的：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201129205834.png" alt="构建打包结果反馈"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201129205834.png" alt="构建打包结果反馈"></p>
 <p>到这里，我们已经初步使用 Webpack 进行了一次简单的构建打包，接下来我们逐步开始拓展其他的配置和进行相应的优化吧！</p>
 <h3 id="3-公共变量文件"><a href="#3-公共变量文件" class="headerlink" title="3. 公共变量文件"></a>3. 公共变量文件</h3><p>在上面简单的 Webpack 配置中，我们发现有两个表示路径的代码语句：</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">path.resolve(__dirname, <span class="string">&quot;../../src/app.js&quot;</span>);</span><br><span class="line">path.resolve(__dirname, <span class="string">&quot;../../dist&quot;</span>);</span><br></pre></td></tr></table></figure>
@@ -1348,7 +1348,7 @@
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">npm run start的缩写形式</span></span><br><span class="line">npm start</span><br></pre></td></tr></table></figure>
 
 <p>你会发现会自动打开浏览器，并且浏览器还打开了一个页面，而这个页面就是我们期待的那个页面。屏幕中出现了 hello world!，我们查看控制台，发现 html 文件真的就自动引入了我们使用 Webpack 构建打包后的出口文件 <code>app.js</code>。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201130145235.png" alt="控制台界面"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201130145235.png" alt="控制台界面"></p>
 <p>到这里，我们就已经能利用 webpack-dev-server 开启的本地服务实时的进行页面开发了！当然，这远远还是不够的，我们还是会在后面一步一步继续优化。</p>
 <h3 id="7-devtool"><a href="#7-devtool" class="headerlink" title="7. devtool"></a>7. devtool</h3><p>devtool 中的一些设置，可以帮我们将构建打包（编译）后的代码映射回原始的源代码，即我们经常所听到的 sourcemap。如：Webpack, TypeScript, babel, powser-assert 等转换代码的工具都有提供 sourcemap 的功能，否则源代码被压缩、混淆、polyfill 后，就根本就没办法调试定位问题了。</p>
 <p>所以 sourcemap 对于开发时调式起到了极其重要的作用，而不同类型的 sourcemap 会明显的影响到构建和重新构建的速度。所以根据环境选择一个合适的配置是非常重要的，可以查看官方文档 <a href="https://webpack.js.org/configuration/devtool/">devtool</a> 章节，了解更多。</p>
@@ -1468,9 +1468,9 @@
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> root = <span class="built_in">document</span>.querySelector(<span class="string">&quot;#app&quot;</span>);</span><br><span class="line">root.innerHTML = <span class="string">&quot;hello world!&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> a = <span class="number">1</span>;</span><br><span class="line">a = <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
 
 <p>Console 界面里的错误提示我们，在 <code>app.js</code> 代码文件中的第 5 行代码出错了，具体的错误为 <code>Uncaught TypeError: Assignment to constant variable.</code>，赶紧修复吧！</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201130161300.png" alt="Console界面报错"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201130161300.png" alt="Console界面报错"></p>
 <h3 id="8-构建打包前清理-dist-文件夹"><a href="#8-构建打包前清理-dist-文件夹" class="headerlink" title="8. 构建打包前清理 dist 文件夹"></a>8. 构建打包前清理 dist 文件夹</h3><p>好像一切看起来都挺完美了，但是真的完美了吗？如果你已经执行了多次 <code>npm run build</code> 后，就会发现事情并没有那么简单，请看下图：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201130161920.png" alt="冗余的dist文件夹"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201130161920.png" alt="冗余的dist文件夹"></p>
 <p>嗯？怎么 <code>dist\js</code> 文件夹下多出了那么多的 <code>app.xxxxxxxx.js</code> 的出口脚本文件，这貌似是因为每次执行 <code>npm run build</code> 后，Webpack 都是直接把产出的东西往里面扔就了事了呀。为了让我们最终构建打包时清除前一次的产出物，我们得想个办法解决这个问题。</p>
 <p>既然发现了这个问题，那我们在每次构建打包前，都勤快的手动去清理一下 <code>dist</code> 文件夹内的上一次产出的文件不就好了？当然可以！但是这种勤快是毫无意义的。</p>
 <p>我们可以借助 <a href="https://github.com/johnagan/clean-webpack-plugin">clean-webpack-plugin</a> 帮助我们在每次构建打包前处理掉之前的 <code>dist</code> 文件夹，以保证其文件夹内的文件都是最新的产出物。执行以下命令安装依赖包：</p>
@@ -1567,12 +1567,12 @@
 </ul>
 <p>接下来，可以随便把本地一张图片放入项目的 <code>src</code> 文件夹中，并创建一个文件 <code>demo.tsx</code> 然后在其中通过 <code>import</code> 引入该图片。</p>
 <p>不幸的是会出现以下错误：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201130223738.png" alt="tsx引入图片错误"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201130223738.png" alt="tsx引入图片错误"></p>
 <p>可幸的是，可以通过在 <code>src</code> 下创建 TypeScript 类型定义文件 <code>typings/file.d.ts</code>，即可解决问题！其内容为：</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">declare <span class="built_in">module</span> <span class="string">&#x27;*.svg&#x27;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> path: string;</span><br><span class="line">  <span class="keyword">export</span> <span class="keyword">default</span> path;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">declare <span class="built_in">module</span> <span class="string">&#x27;*.bmp&#x27;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> path: string;</span><br><span class="line">  <span class="keyword">export</span> <span class="keyword">default</span> path;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">declare <span class="built_in">module</span> <span class="string">&#x27;*.gif&#x27;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> path: string;</span><br><span class="line">  <span class="keyword">export</span> <span class="keyword">default</span> path;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">declare <span class="built_in">module</span> <span class="string">&#x27;*.jpg&#x27;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> path: string;</span><br><span class="line">  <span class="keyword">export</span> <span class="keyword">default</span> path;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">declare <span class="built_in">module</span> <span class="string">&#x27;*.jpeg&#x27;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> path: string;</span><br><span class="line">  <span class="keyword">export</span> <span class="keyword">default</span> path;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">declare <span class="built_in">module</span> <span class="string">&#x27;*.png&#x27;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> path: string;</span><br><span class="line">  <span class="keyword">export</span> <span class="keyword">default</span> path;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>到这里，我们已经度过了重重难关，相信大家已经收获了不少新的知识。不过上面也只不过是 Webpack 的基本配置，目前我们的环境已经具备了 Webpack 的基本功能，接下下来我们还要让其达到完全支持 TypeScrtpt, React 以及关于开发构建环境和生产构建环境的优化，继续秉承着关关难过关关过的斗志向前进吧！</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201130230647.png" alt="加油"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201130230647.png" alt="加油"></p>
 <h2 id="支持-React"><a href="#支持-React" class="headerlink" title="支持 React"></a>支持 React</h2><p>终于来到了关键的环节了，我们先通过以下命令安装 react 和 react-dom 依赖包：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> npm i -S是npm install --save的缩写</span></span><br><span class="line">npm i -S react react-dom</span><br></pre></td></tr></table></figure>
 
@@ -1586,7 +1586,7 @@
 <figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  entry: &#123;</span><br><span class="line"><span class="addition">+   app: path.resolve(PROJECT_PATH, &#x27;./src/index.js&#x27;),</span></span><br><span class="line"><span class="deletion">-   app: path.resolve(PROJECT_PATH, &#x27;./src/app.js&#x27;)</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>不过这时候，如果你尝试执行命令 <code>npm start</code> 或 <code>npm run build</code> 的话，都会报错：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201130232621.png" alt="构建报错"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201130232621.png" alt="构建报错"></p>
 <p>头上一万个问号，为什么呢？我们不是已经安装了 React 了吗？其实是因为 Webpack 根本不认识 jsx 语法，Webpack 需要 <a href="https://github.com/babel/babel-loader">babel-loader</a> 这位“翻译官”进行预处理。</p>
 <p>既然已经提到了 Babel，那么我非常建议看到这里的你先阅读一篇关于 Babel 的文章：<a href="https://juejin.im/post/5ddff3abe51d4502d56bd143">不容错过的 Babel7 知识</a>，文章里为我们进行 Babel 的全方位介绍，看完再回来继续实践，我保证你一定会收获满满！虽然，我知道在认真阅读一篇文章时，再跳去阅读其他文章的方式很令人抗拒，但是由于该科普文章的确是会让我们对 Babel 的认识更上一层楼，所以强烈推荐！</p>
 <p>到这里，我们应该执行以下命令安装有关 Babel 的依赖包：</p>
@@ -1681,7 +1681,7 @@
 </ul>
 <p>接下来我们单独的讲一下 <code>baseUrl</code> 和 <code>paths</code> 这两个配置属性，这两配置属性可是提升开发效率的利器呀！他们的作用就是快速定位某个文件，防止在我们 <code>import</code> 时，出现多层 <code>../../../</code> 的这种写法。</p>
 <p>比如现在我的 <code>src</code> 文件夹下有这么几个代码文件：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201201021328.png" alt="文件目录"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201201021328.png" alt="文件目录"></p>
 <p>我在 <code>app.tsx</code> 中要引入 <code>src/compoments</code> 下的 <code>Header</code> 组件的话，以往的方式应该为：</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> Header <span class="keyword">from</span> <span class="string">&quot;./components/Header&quot;</span>;</span><br></pre></td></tr></table></figure>
 
@@ -1691,7 +1691,7 @@
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> Header <span class="keyword">from</span> <span class="string">&quot;Components/Header&quot;</span>;</span><br></pre></td></tr></table></figure>
 
 <p>就会发现报错了，并且是 eslint 报的错：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201201022815.png" alt="eslint报错"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201201022815.png" alt="eslint报错"></p>
 <p>这个时候就需要修改 <code>.eslintrc.js</code> 配置文件了，首先我们先执行以下命令安装依赖包：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm i -D eslint-import-resolver-typescript</span><br></pre></td></tr></table></figure>
 
@@ -1719,8 +1719,8 @@
 <p>截至目前，我们 TypeScript + React 的项目开发环境已经可以用于正常的项目开发了，但是如果想要得到更好的使用体验，我们还要针对开发构建环境和生产构建环境做优化，让我们继续往下看吧！</p>
 <h2 id="Webpack-公共构建环境优化"><a href="#Webpack-公共构建环境优化" class="headerlink" title="Webpack 公共构建环境优化"></a>Webpack 公共构建环境优化</h2><p>小伙伴们能跟着我走到这一步，非常不容易！而这一部分所做的是无论开发构建环境还是生产构建环境中都需要做的公共配置优化工作。</p>
 <h3 id="1-拷贝公共静态资源"><a href="#1-拷贝公共静态资源" class="headerlink" title="1. 拷贝公共静态资源"></a>1. 拷贝公共静态资源</h3><p>不知道大家有没有注意到，到目前为止，我们的开发页面还是没有自己的 icon，就是下图的这个东西：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201201144831.png" alt="网页icon"></p>
-<p>与 CRA 一样，我们将 <code>favicon.ico</code> 文件放到 <code>public</code> 文件夹下，我们可以复制 CRA 中 <code>favicon.ico</code> 文件，我已经为你们准备好了一个<a href="https://d.aaronlam.xyz/%E4%B8%B4%E6%97%B6%E4%B8%AD%E8%BD%AC/favicon.ico">点击我</a>，然后在我们的 <code>index.html</code> 模板文件中加入以下标签：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201201144831.png" alt="网页icon"></p>
+<p>与 CRA 一样，我们将 <code>favicon.ico</code> 文件放到 <code>public</code> 文件夹下，我们可以复制 CRA 中 <code>favicon.ico</code> 文件，我已经为你们准备好了一个<a href="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20210218155414.ico">点击我</a>，然后在我们的 <code>index.html</code> 模板文件中加入以下标签：</p>
 <figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;utf-8&quot; /&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;</span><br><span class="line"><span class="addition">+   &lt;link rel=&quot;shortcut icon&quot; href=&quot;/favicon.ico&quot; type=&quot;images/x-icon&quot; /&gt;</span></span><br><span class="line">    &lt;title&gt;Webapck TypeScript React Practice&lt;/title&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>这时候，如果我们执行命令 <code>npm run build</code>，可以看到 <code>dist</code> 文件夹下是没有 <code>favicon.ico</code> 文件的，那么 html 文件中的引入肯定也就没办法生效了。于是我们就希望有一个手段，能够在我们构建打包时把 <code>public</code> 文件夹下的静态资源通通都复制到我们出口文件夹 <code>dist</code> 中，反正我不会考虑手动去复制，所以我们还是使用 Webpack 的 <a href="https://github.com/webpack-contrib/copy-webpack-plugin">copy-webpack-plugin</a> 插件吧。</p>
@@ -1743,7 +1743,7 @@
 
 <p>现在我们再重新执行以下命令，就会发现有进度条提示了，特别令人安心。</p>
 <h3 id="3-编译时的-TypeScript-类型检查"><a href="#3-编译时的-TypeScript-类型检查" class="headerlink" title="3. 编译时的 TypeScript 类型检查"></a>3. 编译时的 TypeScript 类型检查</h3><p>我们之前在配置 Babel 的时候提过，为了编译效率，Babel 在编译 TypeScript 时会直接将 ts 类型去掉，并不会对 ts 类型做检查。来看一个例子，来到我们之前创建的 <code>src/app.tsx</code> 文件，我故意解构出一个事先没有声明的属性 <code>wrong</code>，如下：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201201153600.png" alt="编辑器中ts类型检查报错"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201201153600.png" alt="编辑器中ts类型检查报错"></p>
 <p>可以看到，我尝试解构出的 <code>wrong</code> 是没有在 <code>interface IProps</code> 中声明的属性，在编辑器中肯定会被检测到并报错。但是，此时如果你执行命令 <code>npm start</code> 或 <code>npm run build</code> 的话，是可以正常的构建打包的。所以，可能在某一时刻某一个开发人员犯了这样的错误，但没有去处理这个问题，直到别人接手这个项目后，也不知道有这么一个问题，然后在执行构建打包命令时，就把这样的问题代码也一同给构建打包出来了！这样就完全丧失了 TypeScript 类型声明所带来的优势。</p>
 <p>所以，我们需要借助 Webpack 的 fork-ts-checker-webpack-plugin 插件力量，他无论是在开发还是生产的构建打包时都会给我们进行 ts 类型的检查，并在检查到错误的时候给出准确的错误提示。</p>
 <p>执行以下命令，安装相关依赖包：</p>
@@ -1753,7 +1753,7 @@
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  ...</span><br><span class="line">  plugins: [</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">new</span> ForkTsCheckerWebpackPlugin(&#123;</span><br><span class="line">      typescript: &#123;</span><br><span class="line">        configFile: path.resolve(PROJECT_PATH, <span class="string">&#x27;./tsconfig.json&#x27;</span>),</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;),</span><br><span class="line">  ]</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>至此，我们再执行 <code>npm start</code> 或 <code>npm run build</code> 命令时，就会在命令行中出现错误提示了，如下：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201201155216.png" alt="命令行中ts类型检查报错"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201201155216.png" alt="命令行中ts类型检查报错"></p>
 <h3 id="4-加速二次构建打包速度"><a href="#4-加速二次构建打包速度" class="headerlink" title="4. 加速二次构建打包速度"></a>4. 加速二次构建打包速度</h3><p>我们这里所提到的”二次“指的是<strong>首次构建打包后的每一次</strong>。</p>
 <p>有一个 Webpack 的神器插件就能大大滴提高二次构建打包的速度，他为程序中的模块（如：loadash）提供了一个中间缓存，并且把缓存放在了项目的 <code>node_modules/.cache/hard-source</code> 文件夹下，而这个神器插件就是 <code>hard-source-webpack-plugin</code>。在使用这个插件后，首次构建打包时可能耗时会比原来多一点，因为他要进行一些缓存工作，但在首次构建打包缓存后，之后的每次一构建打包都会变得快很多。</p>
 <p>我们执行以下命令，来安装插件依赖包：</p>
@@ -1763,7 +1763,7 @@
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  ...</span><br><span class="line">  plugins: [</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">new</span> HardSourceWebpackPlugin(),</span><br><span class="line">  ]</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>这时候我们执行两次 <code>npm start</code> 或 <code>npm run build</code> 命令，看看所花费的时间对比图：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201201161446.png" alt="构建打包时间对比图"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201201161446.png" alt="构建打包时间对比图"></p>
 <p>当然，随着项目的变大，这个时间差距会更加明显！</p>
 <h3 id="5-externals-减少打包体积"><a href="#5-externals-减少打包体积" class="headerlink" title="5. externals 减少打包体积"></a>5. externals 减少打包体积</h3><p>到现在，我们无论是开发还是生产的构建打包，Webpack 都要先将 react, react-dom 等这些库代码打进我们最终的代码文件中。试想一下，当这种第三包变得越来越多的时候，最后构建打包出来的代码文件将会变得无比的大，用户在每次访问页面的时候，都需要下载一个那么大的文件，带来的就是首屏白屏时间变长，会严重影响用户体验。所以，我们将这种第三方依赖包剥离出构建打包的流程，采用 CDN 的形式引入。</p>
 <p>到 <code>webpack.common.js</code> 配置文件中，增加一下代码：</p>
@@ -1817,9 +1817,9 @@
 <figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">a: <span class="built_in">number</span>, b: <span class="built_in">number</span></span>): <span class="title">number</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123; add &#125;;</span><br></pre></td></tr></table></figure>
 
 <p>接下来，我们执行命令 <code>npm run start</code> 并打开浏览器的控制台中的 Network 界面，会发现当我们点击”显示 Two“按钮时，页面会动态的去请求 <code>ComputedTwo</code> 组件的 bundle 文件并加载，如下：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201201182839.gif" alt="按需加载"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201201182839.gif" alt="按需加载"></p>
 <p>上面就是 React 组件懒加载的实现方式和效果展示，执行命令 <code>npm run build</code> 可以看到构建打包出以下文件：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201201183213.png" alt="打包文件"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201201183213.png" alt="打包文件"></p>
 <p>可以看到 Webapck 为我们的 <code>ComputedOne</code> 和 <code>ComputedTwo</code> 组件都分别构建打包出两个 bundle 文件 <code>1.9948ce68.js</code> 和 <code>2.9948ce68.js</code>，而这样带来的好处很明显：</p>
 <ul>
 <li>通过懒加载引入的组件，若该组件代码不变，构建打包出的 bundle 名也就不会改变。当文件部署到生产环境后，由于浏览器的缓存策略，用户不需要再次下载该 bundle 文件，提高页面性能，降低服务器压力</li>
@@ -1842,7 +1842,7 @@
 </ol>
 </blockquote>
 <p>这个时候，我们执行命令 <code>npm run build</code>，就会发现又多了一个前缀名为 <code>vendors</code> 的 bundle 文件，如下：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201201190404.png" alt="打包文件"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201201190404.png" alt="打包文件"></p>
 <p>这个 bundle 文件里放了一些我们没有通过配置 <code>externals</code> 剔除的第三方依赖包代码，<strong>如果大家不想通过 CDN 形式引入 <code>react</code> 和 <code>react-dom</code> 的话，也可以不配置 <code>externals</code> 转而配置 <code>splitChunks</code> 将他们单独抽离出来。</strong>另外，如果项目构建的是多页面应用，还需要加以配置 <code>splitChunks</code> 属性把公共模块也抽离出来，不过我们是搭建单页面应用开发环境，所以在这里就不演示了。</p>
 <blockquote>
 <p>如果大家对 <code>splitChunks</code> 的配置感兴趣可以阅读这篇文章：<a href="https://www.cnblogs.com/kwzm/p/10314438.html">理解 webpack4.splitChunks</a></p>
@@ -1857,13 +1857,13 @@
 <figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">import React from &quot;react&quot;;</span><br><span class="line">import ReactDOM from &quot;react-dom&quot;;</span><br><span class="line">import App from &quot;./app&quot;;</span><br><span class="line"></span><br><span class="line"><span class="addition">+if (module &amp;&amp; module.hot) &#123;</span></span><br><span class="line"><span class="addition">+ module.hot.accept();</span></span><br><span class="line"><span class="addition">+&#125;</span></span><br><span class="line"></span><br><span class="line">ReactDOM.render(&lt;App /&gt;, document.querySelector(&quot;#app&quot;));</span><br></pre></td></tr></table></figure>
 
 <p>这时因为 ts 的原因，编辑器上会有报错提示，如下：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201201194541.png" alt="ts报错提示"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201201194541.png" alt="ts报错提示"></p>
 <p>此时，我们只需要安装 @types/webpack-env 依赖包即可解决这个问题，执行以下命令安装依赖包：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm i -D @types/webpack-env</span><br></pre></td></tr></table></figure>
 
 <p>现在，我们重新执行命令 <code>npm start</code>，再随便改个组件的代码看看，是不是不会整个页面刷新了？赞！此时，如果你修改了某个组件引入的样式的话就会发现有同样的效果，这是因为 Webpack 的 style-loader 实现了 Webpack HMR 的接口，所以当我们修改样式代码时，style-loader 就会收到 HRM 的修改通知，然后 style-loader 就会把处理好的样式代码交给 HMR，然后 HMR 就把代码更新到页面上。</p>
 <h3 id="2-React-保留状态热更新"><a href="#2-React-保留状态热更新" class="headerlink" title="2. React 保留状态热更新"></a>2. React 保留状态热更新</h3><p>我们在上一小节成功的配置了热更新，并且我们还知道了修改样式代码也会有局部热更新的效果的原因是因为 style-loader 实现了 Webpack HMR 的接口。如果仔细的小伙伴就会发现，我们目前的热更新是没办法保留住 React 组件状态的，也就是说当我们在页面组件的某一个状态进行组件代码修改的话，那么热更新将会把当前组件的状态丢失，如下：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201201223618.gif" alt="热更新React组件状态丢失"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201201223618.gif" alt="热更新React组件状态丢失"></p>
 <p>在我们点击“显示 Two”后，<code>ComputedTwo</code> 组件就显示出来了，随后我们又修改了 <code>ComputedTwo</code> 组件的代码，然后就触发了热更新同时页面的组件状态也丢失了。</p>
 <p>不过小伙伴们也不用太慌张，因为有一个 Webpack 的 Loader 能解决这个问题，而他就是 <a href="https://github.com/gaearon/react-hot-loader">react-hot-loader</a>，但他并不是通过什么魔法手段来实现这个功能，只是他同样的也实现了上述的 Webpack HMR 接口，以至于他能够跟 style-loader 一样有类似的能力。</p>
 <p>废话少说，就让我们执行以下命令，安装插件依赖包：</p>
@@ -1885,7 +1885,7 @@
 <figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">import React from &#x27;react&#x27;;</span><br><span class="line">import ReactDOM from &#x27;react-dom&#x27;;</span><br><span class="line"><span class="addition">+import &#123; hot &#125; from &#x27;react-hot-loader/root&#x27;;</span></span><br><span class="line">import App from &#x27;./app&#x27;;</span><br><span class="line"></span><br><span class="line">if (module &amp;&amp; module.hot) &#123;</span><br><span class="line">  module.hot.accept();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="addition">+ReactDOM.render(hot(&lt;App /&gt;), document.querySelector(&#x27;#app&#x27;));</span></span><br><span class="line"><span class="deletion">-ReactDOM.render(&lt;App /&gt;, document.querySelector(&#x27;#app&#x27;));</span></span><br></pre></td></tr></table></figure>
 
 <p>好啦！我们现在可以再次执行命令 <code>npm start</code> 并重复上面验证热更新丢失状态的动作，会发现现在热更新已经不会丢失我们的 React 组件状态了，如下：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201201231609.gif" alt="热更新保留React组件状态"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201201231609.gif" alt="热更新保留React组件状态"></p>
 <p>大功告成！</p>
 <h3 id="3-后端接口代理"><a href="#3-后端接口代理" class="headerlink" title="3. 后端接口代理"></a>3. 后端接口代理</h3><p>有时候我们在做开发时，可能所使用的后端接口并不受自己控制也不支持跨域请求，这时候就很苦逼的需要花时间来搭建一个接口代理。不过巧的是 webpack-dev-server 刚好提供了这个功能，而我们可以在 <code>webpack.dev.js</code> 配置文件中的 <code>devServer.proxy</code> 属性里配置接口代理实现跨域请求。但是，为了使构建环境的代码与业务代码分离，我们需要将配置文件独立出来。</p>
 <p>在 <code>src</code> 文件夹下新建一个 <code>setApiProxy.js</code>，内容如下：</p>
@@ -1907,7 +1907,7 @@
 <p>注意，<strong>mini-css-extract-plugin 需要搭配他自己所提供的 Loader 一起使用，并且该 Loader 与 style-loader 互斥</strong>，但是只有 style-loader 实现了 Webpack HMR 的热更新接口，另外开发环境中对于拆分 CSS 的也没有特别大的需求，所以我们就<strong>需要判断只在生产环境中使用 mini-css-extract-plugin</strong>。</p>
 </blockquote>
 <p>此时，我们随便写点样式，然后执行命令 <code>npm run build</code>，就能发现 <code>dist</code> 目录下多了样式文件，如下：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201202030814.png" alt="样式文件"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201202030814.png" alt="样式文件"></p>
 <h3 id="2-去除无用样式代码"><a href="#2-去除无用样式代码" class="headerlink" title="2. 去除无用样式代码"></a>2. 去除无用样式代码</h3><p>如果我们现在在写样式时，写了一些没有用到的样式代码时，Webpack 在构建打包时也会一起把这些没有用到的样式代码一起打进产出的 bundle 中，这显然是可以优化的地方呀。所以，这下又要用上另一个 Webpack 的神器插件 <a href="https://github.com/FullHuman/purgecss/tree/master/packages/purgecss-webpack-plugin">purgecss-webpack-plugin</a>，不过使用他时还需要依赖一个路径查找利器 <a href="https://github.com/isaacs/node-glob">node-glob</a>。</p>
 <p>执行以下命令，安装相关依赖包：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm i -D purgecss-webpack-plugin glob</span><br></pre></td></tr></table></figure>
@@ -1948,7 +1948,7 @@
 <figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="addition">+const webpack = require(&#x27;webpack&#x27;);</span></span><br><span class="line"></span><br><span class="line">module.exports = merge(common, &#123;</span><br><span class="line">  ...+</span><br><span class="line">  plugins: [</span><br><span class="line">    ...</span><br><span class="line"><span class="addition">+   new webpack.BannerPlugin(&#123;</span></span><br><span class="line"><span class="addition">+     raw: true,</span></span><br><span class="line"><span class="addition">+     banner:</span></span><br><span class="line"><span class="addition">+       &#x27;/** @preserve Powered by webpack-typescript-react-practice2 (https://github.com/aaronlam/webpack-typescript-react-practice2) */&#x27;,</span></span><br><span class="line"><span class="addition">+   &#125;),</span></span><br><span class="line">  ],</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <p>这时候，执行命令 <code>npm run build</code> 构建打包，再看下输出的 bundle 代码文件，是不是就有注释啦！</p>
-<h3 id="5-tree-shaking"><a href="#5-tree-shaking" class="headerlink" title="5. tree-shaking"></a>5. tree-shaking</h3><p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201202153915.gif" alt="摇树"></p>
+<h3 id="5-tree-shaking"><a href="#5-tree-shaking" class="headerlink" title="5. tree-shaking"></a>5. tree-shaking</h3><p><img src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@v1/20201202153915.gif" alt="摇树"></p>
 <p>tree-shaking 的意思，通过上图应该就可以说明其意思了。而我们这里所说的 tree-shaking 可以理解为通过工具“摇”我们的 JS 代码文件，将其中用不到的代码“摇”下来。具体来说，Webpack 入口文件就相当于一棵树的主干，入口文件有很多依赖的模块相当于树枝，实际代码中可能依赖了某个模块，但是只使用了其中的某些功能，通过 Webpack 内置的 tree-shaking 就能把这些没有使用的代码摇掉，来到达删除无用代码的目的。而当 <code>mode</code> 属性的值为 <code>production</code> 时，也就是生产构建环境下，<strong>Webpack 会根据 ES6 的模块语</strong>法执行这项摇树任务。</p>
 <p>举个例子，我们在 <code>src/utils/math.ts</code> 代码文件中，做以下修改：</p>
 <figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="addition">+function minus(a: number, b: number): number &#123;</span></span><br><span class="line"><span class="addition">+  return a - b;</span></span><br><span class="line"><span class="addition">+&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="addition">+export &#123; add, minus &#125;;</span></span><br><span class="line"><span class="deletion">-export &#123; add &#125;;</span></span><br></pre></td></tr></table></figure>

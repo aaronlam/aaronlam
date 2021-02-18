@@ -137,7 +137,7 @@ If-None-Match: "44a64df551425fcc55e4d42a148795d9f25f89d5"
      - 若存在协商缓存标识，则在请求服务端的请求头中设置对应的协商缓存标识（如：If-Modified-Since、If-None-Match）
      - 若不存在协商缓存标识，则直接请求服务端获取资源，**后续将轮回到第 1 步**
 
-![HTTP缓存概括](https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201119214520.png)
+![HTTP缓存概括](https://cdn.jsdelivr.net/gh/aaronlam/imghosting@master/20201119214520.png)
 
 # Cache-Control 的 max-age=0 和 no-cache 的区别
 
@@ -152,4 +152,4 @@ If-None-Match: "44a64df551425fcc55e4d42a148795d9f25f89d5"
 
 最后用一张图说明用户行为对 HTTP 缓存的影响
 
-![用户行为对缓存的影响](https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201120002635.png)
+![用户行为对缓存的影响](https://cdn.jsdelivr.net/gh/aaronlam/imghosting@master/20201120002635.png)

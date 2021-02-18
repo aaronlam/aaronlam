@@ -29,7 +29,7 @@ categories:
 
 [RFC793 - Transmission Control Protocol](https://tools.ietf.org/html/rfc793) 文档中非常清楚的定义了 TCP 协议中的连接是什么东西，在这里简单的总结一下：**为了保证传输可靠性和流的控制机制**，TCP 协议需要为每个**数据段初始化和维护其状态信息**，而这些**状态信息由：sockets、序列号（sequence no: SEQ）和窗口大小（window size）组成**，然后这些数据段发送与接收就构成了 TCP 协议连接。
 
-![构成TCP连接的根本要素](https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201031224224.png)
+![构成TCP连接的根本要素](https://cdn.jsdelivr.net/gh/aaronlam/imghosting@master/20201031224224.png)
 
 所以，建立 TCP 连接其根本就是要让通信双方对于以上三个要素达成共识。而连接中的 sockets 是由互联网地址和端口号组成，即：IP + 端口。窗口大小则主要用来做流控制，最后的序列号则是用来确定连接发起方发送的数据段序列号，接收方可以通过序列号与发送方确认包的成功接收。那么既然这样，问题好像就被转换成了：_为什么需要三次握手才能初始化 sockets、序列号和窗口大小？_ 那么我们就继续顺着网线，分析并查找答案！
 
@@ -39,7 +39,7 @@ categories:
 
 > The principle reason for the three-way handshake is to prevent old duplicate connection initiations from causing confusion.
 
-![TCP两次通信建立连接造成的混乱](https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201101015627.png)
+![TCP两次通信建立连接造成的混乱](https://cdn.jsdelivr.net/gh/aaronlam/imghosting@master/20201101015627.png)
 
 可以想象一个场景，如果通信双方建立连接的通信只有两次，那么发送方一旦发出建立连接请求后，它就没办法撤回这一请求。如果在网络情况复杂或者网络状态差的场景下，发送方在想与接收方建立连接时，连续的发送了多次建立连接的请求。此时假设 TCP 协议建立连接只通信两次，那么接收方就只能选择接受或者拒绝，它并不知道此次所收到的建立连接的请求是否是因为网络堵塞，而已被发送方置为过期的请求。
 
@@ -66,11 +66,11 @@ categories:
 
 所以说序列号在 TCP 协议连接起至关重要的作用并不是空谈，而该初始序列号作为 TCP 协议数据段内的一部分，也就需要发送方在三次握手的第一阶段发送带有 SYN 控制标识数据段时一同在 SEQ 字段赋上初始序列号的值，而接收方则在接收到 SYN 控件标识的数据段后，需要回复带有 ACK 控制标识和值为 SEQ + 1 的确认序列号数据段与之进行确认。
 
-![TCP四次通信建立连接](https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201102135809.png)
+![TCP四次通信建立连接](https://cdn.jsdelivr.net/gh/aaronlam/imghosting@master/20201102135809.png)
 
 如上图所示，通信双方都分别向对方发送包含 SYN 和 ACK 控制标识的数据段，使对方获取了自己所设置的初始序列号之后连接就建立了。**由于 TCP 协议数据段头中的巧妙设计，以至于一个数据段头内可同时包含 ACK 和 SYN 控制标识，所以接收方就可以把中间的两次通信合二为一，这也就帮助我们将通讯次数减少为三次。**
 
-![TCP三次通信建立连接](https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201102140120.png)
+![TCP三次通信建立连接](https://cdn.jsdelivr.net/gh/aaronlam/imghosting@master/20201102140120.png)
 
 除此之外，由于网络作为一个分布式系统，其中并不存在一个用于计数的全局计数器，并且 TCP 可能具有不同的机制来选择初始序列号。接收方在接收第一个包含 SYN 控制标识的数据段时无法知道该数据段是否是因为网络阻塞而刚到达的旧延迟数据段，除非接收方记住了连接上使用的最后一个序列号。这样可行性会比较低，因为一旦这样接收方要记的东西就太多了，但是让发送方记录下发出的序列号来判断连接是否过期就可行的多。
 

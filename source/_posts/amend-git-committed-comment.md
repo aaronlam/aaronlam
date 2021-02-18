@@ -31,7 +31,7 @@ git commit --amend
 2. 修改完后，按 <kbd>Esc</kbd> 键退出命令行的编辑模式
 3. 再输入 `:wq` 保存并退出，至此 commit 的描述就修改成功啦！
 
-![修改最后一次commit的描述](https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201028225408.png)
+![修改最后一次commit的描述](https://cdn.jsdelivr.net/gh/aaronlam/imghosting@master/20201028225408.png)
 
 # 修改之前某次 commit 的描述
 
@@ -50,11 +50,11 @@ git rebase -i HEAD~2
 2. 修改完后按 <kbd>Esc</kbd> 键退出命令行的编辑模式，
 3. 输入 `:wq` 保存并退出。
 
-![修改之前某次commit的描述1](https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201028233014.png)
+![修改之前某次commit的描述1](https://cdn.jsdelivr.net/gh/aaronlam/imghosting@master/20201028233014.png)
 
 保存并退出后，会出现以下界面：
 
-![修改之前某次commit的描述2](https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201028234716.png)
+![修改之前某次commit的描述2](https://cdn.jsdelivr.net/gh/aaronlam/imghosting@master/20201028234716.png)
 
 然后，再往命令行中输入以下命令：
 

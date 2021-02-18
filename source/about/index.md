@@ -42,7 +42,7 @@ no_toc: true
 }
 </style>
 <div id="about-sponsor">
-    <img alt="微信收款" src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201028183825.png">
-    <img alt="支付宝收款" src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201028183824.png">
-    <img alt="QQ收款" src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201028204840.png">
+    <img alt="微信收款" src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@master/20201028183825.png">
+    <img alt="支付宝收款" src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@master/20201028183824.png">
+    <img alt="QQ收款" src="https://cdn.jsdelivr.net/gh/aaronlam/imghosting@master/20201028204840.png">
 <div>

@@ -15,7 +15,7 @@ TCP/IP 作为目前互联网举足轻重的网络通信协议，不是没有它�
 
 <!--more-->
 
-![TCP分段IP分包](https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201031123646.png)
+![TCP分段IP分包](https://cdn.jsdelivr.net/gh/aaronlam/imghosting@master/20201031123646.png)
 
 在开始之前，我们先达成共识：
 
@@ -36,7 +36,7 @@ IP 协议适用于传输数据包的协议，作为网络层协议，它能提�
 
 MTU 的值不是越大越好，更大的 MTU 意味着更低的额外开销，但会增加丢包所带来的风险。更小的 MTU 意味着更低的网络延迟，但太小又会让额外开销加大。所以有一个合适 MTU 值对于网络传输来说是非常重要的，每一个物理设备都自己的 MTU，两个主机之间的 MTU 依赖其底层的网络能力，它由整个链路上 MTU 最小的那台物理设备所决定。如下图所示：
 
-![链路MTU发现](https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201031133126.png)
+![链路MTU发现](https://cdn.jsdelivr.net/gh/aaronlam/imghosting@master/20201031133126.png)
 
 **路径最大传输单元发现**（Path MTU Discovery，PMTUD）是用来确定两个主机数据传输 MTU 的机制，它的工作原理如下：
 
@@ -52,7 +52,7 @@ MTU 的值不是越大越好，更大的 MTU 意味着更低的额外开销，�
 
 IP 协议的数据包分片对于传输层协议是透明的，假设我们使用 UDP 协议传输 2000 字节的数据，加上 UDP 协议报头占用的 8 字节，则 IP 协议需要传输 2008 字节的数据。但是当 IP 协议发现自己的路径 MTU 是 1480 字节时，它察觉到其要传输的数据 2008 字节大于 MTU 的 1480 字节，就会手起刀落对 UDP 的数据报进行拆分。如下图所示：
 
-![IP协议对UDP数据报进行分片](https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201031141508.png)
+![IP协议对UDP数据报进行分片](https://cdn.jsdelivr.net/gh/aaronlam/imghosting@master/20201031141508.png)
 
 具体分片后的情况如下：
 
@@ -69,7 +69,7 @@ IP 协议的 MTU 是物理设备上的限制，它限制了传输路径上能够
 
 如下图所示，如果 TCP 连接 MSS 是 1460 字节，应用层想通过 TCP 协议传输 2000 字节的消息数据，那么 TCP 协议会根据 MSS 将 2000 字节的数据拆分到两个数据段中：
 
-![TCP协议数据段进行分段](https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201031154702.png)
+![TCP协议数据段进行分段](https://cdn.jsdelivr.net/gh/aaronlam/imghosting@master/20201031154702.png)
 
 最终分段后的情况如下：
 
@@ -80,7 +80,7 @@ IP 协议的 MTU 是物理设备上的限制，它限制了传输路径上能够
 
 我们可以通过一个例子分析 MSS 存在的必要性。如下图所示，假设 TCP 协议中不存在 MSS 的概念，因为每个数据段的大小没有上限，当 TCP 协议交给 IP 协议各发送两个共 1600 字节的 IP 协议数据包时，由于物理设备的限制，IP 协议的路径 MTU 为 1500，所以 IP 协议会对数据包进行分片：
 
-![IP协议第TCP协议数据段进行分片](https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201031164352.png)
+![IP协议第TCP协议数据段进行分片](https://cdn.jsdelivr.net/gh/aaronlam/imghosting@master/20201031164352.png)
 
 所以就会造成不存在 TCP 协议头的数据包，那么当 IP 协议进行数据传输时出现了丢包，TCP 协议的接收方就没办法对数据段进行重组，最终导致整个 TCP 数据段都需要重传，带来了更多的额外开销。
 

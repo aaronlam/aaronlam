@@ -55,11 +55,11 @@ npm i -g verdaccio --unsafe-perm
 
 安装完依赖包后，我们就可以在命令行中输入 `verdaccio` 命令启动，如下所示：
 
-![启动Verdaccio](https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210145307.png)
+![启动Verdaccio](https://cdn.jsdelivr.net/gh/aaronlam/imghosting@master/20201210145307.png)
 
 此时，我们在浏览器中，输入 `http://localhost:4873` 就可以看到用 Verdaccio 搭建好的 npm 私服了，如下所示：
 
-![Verdaccio首页](https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210145522.png)
+![Verdaccio首页](https://cdn.jsdelivr.net/gh/aaronlam/imghosting@master/20201210145522.png)
 
 ## 使用步骤
 
@@ -94,7 +94,7 @@ nrm ls
 
 下图中所列出的就是 `nrm` 中我们所有能够切换的 npm 源了，刚添加的私服源在最下面：
 
-![所有npm源](https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210152437.png)
+![所有npm源](https://cdn.jsdelivr.net/gh/aaronlam/imghosting@master/20201210152437.png)
 
 ### 3. 利用 nrm 使用私服源
 
@@ -108,7 +108,7 @@ nrm use verdaccio
 
 如下图所示，我们就已经切换到刚添加的私服源了：
 
-![切换私服源](https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210153024.png)
+![切换私服源](https://cdn.jsdelivr.net/gh/aaronlam/imghosting@master/20201210153024.png)
 
 ### 4. 创建私服源账号
 
@@ -122,7 +122,7 @@ npm adduser
 
 如下图所示，我在自己搭建的私服源中创建了 test 账号：
 
-![创建私服源账号](https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210154239.png)
+![创建私服源账号](https://cdn.jsdelivr.net/gh/aaronlam/imghosting@master/20201210154239.png)
 
 ### 5. 登录私服源账号
 
@@ -136,21 +136,21 @@ npm login
 
 如下图所示，如我们的预期一样，所注册的账号已经可以登录到私服源了：
 
-![登录私服源账号](https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210154239.png)
+![登录私服源账号](https://cdn.jsdelivr.net/gh/aaronlam/imghosting@master/20201210154239.png)
 
 ### 6. 发布包到私服源
 
 现在，我们可以尝试一下创建一个项目然后把该项目发布到私服源中。我这里是随便创建了一个文件夹 `verdaccio-npm-publish-demo`，然后用 VSCode 打开后在终端执行 `npm init` 初始化项目，再创建一个 `index.js` 文件，内容就为 `console.log('publish demo')`，如下：
 
-![项目概览图](https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210160045.png)
+![项目概览图](https://cdn.jsdelivr.net/gh/aaronlam/imghosting@master/20201210160045.png)
 
 此时，我们回到在终端中，执行命令 `npm login` 登录到私服源中，然后再执行命令 `npm publish` 来把包发布到私服源里去。此时终端就会显示包已经发布成功，如下：
 
-![私服源包发布](https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210164544.png)
+![私服源包发布](https://cdn.jsdelivr.net/gh/aaronlam/imghosting@master/20201210164544.png)
 
 我们访问私服源的首页，也会看到我们刚刚所发布的包，如下：
 
-![已发布的包](https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210164312.png)
+![已发布的包](https://cdn.jsdelivr.net/gh/aaronlam/imghosting@master/20201210164312.png)
 
 ### 7. 安装私服源里的包
 
@@ -158,7 +158,7 @@ npm login
 
 如下图所示，项目 `verdaccio-npm-install-demo` 里安装了私服源里的 `verdaccio-npm-publish-demo` 依赖包：
 
-![私服源依赖包安装](https://cdn.jsdelivr.net/gh/aaronlam/imghosting/20201210165808.png)
+![私服源依赖包安装](https://cdn.jsdelivr.net/gh/aaronlam/imghosting@master/20201210165808.png)
 
 ## 优化配置
 

@@ -346,7 +346,10 @@ han: false
 #swiftype_key:
 
 # Baidu Analytics ID
-baidu_analytics: 12d5f43ccc3315ebcf28a28012e25650
+baidu_analytics:
+
+# Cloudflare Analytics ID
+cloudflare_analytics: d20e97bac59548d5a056f30a47843323
 
 # Duoshuo ShortName
 #duoshuo_shortname:
